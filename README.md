@@ -1,7 +1,7 @@
 # Kickoff
 **Kickoff is a CWS style framework to make starting a new site easier and quicker to setup. It uses SCSS, Gulp, and your favorite editor to make producing styles easier.**
 
-### Current version: 1.3.1
+### Current version: 1.3.3
 
 ## Step 1: Select and editor
 

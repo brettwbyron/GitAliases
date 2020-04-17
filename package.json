@@ -1,6 +1,6 @@
 {
     "name": "gulp-default",
-    "version": "1.3.2",
+    "version": "1.3.3",
     "private": true,
     "description": "starter file",
     "main": "gulpfile.js",
