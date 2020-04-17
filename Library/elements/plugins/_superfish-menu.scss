@@ -1,0 +1,17 @@
+.sf-menu {
+    margin-bottom: 0;
+
+    ul {
+        position: relative;
+        top: auto;
+        left: auto;
+    }
+    li {
+        background: none;
+        transition: none;
+        float: none;
+    }
+    a {
+        border: none;
+    }
+}

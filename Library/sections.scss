@@ -1,0 +1,375 @@
+// -----------------------------------------------------------------------------
+/*! Sections */
+// -----------------------------------------------------------------------------
+
+// Default sections
+// -----------------------------------------------------------------------------
+.jv-logo {
+    margin: 0;
+
+    // Desktop
+    @if $mobile==false {
+        a {
+            display: inline-block;
+
+            img {
+                height: 50px;
+                width: 150px;
+            }
+        }
+    }
+
+    @if $mobile==true {
+
+        /* Removes blue gradient */
+        &:after {
+            background: none;
+        }
+
+        img {
+            height: 50px;
+            width: 150px;
+        }
+    }
+}
+
+// Job list page
+// -----------------------------------------------------------------------------
+.jv-page-jobs,
+.jv-page-search {
+    .jv-job-list {
+        @if $mobile==false {
+            ul {
+                margin-top: 0;
+            }
+
+            a {
+                position: relative;
+                transition: all $transition-normal $transition-easing;
+                padding: 0.75em 2em;
+                border-radius: $border-radius;
+
+                &:hover {
+                    background-color: rgba($color-gray, 0.25);
+                }
+            }
+
+            // .jv-job-list-name { }
+
+            .jv-job-list-location {
+                color: $color-text;
+                text-align: left;
+            }
+        }
+
+        // End Desktop
+    }
+
+    @if $mobile==true {
+        .jv-active-category .jv-job-category-link:before {
+            content: none;
+        }
+
+        // .jv-job-category-label {
+        // font-family: $font-headings;
+        // font-size: $h2-m;
+        // font-weight: 700;
+        // margin: 0 2em;
+        // color: $color-text;
+        // }
+
+        // .jv-job-category-meta {
+        // color: $color-text-brown;
+        // text-align: center;
+        // }
+
+        .jv-job-list-inner {
+            background: $color-white;
+            padding: 0 35px;
+            border-bottom: 1px solid $color-border;
+        }
+
+        .jv-tag-new {
+            background-color: $color-primary;
+        }
+    }
+}
+
+@if $mobile==true {
+
+    .jv-search-list .jv-list-icon,
+    .jv-search-list .jv-list-label,
+    .jv-text-link {
+        color: $color-text;
+    }
+
+    .jv-job-categories,
+    .jv-job-list-inner,
+    .jv-list,
+    .jv-search-list {
+        background: none;
+    }
+
+    .jv-job-item {
+
+        .jv-list-label,
+        .jv-list-icon,
+        .jv-meta {
+            color: $color-text;
+        }
+
+        .jv-meta {
+            font-size: (14 / $font-size-body) + em;
+            font-weight: 400;
+        }
+    }
+}
+
+// End Mobile
+
+// Job detailpage
+// -----------------------------------------------------------------------------
+.jv-page-job {
+
+    // .jv-share-widget {
+
+    // }
+
+    // .jv-brand-linkedin, .jv-brand-facebook, .jv-brand-twitter {
+    //     background-color: transparent;
+    //     padding: 0;
+    // }
+
+    // .jv-page-body {
+    // @if $mobile == false {
+    //     padding-top: 124px;
+    // }
+    // @if $mobile == true {
+    //     padding-top: 54px;
+    // }
+    // }
+
+    // .jv-header {
+    // margin:0 0 0.4em;
+    // padding: 0;
+    // font-family: $font-headings;
+    // line-height: 1.25;
+    // text-align: center;
+    // color: $color-white;
+    //
+    // @if $mobile == false {
+    //     font-size: 3vw;
+    // }
+    // }
+
+    .jv-job-detail-top-actions {
+        @if $mobile==false {
+            position: absolute;
+            right: 30px;
+            top: 0;
+        }
+
+        // End Desktop
+        @if $mobile==true {
+            position: relative;
+            margin: 1em 0;
+        }
+
+        // End Mobile
+    }
+
+    // .jv-job-detail-bottom-actions {
+
+    // .jv-button-apply {
+
+    // }
+
+    // .jv-job-detail-meta {
+    // margin-bottom: 2em;
+    // }
+    // }
+
+    // .jv-job-detail-meta {
+    // font-family: $font-headings;
+    // font-size: 20px;
+    // text-align: center;
+    // color: $color-white;
+    // padding: 0;
+    // margin: 0;
+    // }
+
+    // .jv-apply-form,
+    // .jv-job-detail-description {
+    // h3 {
+    //     text-align: left;
+    //     font-weight: 400;
+    // }
+    // }
+
+    // .jv-button-list {
+    // border: 1px solid #ccc;
+    // background: none;
+    // border-radius: 0;
+    // }
+
+    // .jv-button-list-item {
+    // border: none;
+    // background: none;
+    //
+    // &:last-child {
+    //     margin-right: 0;
+    // }
+    // .jv-button-icon {
+    //     color: $color-white;
+    // }
+    // }
+
+    // @if $mobile == true {
+    //     .jv-sub-header {
+    // color: $color-white;
+    // font-size: (18 / $font-size-body) + em;
+    // font-weight: 700;
+    // }
+    // }
+
+}
+
+// Apply
+// -----------------------------------------------------------------------------
+.jv-page-apply {
+
+    // .jv-page-body {
+    // padding: 1em 0 2em;
+    // }
+
+    // .jv-header {
+    // color: $color-accent;
+    // text-align: left;
+    // }
+
+    @if $mobile==true {
+
+        .jv-header {
+            color: $color-primary;
+        }
+
+        .jv-sub-header {
+            font-size: $h2-m;
+            color: $color-text;
+        }
+
+        .jv-apply-meta {
+            margin: 0.5em 0 1em;
+            color: $color-text;
+            font-size: (16 / $font-size-body) + em;
+        }
+
+        .jv-step-header {
+            font-weight: 400;
+        }
+    }
+}
+
+// Apply Conform
+// -----------------------------------------------------------------------------
+.jv-page-applyconfirm {
+    .jv-page-message {
+        background-color: transparent;
+        padding: 5.5em 1em 5em;
+
+        p {
+            margin-bottom: 4em;
+        }
+    }
+}
+
+// Tools
+// -----------------------------------------------------------------------------
+.tools {
+    margin: 1em;
+
+    a {
+        margin: 0 0.25em;
+        width: 270px;
+        padding: 10px 15px;
+    }
+}
+
+// Other
+// -----------------------------------------------------------------------------
+
+.jv-share-widget {
+    padding: 1em 0;
+}
+
+// .jv-share-widget-title {
+
+// }
+// .jv-job-detail-meta, .jv-apply-meta {
+
+// }
+
+@if $area-featured==true {
+
+    // Featured Jobs -----------------------------------------------------------
+    #featured {
+        .jv-featured-jobs {
+            background-color: transparent;
+            border: none;
+            padding: 1em 0;
+        }
+
+        .jv-featured-job,
+        .jv-featured-jobs-header {
+            text-align: center;
+        }
+
+        .jv-featured-jobs-header {
+            // color: $color-white;
+            margin: 0 0 0.25em;
+            width: 100%;
+        }
+
+        .jv-featured-job {
+            flex: 1 1 auto;
+            padding: 1em 0;
+            margin: 0;
+        }
+
+        .jv-featured-job-title {
+            font-weight: 700;
+            font-size: 1.25em;
+            text-align: center;
+        }
+
+        .jv-featured-job-location {
+            font-size: 1em;
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+/*! =Custom sections */
+// -----------------------------------------------------------------------------
+
+// Banners
+// *Directions* Copy the @include of the desired mixin to use
+// and customize the properties.
+// -----------------------------------------------------------------------------
+// fixed:
+// @include banner-fixed($w:1200px);
+
+// scaling:
+// @include banner-scaling($imgH:1080px, $imgW:1920px, $h:null, $h-m:null, $min:null, $max:null, $class:null, $imgName:null, $pos:'50% 50%') {}
+
+// >>>>>>>>>>> Add you sections here <<<<<<<<<<
+
+// @if $mobile == false {
+//     
+//     /*! min-width: #{$screen-md-px} */
+//     @media all and (min-width:$screen-md-em) {
+//
+//          @include banner-scaling($imgH:1080px, $imgW:1920px, $h:null, $h-m:null, $min:null, $max:null, $class:null, $imgName:null, $pos:'50% 50%') {}
+//     }
+// }
+// End Desktop

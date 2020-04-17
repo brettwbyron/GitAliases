@@ -1,0 +1,143 @@
+// -----------------------------------------------------------------------------
+// =Mobile styles
+// -----------------------------------------------------------------------------
+
+// Nav Styles
+// -----------------------------------------------------------------------------
+
+.jv-nav-open-link {
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    font-size: 24px;
+    line-height: 1;
+    margin-top: 5px;
+    margin-right: 5px;
+
+    &:before {
+        color: $color-text;
+        font-size: inherit;
+    }
+
+    @if $area-nav-left == true {
+        right: auto;
+        left: 0;
+    }
+}
+
+@media only screen and (min-width: 40.063em) {
+    .jv-nav-open-link {
+        right: 0.5em;
+    }
+}
+
+.jv-nav {
+    background: $color-background-light;
+    z-index: $z-nav;
+
+    @if $area-nav-left == true {
+        left: -255px;
+        right: auto;
+
+        .jv-nav-visible & {
+            transform: translate3d(255px, 0px, 0px) scale3d(1, 1, 1)!important;
+        }
+    }
+
+    .jv-nav-link {
+        padding: 15px 15px 18px;
+        line-height: 18px;
+        font-size: (12 / $font-size-body) + em;
+        font-family: $font-headings;
+        font-weight: 600;
+        white-space: nowrap;
+        text-transform: uppercase;
+        color: #7D7977;
+
+        &:hover {
+            background: transparent;
+        }
+
+        i,
+        svg {
+            margin-left: 6px;
+        }
+    }
+
+}
+
+// Hides the nav shadow
+// .jv-nav-visible {
+//     .jv-nav {
+//         box-shadow: none;
+//     }
+//
+//     .jv-page-content:after {
+//         display: none!important;
+//     }
+// }
+
+// Header/Footer
+// -----------------------------------------------------------------------------h
+.jv-page-header {
+    background: $color-background-light;
+    padding: 0;
+
+    .jv-wrapper {
+        padding: 11px 0;
+    }
+}
+
+.jv-footer {
+    background-color: $color-accent;
+    color: $color-text;
+    padding: 2em 0;
+
+    .jv-wrapper {
+        padding: 0 20px;
+    }
+
+    .copyright {
+        font-size: $h6;
+    }
+
+    a {
+        color: $color-text;
+    }
+
+    .jv-powered-by {
+        margin: 0;
+        display: inline-flex;
+
+        &,
+        &:visited {
+            color: $color-white;
+        }
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        .icon span {
+            width: 1px;
+            height: 1px;
+        }
+    }
+}
+
+.jv-page {
+    background-color: transparent;
+}
+
+.grecaptcha-badge {
+    z-index: 100;
+}
+
+// Mobile landscape
+@media all and (orientation:landscape) {
+
+    /* Style adjustments for landscape mode goes here */
+    .jv-nav-open-link {
+        right: 0;
+    }
+}

@@ -1,0 +1,72 @@
+// -----------------------------------------------------------------------------
+// =Desktop specific styles
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+/* =Header/Footer */
+// -----------------------------------------------------------------------------
+.jv-page-header {
+    height: 100px;
+    padding: 25px 0;
+
+    nav {
+        a {
+            padding: 0.25em 0.5em;
+        }
+    }
+}
+// END header
+
+@if $area-fixed-header == true {
+    .fixed-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: block;
+        background-color: $color-background-light;
+        z-index: $z-nav;
+    }
+}
+
+.jv-footer {
+    position: relative;
+    padding: 3em 0;
+    background-color: $color-gray-dark;
+    color: $color-text;
+
+    img {
+        margin-right: 10px;
+    }
+
+    a {
+        color: $color-text;
+        margin-left: 1em;
+
+        &:hover {
+            color: $color-gray;
+            text-decoration: underline;
+        }
+    }
+
+    .jv-powered-by {
+        margin: 0;
+        display: inline-flex;
+
+        &,
+        &:visited {
+            color: $color-white;
+            text-decoration: none;
+        }
+
+        &:hover {
+            color: $color-primary;
+        }
+
+        .icon span {
+            width: 1px;
+            height: 1px;
+        }
+    }
+}
+// END footer

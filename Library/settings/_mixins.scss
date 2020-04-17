@@ -1,0 +1,544 @@
+// --------------------------------------------------------------------------
+//  =Mixins
+// --------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Banners - fixed | scaling | scaling slideshow
+// -----------------------------------------------------------------------------
+
+// Fixed size banner - Use srcset to target screen size or resolution.
+// (https://www.sitepoint.com/how-to-build-responsive-images-with-srcset/)
+// -----------------------------------------------------------------------------
+// $w (width): <pixels>
+//
+// <div id="banner" class="fixed">
+//     <img src="//careers.jobvite.com/path-to-customer-folder/banner.jpg" />
+// </div>
+@mixin banner-fixed($w:1200px) {
+    @if type-of($w) != number {
+        @error "The value of $w:#{$w} must be in pixels.";
+    }
+
+    #banner.fixed {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        position: relative;
+
+        img {
+            max-width: $w;
+        }
+
+        @content;
+    }
+}
+
+// Scaling banner
+// -----------------------------------------------------------------------------
+// $max (max-height): <pixels> | min (min-height): <pixels>
+// $imgH (image height): <pixels> | $imgW (image width): <pixels>
+// $imgName (image name): <string>
+// $pos (position): <any value accepted by background-position
+//
+// EX:
+// <div id="banner" class="cover">
+//     <ul class="banner_image slideshow">
+//         <li><span>Banner</span></li>
+//     </ul>
+// </div>
+@mixin banner-scaling($imgH, $imgW, $h:null, $h-m:null, $min:null, $max:null, $class:null, $imgName:null, $pos:'50% 50%') {
+    @if $h != null and type-of($h) != number {
+        @error "The value of $h:#{$h} must be in pixels.";
+    }
+
+    @if $h-m != null and type-of($h-m) != number {
+        @error "The value of $h-m:#{$h-m} must be in pixels.";
+    }
+
+    @if $min != null and type-of($min) != number {
+        @error "The value of $min:#{$min} must be in pixels.";
+    }
+
+    @if $max != null and type-of($max) != number {
+        @error "The value of $max:#{$max} must be in pixels.";
+    }
+
+    @if type-of($imgH) != number {
+        @error "The image height value of $imgH:#{$imgH} must be in pixels.";
+    }
+
+    @if type-of($imgW) != number {
+        @error "The image width value of $imgW:#{$imgW} must be in pixels.";
+    }
+
+    @if $class != null {
+        $class: ("." + $class);
+    }
+
+    @if $imgName != null {
+        @if type-of($imgName) != string {
+            @error "The image name must be a string with file format. ex: banner.jpg";
+        }
+    }
+
+    #banner.cover#{$class} {
+        width: 100%;
+        position: relative;
+        @if $mobile == false {
+            @if $h != null {
+                height: $h;
+            }
+            @if $min != null {
+                min-height: $min;
+            }
+            @if $max != null {
+                max-height: $max;
+            }
+        } // End Desktop
+        @if $mobile == true {
+            @if $h-m != null {
+                height: $h-m;
+            }
+        } // End Mobile
+
+        &:before {
+            display: block;
+            content: '';
+            padding-bottom: ($imgH/$imgW) * 100%;
+        }
+
+        .banner_image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            padding-left: 0;
+
+            li {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                background-position: unquote($pos);
+                background-repeat: no-repeat;
+                background-size: cover;
+                @if $imgName != null {
+                    background-image: url($root-url+$imgName);
+                }
+            }
+
+            span {
+                color: $color-white;
+                background: $color-black;
+                padding: 1px;
+                opacity: 0;
+            }
+        }
+
+        @content;
+    }
+}
+
+// Scaling banner slideshow
+// -----------------------------------------------------------------------------
+// $max (max-height): <pixels> | min (min-height): <pixels>
+// $imgH (image height): <pixels> | $imgW (image width): <pixels>
+// $imgName (image name): <string>
+// $pos (position): <any value accepted by background-position>
+//
+// EX:
+// <div id="banner" class="cover">
+//     <ul class="banner_image slideshow">
+//         <li><span>Banner 1</span></li>
+//         <li><span>Banner 2</span></li>
+//         <li><span>Banner 3</span></li>
+//         <li><span>Banner 4</span></li>
+//         <li><span>Banner 5</span></li>
+//     </ul>
+// </div>
+@mixin banner-slideshow($imgH, $imgW, $min:null, $max:null, $total:5, $time: 5, $fade: 0.5, $imgName:'banner-slide', $pos:'50% 50%') {
+    @if $min != null and type-of($min) != number {
+        @error "The value of $min:#{$min} must be in pixels.";
+    }
+
+    @if $max != null and type-of($max) != number {
+        @error "The value of $max:#{$max} must be in pixels.";
+    }
+
+    @if type-of($imgH) != number {
+        @error "The image height value of $imgH:#{$imgH} must be in pixels.";
+    }
+
+    @if type-of($imgW) != number {
+        @error "The image width value of $imgW:#{$imgW} must be in pixels.";
+    }
+
+    @if type-of($imgName) != string {
+        @error "The image name must be a string with file format. ex: banner.jpg";
+    }
+
+    // Slideshow variables
+    // -------------------------------------------------------------------------
+    $slideTotal: $total;
+    $n: $slideTotal; // For "n" images
+    $n1: $slideTotal - 1;
+    $a: $time; // a = presentation time for one image
+    $b: $fade; // b = duration for cross fading in seconds
+    $t: ($a+$b)*$n;
+    $delay-inc: $t/$n; // Slide delay increments
+
+    // Slideshow
+    $key-1: 0;
+    $key-2: ($a/$t)*100%;
+    $key-3: (($a + $b)/$t) * 100%;
+    $key-4: (100% - ($b/$t * 100%));
+    $key-5: 100%;
+
+    // Animated Banner
+    @keyframes imageAnimation {
+        #{$key-1} {
+            opacity: 1;
+        }
+
+        #{$key-2} {
+            opacity: 1;
+        }
+
+        #{$key-3} {
+            opacity: 0;
+        }
+
+        #{$key-4} {
+            opacity: 0;
+        }
+
+        #{$key-5} {
+            opacity: 1;
+        }
+    }
+
+    #banner.cover {
+        width: 100%;
+        position: relative;
+        @if $min != 0 {
+            min-height: $min;
+        }
+        @if $max != 0 {
+            max-height: $max;
+        }
+
+        &:before {
+            display: block;
+            content: '';
+            padding-bottom: ($imgH/$imgW) * 100%;
+        }
+
+        .banner_image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            padding-left: 0;
+
+            li {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                background-position: unquote($pos);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-image: url($root-url+$imgName);
+            }
+
+            span {
+                color: $color-white;
+                background: $color-black;
+                padding: 1px;
+                opacity: 0;
+            }
+        }
+
+        .slideshow li {
+            animation: imageAnimation ($t+s) ease-in-out infinite 0s;
+        }
+
+        @for $i from 1 through ($n) {
+            .slideshow li:nth-of-type(#{$i}) {
+                background-image: url($root-url+"#{$imgName}-#{$i}@0,5x.jpg");
+                animation-delay: (($n - $i) * $delay-inc) +s;
+            }
+        }
+
+        @content;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// WebP Image
+// -----------------------------------------------------------------------------
+@mixin webp-bg($img) {
+    .webp & {
+        background-image: url($root-url+$img+".webp");
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Gradients
+// -----------------------------------------------------------------------------
+
+// Linear gradient - $list: <gradient colors>
+@mixin gradient($direction, $list) {
+    background: linear-gradient($direction, $list);
+}
+
+// Radial gradient - $list: <gradient colors>
+@mixin radial-gradient($list) {
+    background: radial-gradient(circle closest-side, $list);
+}
+
+// -----------------------------------------------------------------------------
+// Truncating single line of text only
+// -----------------------------------------------------------------------------
+
+// Width $w <integer>
+@mixin truncate($w: 100px) {
+    display: inline-block;
+    max-width: $w;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+@mixin truncate-none() {
+    max-width: none;
+    overflow: auto;
+    text-overflow: initial;
+    width: auto;
+}
+
+// -----------------------------------------------------------------------------
+// Truncating Multiple Line Text
+// Make sure there is no height set after this mixin
+// -----------------------------------------------------------------------------
+
+// $f (font): <integer> | $l-h: decimal | $lines:
+@mixin truncate-multiline($f:14, $l-h:1.2, $lines:3) {
+    display: block;
+    /* Fallback for non-webkit */
+    display: -webkit-box;
+    max-height: ($f * $l-h * $lines) + px; // Fallback for non-webkit
+    margin: 0;
+    font-size: $f + px;
+    line-height: $l-h;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    overflow: -moz-scrollbars-vertical; // Fallback for Mozilla browsers
+    text-overflow: ellipsis;
+    white-space: pre-wrap;
+}
+
+// -----------------------------------------------------------------------------
+// Prevent/Limit Selection
+// -----------------------------------------------------------------------------
+// $user-select: none | text | all | element(IE)
+// https://developer.mozilla.org/en-US/docs/Web/CSS/user-select
+@mixin user-select($user-select) {
+    user-select: $user-select;
+}
+
+// -----------------------------------------------------------------------------
+// =Sizing =Size shortcuts
+// -----------------------------------------------------------------------------
+// $w: <integer>, $h: <integer>
+// Positive and negative accepted
+@mixin size($w:5px, $h:5px) {
+    height: $h;
+    width: $w;
+
+}
+// $s: <integer>
+// Positive and negative accepted
+@mixin square($s:5px) {
+    @include size($s, $s);
+}
+
+//------------------------------------------------------------------------------
+// Shadows
+//------------------------------------------------------------------------------
+
+// $x: <integer>, $y: <integer>, $blur: <integer>, $spread: <integer>, $alpha: <decimal number 0-1>
+@mixin box-shadow-adv($x: 0, $y: 1, $blur: 2, $spread: 0, $alpha: 0.25) {
+    $val: ($x + px) ($y + px) ($blur + px) ($spread + px) rgba(0,0,0,$alpha);
+    box-shadow: $val;
+}
+// $x: <integer>, $y: <integer>, $blur: <integer>, $spread: <integer>, $alpha: <decimal number 0-1>
+// .inner-shadow(0; 1; 1; 1; 0.25)
+@mixin inner-shadow($x: 0, $y: 1, $blur: 2, $spread: 0, $r: 0, $g: 0, $b: 0, $alpha: 0.25) {
+    $val: inset ($x + px) ($y + px) ($blur + px) ($spread + px) rgba($r,$g,$b,$alpha);
+    box-shadow: $val;
+}
+@mixin no-shadow() {
+    box-shadow: none;
+}
+
+//------------------------------------------------------------------------------
+// =border radius
+//------------------------------------------------------------------------------
+
+// $t,$r,$b,$l: <integer>
+@mixin border-radius-custom($t, $r, $b, $l) {
+    $val: $t $r $b $l;
+    border-radius: $val;
+}
+// $rounded: <integer>
+@mixin border-radius-top($rounded) {
+    $val: $rounded $rounded 0 0;
+    border-radius: $val;
+}
+// $rounded: <integer>
+@mixin border-radius-bottom($rounded) {
+    $val: 0 0 $rounded $rounded;
+    border-radius: $val;
+}
+// $rounded: <integer>
+@mixin border-radius-left($rounded) {
+    $val: $rounded 0 0 $rounded;
+    border-radius: $val;
+}
+// $rounded: <integer>
+@mixin border-radius-right($rounded) {
+    $val: 0 $rounded $rounded 0;
+    border-radius: $val;
+}
+
+// -----------------------------------------------------------------------------
+// =Scrolling
+// -----------------------------------------------------------------------------
+@mixin scroller-y() {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+@mixin scroller() {
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+// -----------------------------------------------------------------------------
+// =Grid
+// -----------------------------------------------------------------------------
+// $max: 8
+//
+// @for $i from 1 through $max {
+//     &.col-#{$i} {
+//         @include ie-grid-col($i);
+//     }
+//     &.row-#{$i} {
+//         @include ie-grid-row($i);
+//     }
+// }
+
+@mixin ie-grid() {
+    @for $i from 1 through $max {
+        &.col-#{$i} {
+            @include ie-grid-col($i);
+        }
+
+        &.row-#{$i} {
+            @include ie-grid-row($i);
+        }
+    }
+}
+
+@mixin ie-grid-col($col-num, $span:0) {
+    -ms-grid-column: $col-num;
+    @if $span > 0 {
+        -ms-grid-col-span: $span;
+    }
+}
+
+@mixin ie-grid-row($row-num, $span:0) {
+    -ms-grid-row: $row-num;
+    @if $span > 0 {
+        -ms-grid-row-span: $span;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// =Position
+// -----------------------------------------------------------------------------
+@mixin position($top:0,$left:0) {
+    top: $top;
+    left: $left;
+}
+
+// ----
+// libsass (v3.3.6)
+// ----
+
+// =========================================================================
+//
+//  PRECISE CONTROL OVER RESPONSIVE TYPOGRAPHY FOR SASS
+//  ---------------------------------------------------
+//  Indrek Paas @indrekpaas
+//
+//  Inspired by Mike Riethmuller's Precise control over responsive typography
+//  http://madebymike.com.au/writing/precise-control-responsive-typography/
+//
+//  `strip-unit()` function by Hugo Giraudel
+//
+//  11.08.2016 Remove redundant `&` self-reference
+//  31.03.2016 Remove redundant parenthesis from output
+//  02.10.2015 Add support for multiple properties
+//  24.04.2015 Initial release
+//
+// =========================================================================
+
+@function strip-unit($value) {
+    @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($properties, $min-vw, $max-vw, $min-value, $max-value) {
+    @each $property in $properties {
+        #{$property}: $min-value;
+    }
+
+    @media screen and (min-width: $min-vw) {
+        @each $property in $properties {
+            #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
+        }
+    }
+
+    @media screen and (min-width: $max-vw) {
+        @each $property in $properties {
+            #{$property}: $max-value;
+        }
+    }
+}
+
+// Usage:
+// ======
+
+// /* Single property */
+// html {
+//   @include fluid-type(font-size, 320px, 1366px, 14px, 18px);
+// }
+
+// /* Multiple properties with same values */
+// h1 {
+//   @include fluid-type(padding-bottom padding-top, 20em, 70em, 2em, 4em);
+// }
+
+////////////////////////////////////////////////////////////////////////////

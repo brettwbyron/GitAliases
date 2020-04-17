@@ -1,0 +1,104 @@
+// -----------------------------------------------------------------------------
+/*! =CSS Grid layout */
+// -----------------------------------------------------------------------------
+
+/* EXAMPLE
+
+<div class="row-2-col row-4-col-sm">
+    <div class="col-1 col-1-sm flex-col flex-c-center">
+        <img src="//careers.jobvite.com/ash/icon-balance.svg" alt="" class="svg-icon icon-balance">
+        <h5>Real Work-Life Balance</h5>
+    </div>
+    <div class="col-1 col-1-sm flex-col flex-c-center">
+        <img src="//careers.jobvite.com/ash/icon-awards.svg" alt="" class="svg-icon icon-awards">
+        <h5>Employee recognition <br>awards</h5>
+    </div>
+    <div class="col-1 col-1-sm flex-col flex-c-center">
+        <img src="//careers.jobvite.com/ash/icon-collaborative.svg" alt="" class="svg-icon icon-collaborative">
+        <h5>Highly Collaborative <br>Work Environment</h5>
+    </div>
+    <div class="col-1 col-1-sm flex-col flex-c-center">
+        <img src="//careers.jobvite.com/ash/icon-dresscode.svg" alt="" class="svg-icon icon-dress">
+        <h5>Casual dress code</h5>
+    </div>
+</div>
+
+*/
+$grid-columns: [];
+
+@for $i from 1 through $max-columns {
+    $grid-columns: append($grid-columns,$i,$separator: comma);
+    // @debug $grid-columns;
+    // @debug $i;
+}
+
+@each $col in $grid-columns {
+    .row-#{$col}-col {
+        $col-width: (100% / $col);
+        // @debug $col-width;
+        @include flex-row;
+        @include flex-wrap;
+
+        @for $i from 1 through $col {
+            > .col-#{$i} {
+                width: ($col-width * $i);
+                padding: 0 ($column-gutter / 2);
+            }
+        }
+    }
+}
+
+/* Small devices (tablets, #{$screen-sm-px} and up) */
+@media all and (min-width:$screen-sm-em) {
+    $suffix: '-sm';
+
+    @each $col in $grid-columns {
+        .row-#{$col}-col#{$suffix} {
+            $col-width: (100% / $col);
+            // @debug $col-width;
+
+            @for $i from 1 through $col {
+                > .col-#{$i}#{$suffix} {
+                    width: ($col-width * $i);
+                }
+            }
+        }
+    }
+}
+
+/* Medium devices (desktops, #{$screen-lg-px} and up) */
+@media all and (min-width:$screen-md-em) {
+    $suffix: '-md';
+
+    @each $col in $grid-columns {
+        .row-#{$col}-col#{$suffix} {
+            $col-width: (100% / $col);
+            // @debug $col-width;
+
+            @for $i from 1 through $col {
+                > .col-#{$i}#{$suffix} {
+                    width: ($col-width * $i);
+                }
+            }
+        }
+    }
+
+}
+
+/* Large devices (large desktops, #{$screen-lg-px} and up) */
+@media all and (min-width: $screen-lg-em) {
+    $suffix: '-lg';
+
+    @each $col in $grid-columns {
+        .row-#{$col}-col#{$suffix} {
+            $col-width: (100% / $col);
+            // @debug $col-width;
+
+            @for $i from 1 through $col {
+                > .col-#{$i}#{$suffix} {
+                    width: ($col-width * $i);
+                }
+            }
+        }
+    }
+}

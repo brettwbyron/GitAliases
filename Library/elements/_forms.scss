@@ -1,0 +1,360 @@
+// --------------------------------------------------------------------------
+/*! Forms */
+// --------------------------------------------------------------------------
+
+// General form styles
+.jv-form {
+
+    // Remove unwanted focus ring on application
+    &.jv-apply-form:focus {
+        outline: none;
+    }
+
+    // General select reset
+    select {
+        border: none;
+        background: transparent;
+    }
+
+    // Wraps label and input
+    .jv-form-field {
+
+        @if $area-form-labels == true {
+
+            .jv-form-field-label {
+                font-size: (16 / $font-size-body) + em;
+                width: $form-label-width;
+            }
+        }
+
+        // Wraps input only
+        .jv-form-field-control {
+            @if $mobile == false {
+                min-width: $input-min;
+                max-width: $input-width;
+            }
+            background: $form-input-bkgd;
+            border: $form-border-width solid $form-color-border;
+            border-radius: $form-border-radius;
+        }
+
+        .jv-form-field-hr,
+        .jv-form-field-heading,
+        .jv-form-field-p,
+        .jv-form-field-radio,
+        .jv-form-field-checkbox {
+            .jv-form-field-control {
+                border: none;
+                border-radius: 0;
+                background: none;
+                min-width: none;
+                max-width: none;
+            }
+        }
+    }
+
+    input[type=date],
+    input[type=email],
+    input[type=number],
+    input[type=password],
+    input[type=search],
+    input[type=tel],
+    input[type=text],
+    select,
+    textarea {
+        @if $mobile == false {
+            width: ($input-width - (2 * $form-border-width));
+            min-width: $input-min;
+        } // End Desktop
+        @if $mobile == true {
+            width: 100%;
+        } // End Mobile
+        display: block;
+        background: none;
+        border: none;
+        color: $color-text;
+        font-size: $input-font-size;
+        border-radius: $form-border-radius;
+        padding: $form-padding;
+
+        &:focus {
+            outline-width: $input-focus-width;
+            outline-color: $input-focus-color;
+        }
+    }
+
+    input[type=search] {
+        padding: $form-padding $form-padding $form-padding 2.5em;
+    }
+
+    input[type=date],
+    input[type=email],
+    input[type=number],
+    input[type=password],
+    input[type=search],
+    input[type=tel],
+    input[type=text],
+    select {
+        height: $input-height; // Fixed height fields
+    }
+
+    textarea {
+        min-width: 100%;
+        max-width: 100%;
+        border: $form-border-width solid $form-color-border;
+        border-radius: $form-border-radius;
+
+        @if $mobile == false {
+            height: 180px;
+            max-height: 180px;
+            min-height: 180px;
+        } // End Desktop
+    }
+
+    // Select reset
+    @if ($mobile == false) and ($select-input-custom-arrow == true) {
+        .jv-form-field-select .jv-form-field-appearance {
+
+            .jv-select-icon {
+                display: none;
+            }
+
+            select {
+                padding-right: 2em;
+            }
+        }
+
+
+        select {
+            // min-width: ($input-width - 2 * $form-border-width);
+            background: url($arrow-custom) no-repeat 98% 50%; // Adds select input arrows to background
+        	-moz-appearance: none;
+        	-webkit-appearance: none;
+        	appearance: none;
+        }
+
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            /* IE10+ specific styles go here */
+            select {
+                background: none; // Hides background images for IE11
+            }
+        }
+    } // End Desktop
+
+    .jv-form-buttons {
+        text-align: left;
+        @if $mobile == false {
+            width: $input-width;
+        } // End Desktop
+
+        @if $area-form-labels == true {
+            margin-left: $form-label-width + 4;
+        }
+
+        .jv-button {
+            flex: 1 1 100%;
+
+            &:first-of-type {
+                margin-right: 5px;
+            }
+
+            .fa-search {
+                margin-right:10px;
+            }
+        }
+    }
+
+    // Error states
+    .jv-invalid-field {
+        input,
+        select,
+        textarea,
+        button,
+        .jv-input-group-row {
+            border: 1px solid $color-error !important;
+        }
+    }
+}
+
+.jv-page-consentform {
+
+    select {
+        @if $mobile == false {
+            width: $input-width;
+        }
+        background: $color-white;
+        border: 1px solid $color-black;
+        border-radius: $border-radius;
+    }
+}
+
+.jv-jobAlertContainer, .jv-job-alert-pane {
+    padding-bottom: 2em;
+
+    input[type=date],
+    input[type=email],
+    input[type=number],
+    input[type=password],
+    input[type=search],
+    input[type=tel],
+    input[type=text],
+    select,
+    textarea {
+        background: $color-white;
+        border: 1px solid $form-color-border;
+        border-radius: $form-border-radius;
+        display: block;
+        font-size: $input-font-size;
+        width: 100%;
+        border-radius: $form-border-radius;
+    }
+
+    select {
+        height: auto;
+    }
+
+}
+
+@if $mobile == true {
+    .jv-apply-section-content,
+    .jv-additional-files {
+        .jv-button {
+            width: 100%;
+            margin-bottom: 0.5em;
+        }
+    }
+
+    .jv-add-attachment-paste-buttons {
+        margin-top: 0.5em;
+    }
+
+    .jv-apply-error {
+        margin-bottom: 1em;
+        padding: 0.5em;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Search Form Styles
+// -----------------------------------------------------------------------------
+
+.jv-form {
+
+    &.jv-search-form, &.jv-list-search-form {
+        @include flex-col;
+        padding: 0;
+        @if $mobile == true {
+            margin: 0;
+        }
+        flex: 0 0 auto;
+        background: none;
+        border: none;
+        width: 100%;
+
+        // Wraps label and input
+        .jv-form-field {
+            @if $mobile == false {
+                margin-bottom: $form-input-spacing; // Spacing between stacked inputs
+            }
+            flex: 1 1 auto;
+            background-color: transparent;
+
+            &:last-of-type {
+                margin-right: 0;
+            }
+        }
+
+        .jv-search-field .jv-search-input[type="search"] {
+            background: none;
+
+            &::-webkit-input-placeholder,
+            &::-moz-placeholder,
+            &:-ms-input-placeholder,
+            &:-moz-placeholder {
+                color: $color-text; /* Chrome/Opera/Safari */ /* Firefox 19+ */ /* IE 10+ */ /* Firefox 18- */
+            }
+        }
+
+        @if $mobile == true {
+            // .jv-form-field-control {
+            //     margin-bottom: 10px;
+            // }
+
+            .jv-search-field {
+                padding: 0;
+                border: none;
+                font-size: $input-font-size;
+            }
+
+            .jv-form-field-select label {
+                display: none;
+            }
+        }
+
+        // Hides extra select label
+        .jv-form-field-select {
+            .jv-form-field-appearance label {
+                display: none;
+            }
+        }
+
+        @if $select-input-custom-arrow == true {
+            .jv-form-field-select {
+                position: relative;
+
+                &:after {
+                    position: absolute;
+                    @include square(16px);
+                    content: '';
+                    margin-top: -0.5em;
+                    pointer-events: none;
+                    right: 1.2em;
+                    top: 50%;
+                    background: url($root-url +'icon-downarrow.svg') no-repeat 50% 50%;
+                }
+            }
+        }
+    }
+}
+
+@if $mobile == false {
+    @media all and (min-width:$screen-md-em) {
+        .jv-form {
+
+            &.jv-search-form, &.jv-list-search-form {
+
+                &.jv-form-inline-md {
+                    @include flex-row;
+
+                    input[type=date],
+                    input[type=email],
+                    input[type=number],
+                    input[type=password],
+                    input[type=search],
+                    input[type=tel],
+                    input[type=text],
+                    select,
+                    textarea {
+                        width: 100%;
+                    }
+
+                    // Search Input Styling
+                    .jv-form-field {
+                        margin-bottom: 0;
+                        margin-right: $form-input-spacing; // Spacing between inline inputs
+                    }
+
+                    .jv-form-field-control {
+                        min-width: $input-min;
+                        width: $input-max;
+                    }
+
+                    .jv-form-buttons {
+                        @include flex-row;
+                        margin-left: 0;
+                    }
+                }  // End .jv-form-vertical-md
+            }
+        } // End .jv-form
+    }
+}

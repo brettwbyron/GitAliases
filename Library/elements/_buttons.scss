@@ -1,0 +1,97 @@
+// --------------------------------------------------------------------------
+/* Buttons */
+// --------------------------------------------------------------------------
+
+button:focus {
+    outline: thin dotted $color-focus;
+}
+
+.jv-button {
+    @include flex-inline;
+    @include flex-c-center;
+    @include flex-m-center;
+    padding: 0 20px;
+    margin: 0;
+    line-height: 35px;
+    -webkit-appearance: none;
+    font-family: $font-btn;
+    font-weight: 500;
+    font-size: (16 / $font-size-body) + em;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    background-color: transparent;
+    border-radius: $border-radius;
+    transition: all $transition-normal $transition-easing;
+    min-width: 100px;
+    @if $mobile == true {
+        width: auto;
+    }
+
+    &,
+    &:visited {
+        background: $color-gray-light;
+        color: $color-gray-dark;
+
+        &:active,
+        &:hover {
+            background: $color-gray;
+            color: $color-gray-dark;
+        }
+
+        &:active {
+            background: $color-gray-dark;
+            color: $color-white;
+        }
+    }
+
+    &.jv-button-apply,
+    &.jv-button-primary {
+        background: $color-primary;
+        color: $color-white;
+
+        &:hover {
+            background: darken($color-primary,15%);
+            color: $color-white;
+        }
+
+        &:active {
+            background: darken($color-primary,25%);
+        }
+    }
+
+    &.jv-button-apply-later,
+    &.jv-button-hollow {
+        background-color: transparent;
+        border-color: $color-text;
+        color: $color-text;
+
+        &:hover {
+            background-color: $color-text;
+            color: $color-white;
+        }
+    }
+
+    .jv-text-icon {
+        margin-right: 0.5em;
+        margin-left: 0.5em;
+    }
+}
+
+.jv-additional-files,
+.jv-apply-section-content {
+    .jv-button {
+        &,
+        &:visited {
+            border-width: 1px;
+            background-color: transparent;
+            border-color: $color-text;
+            color: $color-text;
+
+            &:hover {
+                background: $color-text;
+                color: $color-white;
+            }
+        }
+    }
+}

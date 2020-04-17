@@ -1,0 +1,186 @@
+// -----------------------------------------------------------------------------
+/*! =Flex classes */
+// -----------------------------------------------------------------------------
+// m = main axis
+// w = wrap or space along cross axis
+// c = cross axis alignment
+// self = align-self
+
+.flex {
+    display: flex;
+    min-width: 0;
+    min-height: 0;
+}
+.flex-inline { display: inline-flex }
+
+.flex-auto     { flex: 1 1 auto }
+.flex-grow     { flex: 1 0 auto }
+.flex-shrink   { flex: 0 1 auto }
+.flex-static   { flex: 0 0 auto }
+.flex-none     { flex: none }
+
+.flex-first { order: -1 }
+.flex-last  { order: 99999 }
+
+// -----------------------------------------------------------------------------
+// This defines the main axis
+.flex-row, .flex-col {
+    @extend .flex;
+}
+.flex-col  { flex-direction: column }
+.flex-row  { flex-direction: row }
+
+.flex-wrap            { flex-wrap: wrap }
+.flex-nowrap          { flex-wrap: nowrap }
+.flex-wrap-reverse    { flex-wrap: wrap-reverse; }
+
+// -----------------------------------------------------------------------------
+// This defines the alignment along the main axis.
+.flex-m-start         { justify-content: flex-start } // Default
+.flex-m-space-around  { justify-content: space-around }
+.flex-m-space-between { justify-content: space-between }
+.flex-m-space-evenly  { justify-content: space-between } // May have IE11 issues, use catiously
+.flex-m-end           { justify-content: flex-end }
+.flex-m-center        { justify-content: center }
+
+// -----------------------------------------------------------------------------
+// This aligns a flex container's lines within when there is extra space in
+// the cross-axis, similar to how justify-content aligns individual items
+// within the main-axis.
+// w = wrap or space along cross axis
+.flex-w-stretch       { align-content: stretch } // Default
+.flex-w-center        { align-content: center }
+.flex-w-start         { align-content: flex-start }
+.flex-w-end           { align-content: flex-end }
+.flex-w-space-around  { align-content: space-around }
+.flex-w-sapce-between { align-content: space-between }
+
+// -----------------------------------------------------------------------------
+// This defines the default behaviour for how flex items are laid out along the
+// cross axis on the current line.
+// c = cross
+.flex-c-center    { align-items: center }
+.flex-c-baseline  { align-items: baseline }
+.flex-c-stretch   { align-items: stretch } // Default
+.flex-c-start     { align-items: flex-start }
+.flex-c-end       { align-items: flex-end }
+
+// -----------------------------------------------------------------------------
+// This allows the default alignment (or the one specified by align-items) to
+// be overridden for individual flex items. Overrides main-axis alignment.
+.flex-self-start    { align-self: flex-start }
+.flex-self-end      { align-self: flex-end }
+.flex-self-center   { align-self: center }
+.flex-self-stretch  { align-self: stretch }
+.flex-self-baseline { align-self: baseline }
+.flex-self-auto     { align-self: auto }
+
+.flex-center {
+    @extend .flex-col;
+    @extend .flex-m-center;
+    @extend .flex-c-center;
+}
+
+@if $area-flex-order == true {
+
+    @for $i from 1 through $max-pos {
+        .pos-#{$i} {
+            @include flex-order($i);
+        }
+    }
+}
+
+// Responsive layout
+// -----------------------------------------------------------------------------
+@if $mobile == false {
+    // /*! max-width: #{$screen-sm-px} */
+    // @media all and (max-width: $screen-sm-em) {
+    //    $suffix: "-sm";
+    //    .flex#{$suffix} { display: flex }
+    //    .flex-inline#{$suffix} { display: inline-flex }
+    //    .flex-col#{$suffix}  { flex-direction: column }
+    //    .flex-row#{$suffix}  { flex-direction: row }
+    //    .flex-m-end#{$suffix} { justify-content: flex-end }
+    //    .flex-m-center#{$suffix} { justify-content: center }
+    //    .flex-wrap#{$suffix}      { flex-wrap: wrap }
+    //    .flex-nowrap#{$suffix}    { flex-wrap: nowrap }
+    // }
+    /*! min-width: #{$screen-md-px} */
+    @media all and (min-width: $screen-md-em) {
+        $suffix: "-md";
+        .flex#{$suffix}          { display: flex }
+        .flex-inline#{$suffix}   { display: inline-flex }
+        .flex-col#{$suffix}      { flex-direction: column }
+        .flex-row#{$suffix}      { flex-direction: row }
+        .flex-c-center#{$suffix} { align-items: center }
+        .flex-m-start#{$suffix}  { justify-content: flex-start }
+        .flex-m-end#{$suffix}    { justify-content: flex-end }
+        .flex-m-center#{$suffix} { justify-content: center }
+        .flex-wrap#{$suffix}     { flex-wrap: wrap }
+        .flex-nowrap#{$suffix}   { flex-wrap: nowrap }
+
+        .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
+        .ml-auto#{$suffix} { margin-left: auto; }
+        .mr-auto#{$suffix} { margin-right: auto; }
+
+        @if $area-flex-order == true {
+            @for $i from 1 through $max-pos {
+                .pos-#{$i}#{$suffix} {
+                    @include flex-order($i);
+                }
+            }
+        }
+    }
+    /*! min-width: #{$screen-lg-px} */
+    @media all and (min-width: $screen-lg-em) {
+        $suffix: "-lg";
+        .flex#{$suffix}          { display: flex }
+        .flex-inline#{$suffix}   { display: inline-flex }
+        .flex-col#{$suffix}      { flex-direction: column }
+        .flex-row#{$suffix}      { flex-direction: row }
+        .flex-c-center#{$suffix} { align-items: center }
+        .flex-m-start#{$suffix}  { justify-content: flex-start }
+        .flex-m-end#{$suffix}    { justify-content: flex-end }
+        .flex-m-center#{$suffix} { justify-content: center }
+        .flex-wrap#{$suffix}     { flex-wrap: wrap }
+        .flex-nowrap#{$suffix}   { flex-wrap: nowrap }
+
+        .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
+        .ml-auto#{$suffix} { margin-left: auto; }
+        .mr-auto#{$suffix} { margin-right: auto; }
+
+        @if $area-flex-order == true {
+            @for $i from 1 through $max-pos {
+                .pos-#{$i}#{$suffix} {
+                    @include flex-order($i);
+                }
+            }
+        }
+    }
+    /*! min-width: #{$screen-xl-px} */
+    @media all and (min-width: $screen-xl-em) {
+        $suffix: "-xl";
+        .flex#{$suffix}          { display: flex }
+        .flex-inline#{$suffix}   { display: inline-flex }
+        .flex-col#{$suffix}      { flex-direction: column }
+        .flex-row#{$suffix}      { flex-direction: row }
+        .flex-c-center#{$suffix} { align-items: center }
+        .flex-m-start#{$suffix}  { justify-content: flex-start }
+        .flex-m-end#{$suffix}    { justify-content: flex-end }
+        .flex-m-center#{$suffix} { justify-content: center }
+        .flex-wrap#{$suffix}     { flex-wrap: wrap }
+        .flex-nowrap#{$suffix}   { flex-wrap: nowrap }
+
+        .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
+        .ml-auto#{$suffix} { margin-left: auto; }
+        .mr-auto#{$suffix} { margin-right: auto; }
+
+        @if $area-flex-order == true {
+            @for $i from 1 through $max-pos {
+                .pos-#{$i}#{$suffix} {
+                    @include flex-order($i);
+                }
+            }
+        }
+    }
+}

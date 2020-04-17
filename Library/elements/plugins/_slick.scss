@@ -1,0 +1,86 @@
+/*! =Slick slider */
+.slick {
+
+    &-prev, &-next {
+        @include flex-col;
+        @include flex-c-center;
+        @include flex-m-center;
+        position: absolute;
+        z-index: $z-slider-nav;
+        top: 50%;
+        @include size(32px, 80px);
+        margin-top: -16px;
+        cursor: pointer;
+        color: $color-accent;
+        // background-color: rgba($color-primary,0.5);
+
+        img {
+            width: 11px;
+            height: 20px;
+        }
+    }
+
+    &-prev {
+        left: -20px;
+    }
+
+    &-next {
+        right: -20px;
+
+        img {
+            transform: rotate(-180deg);
+        }
+    }
+
+    &-slide img {
+        margin: 0 auto;
+    }
+
+    // &-dots {
+    //     list-style: none;
+    //     @include flex-row;
+    //     @include flex-m-center;
+    //
+    //     li {
+    //         position: relative;
+    //         width: 20px;
+    //         height: 20px;
+    //         margin: 0 5px;
+    //         padding: 0;
+    //         cursor: pointer;
+    //
+    //         button {
+    //             font-size: 0;
+    //             line-height: 0;
+    //             display: block;
+    //             width: 20px;
+    //             height: 20px;
+    //             padding: 5px;
+    //             cursor: pointer;
+    //             color: transparent;
+    //             border: 0;
+    //             outline: none;
+    //             background: transparent;
+    //
+    //             &:before {
+    //                 font-family: 'slick';
+    //                 font-size: 20px;
+    //                 line-height: 20px;
+    //                 position: absolute;
+    //                 top: 0;
+    //                 left: 0;
+    //                 width: 20px;
+    //                 height: 20px;
+    //                 content: '•';
+    //                 text-align: center;
+    //                 color: $color-gray;
+    //                 -webkit-font-smoothing: antialiased;
+    //                 -moz-osx-font-smoothing: grayscale;
+    //             }
+    //         }
+    //         &.slick-active button:before {
+    //             color: $color-accent;
+    //         }
+    //     }
+    // }
+}

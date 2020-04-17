@@ -1,0 +1,176 @@
+
+// -----------------------------------------------------------------------------
+// =Variables
+// -----------------------------------------------------------------------------
+$area-featured: false;
+$area-fixed-header: false;
+$area-jua-inline: false;
+$area-nav-left: false;
+$area-back-to-top: false;
+$area-video-container: false;
+$area-form-labels: false;
+$area-iframe-site: false;
+$area-social-colors: false;
+$area-svg-icons: true;
+$area-hide-search-icon: true;
+$max-spacing: 3; // Padding and margin spacing
+
+// Flex order
+// -----------------------------------------------------------------------------
+$area-flex-order: false;
+$max-pos: 5;
+
+// CSS flex-based grid variables
+// Import objects > _grid to use this
+// -----------------------------------------------------------------------------
+$max-columns: 4;
+$column-gutter: 2%;
+
+// Custom select arrows
+// -----------------------------------------------------------------------------
+$select-input-custom-arrow: false;
+// angle-down-solid
+$arrow-down: 'data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48dGl0bGU+YXJyb3ctZG93bjwvdGl0bGU+PHJlY3Qgd2lkdGg9IjQuOTUiIGhlaWdodD0iMTAiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJNMi4zMSw2LDEsNC42YS4yNC4yNCwwLDAsMSwwLS4zM0wxLjE4LDRhLjI0LjI0LDAsMCwxLC4zMywwbDEsMSwxLTFhLjI0LjI0LDAsMCwxLC4zMywwTDQsNC4yN0EuMjQuMjQsMCwwLDEsNCw0LjZMMi42NCw2YS4yNC4yNCwwLDAsMS0uMzMsMFoiIGZpbGw9IiM0NDQiLz48L3N2Zz4=';
+// double-arrows up/down
+$arrow-double: 'data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+PC9zdmc+';
+
+// Set arrow style
+$arrow-custom: $arrow-down;
+
+// Root URL
+// -----------------------------------------------------------------------------
+$root-url: '//careers.jobvite.com/customer-folder/';
+
+// Colors
+// -----------------------------------------------------------------------------
+$color-primary: #3d87cf;
+$color-secondary: #14317e;
+$color-accent: darken($color-primary,30%);
+$color-gray: #ccc;
+$color-gray-light: lighten($color-gray,15%);
+$color-gray-dark: darken($color-gray,65%);
+$color-text: #777;
+$color-error: #cb0013;
+$color-focus: #555;
+$color-link: $color-primary;
+$color-link--hover: darken($color-primary,15%);
+$color-link--active: darken($color-primary,25%);
+$color-background: #F9F7F6;
+
+// Section background-color
+$color-background-light: #FCFBF9;
+$color-background-dark: #F5F0EF;
+
+$color-border: #f0eae7;
+
+// Selection colors
+$color-selection: $color-white;
+$color-selection-background: $color-black;
+
+// Typography
+// -----------------------------------------------------------------------------
+$font-base: 16;
+$font-base-px: ($font-base + px);
+$font-size-base: $font-base/16;
+$font-size-body: 16;
+$font-sm: ($font-size-body - 2);
+$font-size-button: $font-size-base;
+$line-height-base: 1.375;
+$font-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+// $font-sans-serif: Arial, sans-serif;
+$font-serif: Times, 'Times New Roman', serif;
+$font-web: 'Avenir Next Regular'; // $font-web-bold: 'futura-pt-bold';
+$font-web-bold: 'Avenir Next Bold'; // $font-web-bold: 'futura-pt-bold';
+$font-web-cond-bold: 'Avenir Next Condensed Bold';
+$font-mono: 'Monaco','Input Mono';
+$font-fa: FontAwesome;
+$font-fa5: 'FontAwesome 5 Free';
+$font-jv: 'jobvite-icons';
+$font-headings: $font-web, $font-sans-serif;
+$font-body: $font-web, $font-sans-serif;
+$font-btn: $font-web, $font-sans-serif;
+
+$h1: (60 / $font-size-body) + em;
+$h1-m: (50 / $font-size-body) + em;
+$h2: (36 / $font-size-body) + em;
+$h2-m: (22 / $font-size-body) + em;
+$h3: (20 / $font-size-body) + em;
+$h3-m: (18 / $font-size-body) + em;
+$h4: (17 / $font-size-body) + em;
+$h4-m: (17 / $font-size-body) + em;
+$h5: 1em;
+$h6: (14 / $font-size-body) + em;
+$p: (16 / $font-size-body) + em;
+$p-m: (16 / $font-size-body) + em;
+
+// Forms
+// -----------------------------------------------------------------------------
+$input-width: 300px; // Desktop
+$input-min: 200px;
+$input-max: 100%;
+$input-height: 40px;
+$input-focus-width: 3px; // Default: 5px
+$input-focus-color: $color-outline-focus; // Default: $color-outline-focus
+
+$input-font-size: (16 / $font-size-body) + em;
+
+$form-color-border: lighten($color-black,75%);
+$form-input-bkgd: $color-white;
+// $form-input-bkgd-select: $color-white;
+$form-input-spacing: 0.5em;
+$form-border-width: 1px;
+$form-border-radius: 0;
+$form-padding: 0.4em;
+$form-label-width: 200px;
+
+// Transitions
+// -----------------------------------------------------------------------------
+$transition-fast: 0.2s;
+$transition-normal: 0.3s;
+$transition-slow: 0.5s;
+$transition-easing: ease-in-out; // $transition-easing: ease;
+// $transition-easing: linear;
+
+// Buttons
+// -----------------------------------------------------------------------------
+$button-line-height: $line-height-base;
+$border-radius: 2px;
+
+// Box Shadow
+// -----------------------------------------------------------------------------
+$box-shadow: 0 12px 32px rgba($color-black,.15);
+
+// Spacing
+// -----------------------------------------------------------------------------
+$spacing-0: 0;
+$spacing-1: 1em;
+
+// Browser width
+// -----------------------------------------------------------------------------
+$browser-max-sm: 720px;
+$browser-max-md: 960px;
+$browser-max-lg: 1065px;
+$browser-max-width: 1065px;
+
+// Screen breakpoints
+// -----------------------------------------------------------------------------
+$screen-sm: 640;
+$screen-sm-px: $screen-sm + px;
+$screen-sm-em: ($screen-sm / $font-base) + em;
+$screen-md: 960;
+$screen-md-px: $screen-md + px;
+$screen-md-em: ($screen-md / $font-base) + em;
+$screen-lg: 1200;
+$screen-lg-px: $screen-lg + px;
+$screen-lg-em: ($screen-lg / $font-base) + em;
+$screen-xl: 2000;
+$screen-xl-px: $screen-xl + px;
+$screen-xl-em: ($screen-xl / $font-base) + em;
+
+// Z-index
+// -----------------------------------------------------------------------------
+$z-modal: 1010;
+$z-modal-bkgd: 1005;
+$z-dropdown: 1000;
+$z-nav: 500;
+$z-slider-nav: 800;
