@@ -1,0 +1,70 @@
+/**
+* Simple Modal
+*/
+
+.modal {
+    @include flex-col;
+    @include flex-c-center;
+    @include flex-m-center;
+    display: none;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: $z-modal;
+
+    &.is-active {
+        display: flex;
+    }
+}
+
+.modal-content {
+    @include flex-col;
+    @include flex-c-center;
+    @include flex-m-center;
+    width: 90vw;
+    max-width: 600px;
+    height: 90vh;
+    max-height: 400px;
+    padding: 10px;
+    background-color: $color-white;
+    border-radius: 8px;
+    position: relative;
+
+    &:after {
+        content: '\e677';
+        font-family: $font-jv;
+        @include square(30px);
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 2px;
+        cursor: pointer;
+    }
+
+    h1 {
+        font-size: $h2;
+        text-align: center;
+    }
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #ddd;
+}
+
+.clear::after {
+    content: ' ';
+    clear: both;
+    display: table;
+}
