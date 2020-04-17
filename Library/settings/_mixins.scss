@@ -84,22 +84,13 @@
     #banner.cover#{$class} {
         width: 100%;
         position: relative;
-        @if $mobile == false {
-            @if $h != null {
-                height: $h;
-            }
-            @if $min != null {
-                min-height: $min;
-            }
-            @if $max != null {
-                max-height: $max;
-            }
-        } // End Desktop
-        @if $mobile == true {
-            @if $h-m != null {
-                height: $h-m;
-            }
-        } // End Mobile
+        @if $mobile {
+            height: $h-m;
+        } @else {
+            height: $h;
+            min-height: $min;
+            max-height: $max;
+        }
 
         &:before {
             display: block;
@@ -107,7 +98,7 @@
             padding-bottom: ($imgH/$imgW) * 100%;
         }
 
-        .banner_image {
+        .slides {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -118,7 +109,7 @@
             list-style: none;
             padding-left: 0;
 
-            li {
+            .tns-item {
                 position: absolute;
                 width: 100%;
                 height: 100%;
@@ -131,154 +122,6 @@
                 @if $imgName != null {
                     background-image: url($root-url+$imgName);
                 }
-            }
-
-            span {
-                color: $color-white;
-                background: $color-black;
-                padding: 1px;
-                opacity: 0;
-            }
-        }
-
-        @content;
-    }
-}
-
-// Scaling banner slideshow
-// -----------------------------------------------------------------------------
-// $max (max-height): <pixels> | min (min-height): <pixels>
-// $imgH (image height): <pixels> | $imgW (image width): <pixels>
-// $imgName (image name): <string>
-// $pos (position): <any value accepted by background-position>
-//
-// EX:
-// <div id="banner" class="cover">
-//     <ul class="banner_image slideshow">
-//         <li><span>Banner 1</span></li>
-//         <li><span>Banner 2</span></li>
-//         <li><span>Banner 3</span></li>
-//         <li><span>Banner 4</span></li>
-//         <li><span>Banner 5</span></li>
-//     </ul>
-// </div>
-@mixin banner-slideshow($imgH, $imgW, $min:null, $max:null, $total:5, $time: 5, $fade: 0.5, $imgName:'banner-slide', $pos:'50% 50%') {
-    @if $min != null and type-of($min) != number {
-        @error "The value of $min:#{$min} must be in pixels.";
-    }
-
-    @if $max != null and type-of($max) != number {
-        @error "The value of $max:#{$max} must be in pixels.";
-    }
-
-    @if type-of($imgH) != number {
-        @error "The image height value of $imgH:#{$imgH} must be in pixels.";
-    }
-
-    @if type-of($imgW) != number {
-        @error "The image width value of $imgW:#{$imgW} must be in pixels.";
-    }
-
-    @if type-of($imgName) != string {
-        @error "The image name must be a string with file format. ex: banner.jpg";
-    }
-
-    // Slideshow variables
-    // -------------------------------------------------------------------------
-    $slideTotal: $total;
-    $n: $slideTotal; // For "n" images
-    $n1: $slideTotal - 1;
-    $a: $time; // a = presentation time for one image
-    $b: $fade; // b = duration for cross fading in seconds
-    $t: ($a+$b)*$n;
-    $delay-inc: $t/$n; // Slide delay increments
-
-    // Slideshow
-    $key-1: 0;
-    $key-2: ($a/$t)*100%;
-    $key-3: (($a + $b)/$t) * 100%;
-    $key-4: (100% - ($b/$t * 100%));
-    $key-5: 100%;
-
-    // Animated Banner
-    @keyframes imageAnimation {
-        #{$key-1} {
-            opacity: 1;
-        }
-
-        #{$key-2} {
-            opacity: 1;
-        }
-
-        #{$key-3} {
-            opacity: 0;
-        }
-
-        #{$key-4} {
-            opacity: 0;
-        }
-
-        #{$key-5} {
-            opacity: 1;
-        }
-    }
-
-    #banner.cover {
-        width: 100%;
-        position: relative;
-        @if $min != 0 {
-            min-height: $min;
-        }
-        @if $max != 0 {
-            max-height: $max;
-        }
-
-        &:before {
-            display: block;
-            content: '';
-            padding-bottom: ($imgH/$imgW) * 100%;
-        }
-
-        .banner_image {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            padding-left: 0;
-
-            li {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-                z-index: 0;
-                background-position: unquote($pos);
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-image: url($root-url+$imgName);
-            }
-
-            span {
-                color: $color-white;
-                background: $color-black;
-                padding: 1px;
-                opacity: 0;
-            }
-        }
-
-        .slideshow li {
-            animation: imageAnimation ($t+s) ease-in-out infinite 0s;
-        }
-
-        @for $i from 1 through ($n) {
-            .slideshow li:nth-of-type(#{$i}) {
-                background-image: url($root-url+"#{$imgName}-#{$i}@0,5x.jpg");
-                animation-delay: (($n - $i) * $delay-inc) +s;
             }
         }
 
@@ -479,8 +322,11 @@
 // -----------------------------------------------------------------------------
 // =Position
 // -----------------------------------------------------------------------------
-@mixin position($top:0,$left:0) {
+@mixin position($top:null, $right:null, $bottom:null, $left:null) {
+    position: absolute;
     top: $top;
+    right: $right;
+    bottom: $bottom;
     left: $left;
 }
 
