@@ -19,7 +19,7 @@
     // Wraps label and input
     .jv-form-field {
 
-        @if $area-form-labels == true {
+        @if $area-form-labels {
 
             .jv-form-field-label {
                 font-size: (16 / $font-size-body) + em;
@@ -62,13 +62,12 @@
     input[type=text],
     select,
     textarea {
-        @if $mobile == false {
+        @if $mobile {
+            width: 100%;
+        } @else {
             width: ($input-width - (2 * $form-border-width));
             min-width: $input-min;
-        } // End Desktop
-        @if $mobile == true {
-            width: 100%;
-        } // End Mobile
+        } // End
         display: block;
         background: none;
         border: none;
@@ -112,7 +111,7 @@
     }
 
     // Select reset
-    @if ($mobile == false) and ($select-input-custom-arrow == true) {
+    @if ($mobile==false) and ($select-input-custom-arrow==true) {
         .jv-form-field-select .jv-form-field-appearance {
 
             .jv-select-icon {
@@ -124,22 +123,34 @@
             }
         }
 
-
         select {
             // min-width: ($input-width - 2 * $form-border-width);
             background: url($arrow-custom) no-repeat 98% 50%; // Adds select input arrows to background
-        	-moz-appearance: none;
-        	-webkit-appearance: none;
-        	appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none;
         }
 
-        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        @media screen and (-ms-high-contrast: active),
+        (-ms-high-contrast: none) {
+
             /* IE10+ specific styles go here */
             select {
                 background: none; // Hides background images for IE11
             }
         }
-    } // End Desktop
+    } @else if ($mobile==false) {
+        .jv-form-field-select .jv-form-field-appearance {
+
+            .jv-select-icon {
+                right: 0.5em;
+            }
+
+            select {
+                padding-right: 2em;
+            }
+        }
+    }
 
     .jv-form-buttons {
         text-align: left;
@@ -215,7 +226,7 @@
 
 }
 
-@if $mobile == true {
+@if $mobile {
     .jv-apply-section-content,
     .jv-additional-files {
         .jv-button {
@@ -275,7 +286,7 @@
             }
         }
 
-        @if $mobile == true {
+        @if $mobile {
             // .jv-form-field-control {
             //     margin-bottom: 10px;
             // }
@@ -353,7 +364,7 @@
                         @include flex-row;
                         margin-left: 0;
                     }
-                }  // End .jv-form-vertical-md
+                }  // End
             }
         } // End .jv-form
     }

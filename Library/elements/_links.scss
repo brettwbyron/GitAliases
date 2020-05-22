@@ -20,7 +20,7 @@ a {
         pointer-events: none;
     }
 
-    @if $area-back-to-top == true {
+    @if $area-back-to-top {
         &.back-to-top {
             background-color: rgba($color-black,0.3);
             color: $color-white;

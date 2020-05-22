@@ -1,3 +1,4 @@
+/*! =Webfonts */
 /*! =Base */
 html {-webkit-box-sizing:border-box;box-sizing:border-box}
 *,:after,:before {-webkit-box-sizing:inherit;box-sizing:inherit}
@@ -21,7 +22,7 @@ dl,ol,ul {color:#777}
 .jv-page-body .jv-wrapper {background-color:transparent}
 .jv-page,.jv-page-container {min-height:100vh}
 .jv-page {width:100%}
-.jv-wrapper {position:relative;width:100%;max-height:100%;max-width:1065px;margin:0 auto;padding:0 30px}
+.jv-wrapper {position:relative;width:100%;max-height:100%;max-width:1200px;margin:0 auto;padding:0 30px}
 .jv-page-content {display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;min-height:100vh}
 /*! =Links */
 a,a:visited {color:#3d87cf;text-decoration:none}
@@ -37,6 +38,8 @@ a.disabled {cursor:default;pointer-events:none}
 .jv-form input[type=search] {padding:.4em .4em .4em 2.5em}
 .jv-form input[type=date],.jv-form input[type=email],.jv-form input[type=number],.jv-form input[type=password],.jv-form input[type=search],.jv-form input[type=tel],.jv-form input[type=text],.jv-form select {height:40px}
 .jv-form textarea {min-width:100%;max-width:100%;border:1px solid #bfbfbf;border-radius:0;height:180px;max-height:180px;min-height:180px}
+.jv-form .jv-form-field-select .jv-form-field-appearance .jv-select-icon {right:.5em}
+.jv-form .jv-form-field-select .jv-form-field-appearance select {padding-right:2em}
 .jv-form .jv-form-buttons {text-align:left;width:300px}
 .jv-form .jv-form-buttons .jv-button {-webkit-box-flex:1;-ms-flex:1 1 100%;flex:1 1 100%}
 .jv-form .jv-form-buttons .jv-button:first-of-type {margin-right:5px}
@@ -58,7 +61,7 @@ a.disabled {cursor:default;pointer-events:none}
 .jv-form.jv-list-search-form.jv-form-inline-md .jv-form-field,.jv-form.jv-search-form.jv-form-inline-md .jv-form-field {margin-bottom:0;margin-right:.5em}
 .jv-form.jv-list-search-form.jv-form-inline-md .jv-form-field-control,.jv-form.jv-search-form.jv-form-inline-md .jv-form-field-control {min-width:200px;width:100%}
 .jv-form.jv-list-search-form.jv-form-inline-md .jv-form-buttons,.jv-form.jv-search-form.jv-form-inline-md .jv-form-buttons {display:-webkit-box;display:-ms-flexbox;display:flex;min-width:0;min-height:0;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;margin-left:0}}
-button:focus {outline:thin dotted #555}
+button:focus {outline:thin dotted rgba(0,103,244,.247)}
 .jv-button {display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:0 20px;margin:0;line-height:35px;-webkit-appearance:none;font-family:"Avenir Next Regular","Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:500;font-size:1em;text-decoration:none;text-transform:uppercase;border:1px solid transparent;background-color:transparent;border-radius:2px;-webkit-transition:all .3s ease-in-out;transition:all .3s ease-in-out;min-width:100px}
 .jv-button,.jv-button:visited {background:#f2f2f2;color:#262626}
 .jv-button:active,.jv-button:hover,.jv-button:visited:active,.jv-button:visited:hover {background:#ccc;color:#262626}
@@ -95,6 +98,7 @@ button:focus {outline:thin dotted #555}
 .tools {margin:1em}
 .tools a {margin:0 .25em;width:270px;padding:10px 15px}
 .jv-share-widget {padding:1em 0}
+.grecaptcha-badge {z-index:1000}
 /*! =Custom sections */
 /*! =Flex classes */
 .flex,.flex-center,.flex-col,.flex-row {display:-webkit-box;display:-ms-flexbox;display:flex;min-width:0;min-height:0}

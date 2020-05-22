@@ -1,4 +1,9 @@
 
+// Root URL
+// -----------------------------------------------------------------------------
+$root-url: '//careers.jobvite.com/customer-folder/';
+$img-suffix: '@0.5x';
+
 // -----------------------------------------------------------------------------
 // =Variables
 // -----------------------------------------------------------------------------
@@ -37,10 +42,6 @@ $arrow-double: 'data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPS
 // Set arrow style
 $arrow-custom: $arrow-down;
 
-// Root URL
-// -----------------------------------------------------------------------------
-$root-url: '//careers.jobvite.com/customer-folder/';
-
 // Colors
 // -----------------------------------------------------------------------------
 $color-primary: #3d87cf;
@@ -51,19 +52,17 @@ $color-gray-light: lighten($color-gray,15%);
 $color-gray-dark: darken($color-gray,65%);
 $color-text: #777;
 $color-error: #cb0013;
-$color-focus: #555;
+$color-focus: rgba(0,103,244,0.247);
 $color-link: $color-primary;
 $color-link--hover: darken($color-primary,15%);
 $color-link--active: darken($color-primary,25%);
 $color-background: #F9F7F6;
-
-// Section background-color
 $color-background-light: #FCFBF9;
-$color-background-dark: #F5F0EF;
-
+$color-background-dark: #4d4d4d;
 $color-border: #f0eae7;
 
 // Selection colors
+// -----------------------------------------------------------------------------
 $color-selection: $color-white;
 $color-selection-background: $color-black;
 
@@ -109,7 +108,7 @@ $input-width: 300px; // Desktop
 $input-min: 200px;
 $input-max: 100%;
 $input-height: 40px;
-$input-focus-width: 3px; // Default: 5px
+$input-focus-width: 3px; // Browser default: 5px
 $input-focus-color: $color-outline-focus; // Default: $color-outline-focus
 
 $input-font-size: (16 / $font-size-body) + em;
@@ -149,8 +148,8 @@ $spacing-1: 1em;
 // -----------------------------------------------------------------------------
 $browser-max-sm: 720px;
 $browser-max-md: 960px;
-$browser-max-lg: 1065px;
-$browser-max-width: 1065px;
+$browser-max-lg: 1200px;
+$browser-max-width: 1200px;
 
 // Screen breakpoints
 // -----------------------------------------------------------------------------
@@ -172,5 +171,5 @@ $screen-xl-em: ($screen-xl / $font-base) + em;
 $z-modal: 1010;
 $z-modal-bkgd: 1005;
 $z-dropdown: 1000;
-$z-nav: 500;
 $z-slider-nav: 800;
+$z-nav: 500;

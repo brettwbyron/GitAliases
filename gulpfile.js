@@ -28,18 +28,28 @@ const PATHS = {
         //
         // }
     },
-    SRC_IMG: './src/images/',
-    DIST_IMG: './src/webp-dist',
-    CSS: './**/*.css'
+    SRC_IMG: './convert/images/',
+    DIST_IMG: './convert/webp-dist',
+    CSS: './**/*.css',
+    JS: {
+        SRC: '../*(desktop|mobile)/*.js',
+        DIST: './dist/'
+    }
 };
 
 // Gulp Tasks
 // =========================================================
 
 // delete css ------------------------------------
-function clean() {
+function cleanCSS() {
     log.info('-------> Cleaning Styles');
     return del(PATHS.CSS);
+}
+
+// delete js ------------------------------------
+function cleanJS() {
+    log.info('-------> Cleaning JavaScript');
+    return del(PATHS.JS.DIST + '*.js');
 }
 
 // compile styles ------------------------------------
@@ -48,6 +58,17 @@ function compileStyles() {
         .pipe(plugins.sass())
         .pipe(plugins.prefixer())
         .pipe(dest(PATHS.SASS.OUTPUT));
+}
+
+// compile scripts ----------------------------------
+function compileScripts() {
+    return src(PATHS.JS.SRC)
+        .pipe(plugins.minify({
+            ext: {
+                min: '.min.js'
+            }
+        }))
+        .pipe(dest(PATHS.JS.DIST))
 }
 
 // minify styles ------------------------------------
@@ -103,6 +124,11 @@ function endMsg(cb) {
     cb();
 }
 
+function endJSMsg(cb) {
+    log.info('-------> Scripts Reloaded');
+    cb();
+}
+
 function imgMsg(cb) {
     log.info('-------> Images Converted');
     cb();
@@ -110,10 +136,13 @@ function imgMsg(cb) {
 
 // Default Gulp Task
 // =========================================================
-exports.default = function() {
+exports.default = function () {
     watch(PATHS.SASS.ALL, {
         ignoreInitial: false
-    }, series(clean, compileStyles, minify, endMsg));
+    }, series(cleanCSS, compileStyles, minify, compileScripts, endMsg));
+    watch(PATHS.JS.SRC, {
+        ignoreInitial: false
+    }, series(cleanJS, compileScripts, endJSMsg))
     watch(PATHS.SRC_IMG, {
         ignoreInitial: false
     }, series(webPjpg, imgMsg));

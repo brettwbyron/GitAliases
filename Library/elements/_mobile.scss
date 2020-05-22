@@ -47,7 +47,7 @@
     .jv-nav-link {
         padding: 15px 15px 18px;
         line-height: 18px;
-        font-size: (12 / $font-size-body) + em;
+        font-size: (15 / $font-size-body) + em;
         font-family: $font-headings;
         font-weight: 600;
         white-space: nowrap;
@@ -127,10 +127,6 @@
 
 .jv-page {
     background-color: transparent;
-}
-
-.grecaptcha-badge {
-    z-index: 100;
 }
 
 // Mobile landscape

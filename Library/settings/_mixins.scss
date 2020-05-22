@@ -3,7 +3,7 @@
 // --------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
-// Banners - fixed | scaling | scaling slideshow
+// Banners - fixed | scaling
 // -----------------------------------------------------------------------------
 
 // Fixed size banner - Use srcset to target screen size or resolution.
@@ -33,7 +33,7 @@
     }
 }
 
-// Scaling banner
+// Tiny Slider banner
 // -----------------------------------------------------------------------------
 // $max (max-height): <pixels> | min (min-height): <pixels>
 // $imgH (image height): <pixels> | $imgW (image width): <pixels>
@@ -41,11 +41,19 @@
 // $pos (position): <any value accepted by background-position
 //
 // EX:
-// <div id="banner" class="cover">
-//     <ul class="banner_image slideshow">
-//         <li><span>Banner</span></li>
-//     </ul>
+// <div id="banner" class="banner banner-home">
+//     <div class="slides">
+//         <div class="slide slide-1"></div>
+//         <div class="slide slide-2"></div>
+//         <div class="slide slide-3"></div>
+//     </div>
+//     <div class="overlay flex-col flex-m-center">
+//         <div class="jv-wrapper flex-col flex-m-center flex-c-center">
+//             <h1>Join our team</h1>
+//         </div>
+//     </div>
 // </div>
+
 @mixin banner-scaling($imgH, $imgW, $h:null, $h-m:null, $min:null, $max:null, $class:null, $imgName:null, $pos:'50% 50%') {
     @if $h != null and type-of($h) != number {
         @error "The value of $h:#{$h} must be in pixels.";
@@ -81,7 +89,7 @@
         }
     }
 
-    #banner.cover#{$class} {
+    #banner#{$class} {
         width: 100%;
         position: relative;
         @if $mobile {
@@ -108,6 +116,16 @@
             padding: 0;
             list-style: none;
             padding-left: 0;
+            overflow: hidden;
+
+            .slide {
+                height: inherit;
+                opacity: 0;
+
+                &.tns-slide-active {
+                    opacity: 1;
+                }
+            }
 
             .tns-item {
                 position: absolute;
@@ -321,8 +339,16 @@
 // -----------------------------------------------------------------------------
 // =Position
 // -----------------------------------------------------------------------------
-@mixin position($top:null, $right:null, $bottom:null, $left:null) {
+@mixin absolute($top:null, $right:null, $bottom:null, $left:null) {
     position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+@mixin relative($top:null, $right:null, $bottom:null, $left:null) {
+    position: relative;
     top: $top;
     right: $right;
     bottom: $bottom;

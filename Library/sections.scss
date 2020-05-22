@@ -7,20 +7,7 @@
 .jv-logo {
     margin: 0;
 
-    // Desktop
-    @if $mobile==false {
-        a {
-            display: inline-block;
-
-            img {
-                height: 50px;
-                width: 150px;
-            }
-        }
-    }
-
-    @if $mobile==true {
-
+    @if $mobile {
         /* Removes blue gradient */
         &:after {
             background: none;
@@ -30,42 +17,24 @@
             height: 50px;
             width: 150px;
         }
-    }
+    } @else {
+        a {
+            display: inline-block;
+
+            img {
+                height: 50px;
+                width: 150px;
+            }
+        }
+    } //End
 }
 
 // Job list page
 // -----------------------------------------------------------------------------
 .jv-page-jobs,
 .jv-page-search {
-    .jv-job-list {
-        @if $mobile==false {
-            ul {
-                margin-top: 0;
-            }
 
-            a {
-                position: relative;
-                transition: all $transition-normal $transition-easing;
-                padding: 0.75em 2em;
-                border-radius: $border-radius;
-
-                &:hover {
-                    background-color: rgba($color-gray, 0.25);
-                }
-            }
-
-            // .jv-job-list-name { }
-
-            .jv-job-list-location {
-                color: $color-text;
-                text-align: left;
-            }
-        }
-
-        // End Desktop
-    }
-
-    @if $mobile==true {
+    @if $mobile {
         .jv-active-category .jv-job-category-link:before {
             content: none;
         }
@@ -92,10 +61,36 @@
         .jv-tag-new {
             background-color: $color-primary;
         }
-    }
+    } @else {
+
+        .jv-job-list {
+            
+            ul {
+                margin-top: 0;
+            }
+    
+            a {
+                position: relative;
+                transition: all $transition-normal $transition-easing;
+                padding: 0.75em 2em;
+                border-radius: $border-radius;
+    
+                &:hover {
+                    background-color: rgba($color-gray, 0.25);
+                }
+            }
+    
+            // .jv-job-list-name { }
+    
+            .jv-job-list-location {
+                color: $color-text;
+                text-align: left;
+            }
+        }
+    } // END    
 }
 
-@if $mobile==true {
+@if $mobile {
 
     .jv-search-list .jv-list-icon,
     .jv-search-list .jv-list-label,
@@ -123,9 +118,7 @@
             font-weight: 400;
         }
     }
-}
-
-// End Mobile
+} // End Mobile
 
 // Job detailpage
 // -----------------------------------------------------------------------------
@@ -163,19 +156,14 @@
     // }
 
     .jv-job-detail-top-actions {
-        @if $mobile==false {
+        @if $mobile {
+            position: relative;
+            margin: 1em 0;
+        } @else {
             position: absolute;
             right: 30px;
             top: 0;
-        }
-
-        // End Desktop
-        @if $mobile==true {
-            position: relative;
-            margin: 1em 0;
-        }
-
-        // End Mobile
+        } //End
     }
 
     // .jv-job-detail-bottom-actions {
@@ -224,7 +212,7 @@
     // }
     // }
 
-    // @if $mobile == true {
+    // @if $mobile {
     //     .jv-sub-header {
     // color: $color-white;
     // font-size: (18 / $font-size-body) + em;
@@ -247,7 +235,7 @@
     // text-align: left;
     // }
 
-    @if $mobile==true {
+    @if $mobile {
 
         .jv-header {
             color: $color-primary;
@@ -302,6 +290,10 @@
     padding: 1em 0;
 }
 
+.grecaptcha-badge {
+    z-index: $z-dropdown;
+}
+
 // .jv-share-widget-title {
 
 // }
@@ -353,17 +345,46 @@
 // -----------------------------------------------------------------------------
 
 // Banners
-// *Directions* Copy the @include of the desired mixin to use
+// *Directions* @include of the desired mixin to use
 // and customize the properties.
 // -----------------------------------------------------------------------------
-// fixed:
-// @include banner-fixed($w:1200px);
+
+// @include banner-fixed()
 
 // scaling:
-// @include banner-scaling($imgH:1080px, $imgW:1920px, $h:null, $h-m:null, $min:null, $max:null, $class:null, $imgName:null, $pos:'50% 50%') {}
+// @include banner-scaling($imgH:700px, $imgW:2000px, $h:null, $h-m:null, $min:null, $max:null, $class:null, $imgName:null, $pos:'50% 50%') {
+//     &.banner-home {
+//         $n: 3;
+//         
+//         @for $i from 1 through ($n) {
+//             .slide-#{$i} {
+//                 background-image: url($root-url+"banner-home-#{$i}.jpg");
+//             }
+//         }
+//     }
+//     .overlay {
+//         @include absolute(0, 0, 0, 0);
+//         background-color: rgba($color-black, 0.3);
+//     }
+//     
+//     .overlay-text {
+//     
+//         h1, p {
+//             color: $color-white;
+//             text-shadow: 0 2px 4px rgba($color-black, 0.8);
+//         }
+//     
+//         /*p {
+//             font-size: 20px;
+//         }*/
+//     }
+// }
 
 // >>>>>>>>>>> Add you sections here <<<<<<<<<<
 
+// -----------------------------------------------------------------------------
+// =Media Queries
+// -----------------------------------------------------------------------------
 // @if $mobile == false {
 //     
 //     /*! min-width: #{$screen-md-px} */
