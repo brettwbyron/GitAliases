@@ -96,8 +96,8 @@ function minify() {
 }
 
 // Convert images to WebP ------------------------------------
-function webPjpg() {
-    return src(PATHS.SRC_IMG + '*.{jpg,jpeg}')
+function webP() {
+    return src(PATHS.SRC_IMG + '*.{jpg,jpeg,png}')
         .pipe(plugins.webp({
             quality: 65,
             // lossless: true,
@@ -106,17 +106,6 @@ function webPjpg() {
         }))
         .pipe(dest(PATHS.DIST_IMG));
 }
-
-// function webPpng() {
-//     return src(PATHS.SRC_IMG + '*.{png}')
-//         .pipe(plugins.webp({
-//             // quality: 65,
-//             // lossless: true
-//             // method: 4,
-//             // metadata: 'all'
-//         }))
-//         .pipe(dest(PATHS.DIST_IMG));
-// }
 
 // gulp testing message ------------------------------------
 function endMsg(cb) {
@@ -145,7 +134,7 @@ exports.default = function () {
     }, series(cleanJS, compileScripts, endJSMsg))
     watch(PATHS.SRC_IMG, {
         ignoreInitial: false
-    }, series(webPjpg, imgMsg));
+    }, series(webP, imgMsg));
 };
 
 // End
