@@ -1,8 +1,7 @@
 
 // Root URL
 // -----------------------------------------------------------------------------
-$root-url: '//careers.jobvite.com/customer-folder/';
-$img-suffix: '@0.5x';
+$root-url: '//careers.jobvite.com/customer-folder/'; // Set this to your customer's ftp folder path
 
 // -----------------------------------------------------------------------------
 // =Variables
@@ -16,7 +15,8 @@ $area-video-container: false;
 $area-form-labels: false;
 $area-iframe-site: false;
 $area-social-colors: false;
-$area-svg-icons: true;
+$area-svg-icons: false; // SVG icons all the same size
+$area-svg-img: false; // SVG images of different sizes
 $area-hide-search-icon: true;
 $max-spacing: 3; // Padding and margin spacing
 
@@ -88,6 +88,8 @@ $font-jv: 'jobvite-icons';
 $font-headings: $font-web, $font-sans-serif;
 $font-body: $font-web, $font-sans-serif;
 $font-btn: $font-web, $font-sans-serif;
+
+$img-suffix: '@0.5x';
 
 $h1: (60 / $font-size-body) + em;
 $h1-m: (50 / $font-size-body) + em;

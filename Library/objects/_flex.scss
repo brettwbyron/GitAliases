@@ -93,18 +93,18 @@
 // Responsive layout
 // -----------------------------------------------------------------------------
 @if $mobile == false {
-    // /*! max-width: #{$screen-sm-px} */
-    // @media all and (max-width: $screen-sm-em) {
-    //    $suffix: "-sm";
-    //    .flex#{$suffix} { display: flex }
-    //    .flex-inline#{$suffix} { display: inline-flex }
-    //    .flex-col#{$suffix}  { flex-direction: column }
-    //    .flex-row#{$suffix}  { flex-direction: row }
-    //    .flex-m-end#{$suffix} { justify-content: flex-end }
-    //    .flex-m-center#{$suffix} { justify-content: center }
-    //    .flex-wrap#{$suffix}      { flex-wrap: wrap }
-    //    .flex-nowrap#{$suffix}    { flex-wrap: nowrap }
-    // }
+    /*! min-width: #{$screen-sm-px} */
+    @media all and (min-width: $screen-sm-em) {
+       $suffix: "-sm";
+       .flex#{$suffix} { display: flex }
+       .flex-inline#{$suffix} { display: inline-flex }
+       .flex-col#{$suffix}  { flex-direction: column }
+       .flex-row#{$suffix}  { flex-direction: row }
+       .flex-m-end#{$suffix} { justify-content: flex-end }
+       .flex-m-center#{$suffix} { justify-content: center }
+       .flex-wrap#{$suffix}      { flex-wrap: wrap }
+       .flex-nowrap#{$suffix}    { flex-wrap: nowrap }
+    }
     /*! min-width: #{$screen-md-px} */
     @media all and (min-width: $screen-md-em) {
         $suffix: "-md";

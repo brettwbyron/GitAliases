@@ -20,7 +20,7 @@
     $props: ("margin": "m");
 
     @each $prop, $abbr in $props {
-        .#{$abbr}#{$i} { #{$prop}: calcSpacing($i); }
+        .#{$abbr}#{$i}  { #{$prop}: calcSpacing($i); }
         .#{$abbr}t#{$i} { #{$prop}-top: calcSpacing($i); }
         .#{$abbr}r#{$i} { #{$prop}-right: calcSpacing($i); }
         .#{$abbr}b#{$i} { #{$prop}-bottom: calcSpacing($i); }
@@ -36,7 +36,7 @@
 .mb-5 { margin-bottom: ($spacing-1 / 2) }
 .ml-5 { margin-left:   ($spacing-1 / 2) }
 .my-5 { margin-top:    ($spacing-1 / 2); margin-bottom: ($spacing-1 / 2) }
-.mx-5 { margin-left:    ($spacing-1 / 2); margin-right: ($spacing-1 / 2) }
+.mx-5 { margin-left:   ($spacing-1 / 2); margin-right: ($spacing-1 / 2) }
 
 // .mxn-5 { margin-left: -($spacing-1 / 2); margin-right: -($spacing-1 / 2); }
 // .mxn1 { margin-left: -$spacing-1; margin-right: -$spacing-1; }
