@@ -20,21 +20,25 @@
     $props: ("margin": "m");
 
     @each $prop, $abbr in $props {
-        .#{$abbr}#{$i}  { #{$prop}: calcSpacing($i); }
-        .#{$abbr}t#{$i} { #{$prop}-top: calcSpacing($i); }
-        .#{$abbr}r#{$i} { #{$prop}-right: calcSpacing($i); }
-        .#{$abbr}b#{$i} { #{$prop}-bottom: calcSpacing($i); }
-        .#{$abbr}l#{$i} { #{$prop}-left: calcSpacing($i); }
+        $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
+
+        @each $clip,$side in $sides {
+            .#{$abbr}#{$clip}#{$i} {
+                #{$prop}#{$side}: calcSpacing($i);
+            }
+        }
         .#{$abbr}y#{$i} { #{$prop}-top: calcSpacing($i); #{$prop}-bottom: calcSpacing($i); }
         .#{$abbr}x#{$i} { #{$prop}-left: calcSpacing($i); #{$prop}-right: calcSpacing($i); }
     }
 }
+// These values are 1/2 of 1em == 0.5em
+$sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
 
-.m-5  { margin:        ($spacing-1 / 2) }
-.mt-5 { margin-top:    ($spacing-1 / 2) }
-.mr-5 { margin-right:  ($spacing-1 / 2) }
-.mb-5 { margin-bottom: ($spacing-1 / 2) }
-.ml-5 { margin-left:   ($spacing-1 / 2) }
+@each $abbr, $side in $sides {
+    .m#{$abbr}-5 {
+        margin#{$side}: ($spacing-1 / 2)
+    }
+}
 .my-5 { margin-top:    ($spacing-1 / 2); margin-bottom: ($spacing-1 / 2) }
 .mx-5 { margin-left:   ($spacing-1 / 2); margin-right: ($spacing-1 / 2) }
 
@@ -51,26 +55,37 @@
 // END Margin
 
 // Padding
-
 @for $i from 0 through $max-spacing {
     $props: ("padding": "p");
 
-    @each $prop, $abbr in $props {
-        .#{$abbr}#{$i} { #{$prop}: calcSpacing($i); }
-        .#{$abbr}t#{$i} { #{$prop}-top: calcSpacing($i); }
-        .#{$abbr}r#{$i} { #{$prop}-right: calcSpacing($i); }
-        .#{$abbr}b#{$i} { #{$prop}-bottom: calcSpacing($i); }
-        .#{$abbr}l#{$i} { #{$prop}-left: calcSpacing($i); }
-        .#{$abbr}y#{$i} { #{$prop}-top: calcSpacing($i); #{$prop}-bottom: calcSpacing($i); }
-        .#{$abbr}x#{$i} { #{$prop}-left: calcSpacing($i); #{$prop}-right: calcSpacing($i); }
+    @each $prop,$abbr in $props {
+        $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
+
+        @each $clip,$side in $sides {
+            .#{$abbr}#{$clip}#{$i} {
+                #{$prop}#{$side}: calcSpacing($i);
+            }
+        }
+
+        .#{$abbr}y#{$i} {
+            #{$prop}-top: calcSpacing($i);
+            #{$prop}-bottom: calcSpacing($i);
+        }
+
+        .#{$abbr}x#{$i} {
+            #{$prop}-left: calcSpacing($i);
+            #{$prop}-right: calcSpacing($i);
+        }
     }
 }
+// These values are 1/2 of 1em == 0.5em
+$sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
 
-.p-5  { padding:        ($spacing-1 / 2); }
-.pt-5 { padding-top:    ($spacing-1 / 2); }
-.pr-5 { padding-right:  ($spacing-1 / 2); }
-.pb-5 { padding-bottom: ($spacing-1 / 2); }
-.pl-5 { padding-left:   ($spacing-1 / 2); }
+@each $abbr,$side in $sides {
+    .p#{$abbr}-5 {
+        padding#{$side}: ($spacing-1 / 2)
+    }
+}
 .py-5 { padding-top:    ($spacing-1 / 2); padding-bottom: ($spacing-1 / 2) }
 .px-5 { padding-left:   ($spacing-1 / 2); padding-right:  ($spacing-1 / 2) }
 
@@ -79,7 +94,7 @@
 // -----------------------------------------------------------------------------
 // =Media Queries
 // -----------------------------------------------------------------------------
-@if $mobile == false {
+@if not $mobile {
     /*! min-width: #{$screen-sm-px} */
     @media all and (min-width:$screen-sm-em) {
         $suffix: "-sm";
@@ -87,14 +102,24 @@
         @for $i from 0 through $max-spacing {
             $props: ("margin": "m");
 
-            @each $prop, $abbr in $props {
-                .#{$abbr}#{$i}#{$suffix} { #{$prop}: calcSpacing($i); }
-                .#{$abbr}t#{$i}#{$suffix} { #{$prop}-top: calcSpacing($i); }
-                .#{$abbr}r#{$i}#{$suffix} { #{$prop}-right: calcSpacing($i); }
-                .#{$abbr}b#{$i}#{$suffix} { #{$prop}-bottom: calcSpacing($i); }
-                .#{$abbr}l#{$i}#{$suffix} { #{$prop}-left: calcSpacing($i); }
-                .#{$abbr}y#{$i}#{$suffix} { #{$prop}-top: calcSpacing($i); #{$prop}-bottom: calcSpacing($i); }
-                .#{$abbr}x#{$i}#{$suffix} { #{$prop}-left: calcSpacing($i); #{$prop}-right: calcSpacing($i); }
+            @each $prop,$abbr in $props {
+                $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
+
+                @each $clip,$side in $sides {
+                    .#{$abbr}#{$clip}#{$i}#{$suffix} {
+                        #{$prop}#{$side}: calcSpacing($i);
+                    }
+                }
+
+                .#{$abbr}y#{$i}#{$suffix} {
+                    #{$prop}-top: calcSpacing($i);
+                    #{$prop}-bottom: calcSpacing($i);
+                }
+
+                .#{$abbr}x#{$i}#{$suffix} {
+                    #{$prop}-left: calcSpacing($i);
+                    #{$prop}-right: calcSpacing($i);
+                }
             }
         }
         .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
@@ -104,14 +129,24 @@
         @for $i from 0 through $max-spacing {
             $props: ("padding": "p");
 
-            @each $prop, $abbr in $props {
-                .#{$abbr}#{$i}#{$suffix} { #{$prop}: calcSpacing($i); }
-                .#{$abbr}t#{$i}#{$suffix} { #{$prop}-top: calcSpacing($i); }
-                .#{$abbr}r#{$i}#{$suffix} { #{$prop}-right: calcSpacing($i); }
-                .#{$abbr}b#{$i}#{$suffix} { #{$prop}-bottom: calcSpacing($i); }
-                .#{$abbr}l#{$i}#{$suffix} { #{$prop}-left: calcSpacing($i); }
-                .#{$abbr}y#{$i}#{$suffix} { #{$prop}-top: calcSpacing($i); #{$prop}-bottom: calcSpacing($i); }
-                .#{$abbr}x#{$i}#{$suffix} { #{$prop}-left: calcSpacing($i); #{$prop}-right: calcSpacing($i); }
+            @each $prop,$abbr in $props {
+                $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
+
+                @each $clip,$side in $sides {
+                    .#{$abbr}#{$clip}#{$i}#{$suffix} {
+                        #{$prop}#{$side}: calcSpacing($i);
+                    }
+                }
+
+                .#{$abbr}y#{$i}#{$suffix} {
+                    #{$prop}-top: calcSpacing($i);
+                    #{$prop}-bottom: calcSpacing($i);
+                }
+
+                .#{$abbr}x#{$i}#{$suffix} {
+                    #{$prop}-left: calcSpacing($i);
+                    #{$prop}-right: calcSpacing($i);
+                }
             }
         }
     }
@@ -123,14 +158,24 @@
         @for $i from 0 through $max-spacing {
             $props: ("margin": "m");
 
-            @each $prop, $abbr in $props {
-                .#{$abbr}#{$i}#{$suffix} { #{$prop}: calcSpacing($i); }
-                .#{$abbr}t#{$i}#{$suffix} { #{$prop}-top: calcSpacing($i); }
-                .#{$abbr}r#{$i}#{$suffix} { #{$prop}-right: calcSpacing($i); }
-                .#{$abbr}b#{$i}#{$suffix} { #{$prop}-bottom: calcSpacing($i); }
-                .#{$abbr}l#{$i}#{$suffix} { #{$prop}-left: calcSpacing($i); }
-                .#{$abbr}y#{$i}#{$suffix} { #{$prop}-top: calcSpacing($i); #{$prop}-bottom: calcSpacing($i); }
-                .#{$abbr}x#{$i}#{$suffix} { #{$prop}-left: calcSpacing($i); #{$prop}-right: calcSpacing($i); }
+            @each $prop,$abbr in $props {
+                $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
+
+                @each $clip,$side in $sides {
+                    .#{$abbr}#{$clip}#{$i}#{$suffix} {
+                        #{$prop}#{$side}: calcSpacing($i);
+                    }
+                }
+
+                .#{$abbr}y#{$i}#{$suffix} {
+                    #{$prop}-top: calcSpacing($i);
+                    #{$prop}-bottom: calcSpacing($i);
+                }
+
+                .#{$abbr}x#{$i}#{$suffix} {
+                    #{$prop}-left: calcSpacing($i);
+                    #{$prop}-right: calcSpacing($i);
+                }
             }
         }
         .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
@@ -141,14 +186,24 @@
         @for $i from 0 through $max-spacing {
             $props: ("padding": "p");
 
-            @each $prop, $abbr in $props {
-                .#{$abbr}#{$i}#{$suffix} { #{$prop}: calcSpacing($i); }
-                .#{$abbr}t#{$i}#{$suffix} { #{$prop}-top: calcSpacing($i); }
-                .#{$abbr}r#{$i}#{$suffix} { #{$prop}-right: calcSpacing($i); }
-                .#{$abbr}b#{$i}#{$suffix} { #{$prop}-bottom: calcSpacing($i); }
-                .#{$abbr}l#{$i}#{$suffix} { #{$prop}-left: calcSpacing($i); }
-                .#{$abbr}y#{$i}#{$suffix} { #{$prop}-top: calcSpacing($i); #{$prop}-bottom: calcSpacing($i); }
-                .#{$abbr}x#{$i}#{$suffix} { #{$prop}-left: calcSpacing($i); #{$prop}-right: calcSpacing($i); }
+            @each $prop,$abbr in $props {
+                $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
+
+                @each $clip,$side in $sides {
+                    .#{$abbr}#{$clip}#{$i}#{$suffix} {
+                        #{$prop}#{$side}: calcSpacing($i);
+                    }
+                }
+
+                .#{$abbr}y#{$i}#{$suffix} {
+                    #{$prop}-top: calcSpacing($i);
+                    #{$prop}-bottom: calcSpacing($i);
+                }
+
+                .#{$abbr}x#{$i}#{$suffix} {
+                    #{$prop}-left: calcSpacing($i);
+                    #{$prop}-right: calcSpacing($i);
+                }
             }
         }
     }
@@ -160,14 +215,24 @@
         @for $i from 0 through $max-spacing {
             $props: ("margin": "m");
 
-            @each $prop, $abbr in $props {
-                .#{$abbr}#{$i}#{$suffix} { #{$prop}: calcSpacing($i); }
-                .#{$abbr}t#{$i}#{$suffix} { #{$prop}-top: calcSpacing($i); }
-                .#{$abbr}r#{$i}#{$suffix} { #{$prop}-right: calcSpacing($i); }
-                .#{$abbr}b#{$i}#{$suffix} { #{$prop}-bottom: calcSpacing($i); }
-                .#{$abbr}l#{$i}#{$suffix} { #{$prop}-left: calcSpacing($i); }
-                .#{$abbr}y#{$i}#{$suffix} { #{$prop}-top: calcSpacing($i); #{$prop}-bottom: calcSpacing($i); }
-                .#{$abbr}x#{$i}#{$suffix} { #{$prop}-left: calcSpacing($i); #{$prop}-right: calcSpacing($i); }
+            @each $prop,$abbr in $props {
+                $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
+
+                @each $clip,$side in $sides {
+                    .#{$abbr}#{$clip}#{$i}#{$suffix} {
+                        #{$prop}#{$side}: calcSpacing($i);
+                    }
+                }
+
+                .#{$abbr}y#{$i}#{$suffix} {
+                    #{$prop}-top: calcSpacing($i);
+                    #{$prop}-bottom: calcSpacing($i);
+                }
+
+                .#{$abbr}x#{$i}#{$suffix} {
+                    #{$prop}-left: calcSpacing($i);
+                    #{$prop}-right: calcSpacing($i);
+                }
             }
         }
         .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
@@ -178,14 +243,24 @@
         @for $i from 0 through $max-spacing {
             $props: ("padding": "p");
 
-            @each $prop, $abbr in $props {
-                .#{$abbr}#{$i}#{$suffix} { #{$prop}: calcSpacing($i); }
-                .#{$abbr}t#{$i}#{$suffix} { #{$prop}-top: calcSpacing($i); }
-                .#{$abbr}r#{$i}#{$suffix} { #{$prop}-right: calcSpacing($i); }
-                .#{$abbr}b#{$i}#{$suffix} { #{$prop}-bottom: calcSpacing($i); }
-                .#{$abbr}l#{$i}#{$suffix} { #{$prop}-left: calcSpacing($i); }
-                .#{$abbr}y#{$i}#{$suffix} { #{$prop}-top: calcSpacing($i); #{$prop}-bottom: calcSpacing($i); }
-                .#{$abbr}x#{$i}#{$suffix} { #{$prop}-left: calcSpacing($i); #{$prop}-right: calcSpacing($i); }
+            @each $prop,$abbr in $props {
+                $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
+
+                @each $clip,$side in $sides {
+                    .#{$abbr}#{$clip}#{$i}#{$suffix} {
+                        #{$prop}#{$side}: calcSpacing($i);
+                    }
+                }
+
+                .#{$abbr}y#{$i}#{$suffix} {
+                    #{$prop}-top: calcSpacing($i);
+                    #{$prop}-bottom: calcSpacing($i);
+                }
+
+                .#{$abbr}x#{$i}#{$suffix} {
+                    #{$prop}-left: calcSpacing($i);
+                    #{$prop}-right: calcSpacing($i);
+                }
             }
         }
     }

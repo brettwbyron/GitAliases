@@ -2,7 +2,6 @@
 /*! Utilities */
 // --------------------------------------------------------------------------
 
-@use "spacing";
-// @use "layout";
-@use "type";
-@use "media";
+@import "spacing";
+@import "type";
+@import "media";

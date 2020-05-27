@@ -24,8 +24,8 @@ button:focus {
     border-radius: $border-radius;
     transition: all $transition-normal $transition-easing;
     min-width: 100px;
-    @if $mobile == true {
-        width: auto;
+    @if $mobile {
+        width: 100%;
     }
 
     &,

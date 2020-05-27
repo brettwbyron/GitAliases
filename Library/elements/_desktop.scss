@@ -17,7 +17,7 @@
 }
 // END header
 
-@if $area-fixed-header == true {
+@if $area-fixed-header {
     .fixed-header {
         position: fixed;
         top: 0;

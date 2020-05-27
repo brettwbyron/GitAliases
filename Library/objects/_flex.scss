@@ -81,7 +81,7 @@
     @extend .flex-c-center;
 }
 
-@if $area-flex-order == true {
+@if $area-flex-order {
 
     @for $i from 1 through $max-pos {
         .pos-#{$i} {
@@ -92,7 +92,7 @@
 
 // Responsive layout
 // -----------------------------------------------------------------------------
-@if $mobile == false {
+@if not $mobile {
     /*! min-width: #{$screen-sm-px} */
     @media all and (min-width: $screen-sm-em) {
        $suffix: "-sm";
@@ -123,7 +123,7 @@
         .ml-auto#{$suffix} { margin-left: auto; }
         .mr-auto#{$suffix} { margin-right: auto; }
 
-        @if $area-flex-order == true {
+        @if $area-flex-order {
             @for $i from 1 through $max-pos {
                 .pos-#{$i}#{$suffix} {
                     @include flex-order($i);
@@ -149,7 +149,7 @@
         .ml-auto#{$suffix} { margin-left: auto; }
         .mr-auto#{$suffix} { margin-right: auto; }
 
-        @if $area-flex-order == true {
+        @if $area-flex-order {
             @for $i from 1 through $max-pos {
                 .pos-#{$i}#{$suffix} {
                     @include flex-order($i);
@@ -175,7 +175,7 @@
         .ml-auto#{$suffix} { margin-left: auto; }
         .mr-auto#{$suffix} { margin-right: auto; }
 
-        @if $area-flex-order == true {
+        @if $area-flex-order {
             @for $i from 1 through $max-pos {
                 .pos-#{$i}#{$suffix} {
                     @include flex-order($i);

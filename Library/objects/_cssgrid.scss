@@ -53,7 +53,7 @@
 // @media all and (min-width:$screen-sm-em) {
 //
 // }
-@if $mobile == false {
+@if not $mobile {
 
     /* Medium devices (desktops, #{$screen-lg-px} and up) */
     @media all and (min-width:$screen-md-em) {

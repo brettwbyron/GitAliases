@@ -29,7 +29,7 @@
 
         // Wraps input only
         .jv-form-field-control {
-            @if $mobile == false {
+            @if not $mobile {
                 min-width: $input-min;
                 max-width: $input-width;
             }
@@ -103,7 +103,7 @@
         border: $form-border-width solid $form-color-border;
         border-radius: $form-border-radius;
 
-        @if $mobile == false {
+        @if not $mobile {
             height: 180px;
             max-height: 180px;
             min-height: 180px;
@@ -111,7 +111,7 @@
     }
 
     // Select reset
-    @if ($mobile==false) and ($select-input-custom-arrow==true) {
+    @if not $mobile and $select-input-custom-arrow {
         .jv-form-field-select .jv-form-field-appearance {
 
             .jv-select-icon {
@@ -139,7 +139,7 @@
                 background: none; // Hides background images for IE11
             }
         }
-    } @else if ($mobile==false) {
+    } @else if not $mobile {
         .jv-form-field-select .jv-form-field-appearance {
 
             .jv-select-icon {
@@ -154,11 +154,11 @@
 
     .jv-form-buttons {
         text-align: left;
-        @if $mobile == false {
+        @if not $mobile {
             width: $input-width;
         } // End Desktop
 
-        @if $area-form-labels == true {
+        @if $area-form-labels {
             margin-left: $form-label-width + 4;
         }
 
@@ -190,7 +190,7 @@
 .jv-page-consentform {
 
     select {
-        @if $mobile == false {
+        @if not $mobile {
             width: $input-width;
         }
         background: $color-white;
@@ -254,7 +254,7 @@
     &.jv-search-form, &.jv-list-search-form {
         @include flex-col;
         padding: 0;
-        @if $mobile == true {
+        @if $mobile {
             margin: 0;
         }
         flex: 0 0 auto;
@@ -264,7 +264,7 @@
 
         // Wraps label and input
         .jv-form-field {
-            @if $mobile == false {
+            @if not $mobile {
                 margin-bottom: $form-input-spacing; // Spacing between stacked inputs
             }
             flex: 1 1 auto;
@@ -309,7 +309,7 @@
             }
         }
 
-        @if $select-input-custom-arrow == true {
+        @if $select-input-custom-arrow {
             .jv-form-field-select {
                 position: relative;
 
@@ -328,7 +328,7 @@
     }
 }
 
-@if $mobile == false {
+@if not $mobile {
     @media all and (min-width:$screen-md-em) {
         .jv-form {
 

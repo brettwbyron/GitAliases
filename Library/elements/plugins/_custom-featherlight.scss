@@ -8,7 +8,7 @@
 
 $jua-height: 760px;
 
-@if $area-jua-inline == false {
+@if not $area-jua-inline {
     #jv-widgetContainer {
         display: none;
     }
@@ -40,7 +40,7 @@ html.with-featherlight {
     /* styling */
     cursor: pointer;
     background: #333;
-    @if $mobile == false {
+    @if not $mobile {
         /* IE8 "hack" for nested featherlights */
         background: rgba(0, 0, 0, 0.5);
     } // End Desktop
@@ -74,10 +74,10 @@ html.with-featherlight {
         // width: 100%;
         // min-width: 85vw;
         max-width: 700px;
-        // @if $mobile == false {
+        // @if not $mobile {
         //     height: $jua-height + 40px;
         // } // End Desktop
-        @if $mobile == true {
+        @if $mobile {
             min-height: 80vh;
             max-height: 96vh;
         } // End Mobile

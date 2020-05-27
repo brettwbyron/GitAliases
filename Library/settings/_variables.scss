@@ -89,8 +89,6 @@ $font-headings: $font-web, $font-sans-serif;
 $font-body: $font-web, $font-sans-serif;
 $font-btn: $font-web, $font-sans-serif;
 
-$img-suffix: '@0.5x';
-
 $h1: (60 / $font-size-body) + em;
 $h1-m: (50 / $font-size-body) + em;
 $h2: (36 / $font-size-body) + em;
@@ -100,9 +98,20 @@ $h3-m: (18 / $font-size-body) + em;
 $h4: (17 / $font-size-body) + em;
 $h4-m: (17 / $font-size-body) + em;
 $h5: 1em;
+$h5-m: 1em;
 $h6: (14 / $font-size-body) + em;
+$h6-m: (14 / $font-size-body)+em;
 $p: (16 / $font-size-body) + em;
 $p-m: (16 / $font-size-body) + em;
+
+// Images
+// -----------------------------------------------------------------------------
+$img-suffix: '@0.5x';
+
+// Sections
+// -----------------------------------------------------------------------------
+$section-padding: 3em 0;
+
 
 // Forms
 // -----------------------------------------------------------------------------

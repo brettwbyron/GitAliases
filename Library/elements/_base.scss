@@ -15,11 +15,10 @@ html {
 
 body,
 html {
-    @if $mobile == false and $area-iframe-site == false {
-        height: 100%;
-    }
-    @if $mobile == true {
+    @if $mobile {
         height: 100vh;
+    } @else if not $mobile and not $area-iframe-site {
+        height: 100%;
     }
     font-family: $font-body;
     font-size: 100%;
@@ -29,7 +28,7 @@ html {
 }
 
 body {
-    @if $mobile == false {
+    @if not $mobile {
         @include flex;
         @include flex-col;
     }
@@ -57,14 +56,11 @@ h5 {
 }
 
 h1 {
-    @if $mobile == false {
-        font-size: $h1;
-    }
-    // End Desktop
-    @if $mobile == true {
-        font-size: $h1-m;
-    }
-    // End Mobile
+    @if $mobile {
+        font-size: $h1-m;        
+    } @else {
+        font-size: $h1;        
+    } //End
     // text-transform: uppercase;
 }
 
@@ -72,52 +68,61 @@ h1 {
 h2 {
     line-height: 1.5;
     // text-transform: uppercase;
-    @if $mobile == false {
-        font-size: $h2;
-    }
-    @if $mobile == true {
+    @if $mobile {
         font-size: $h2-m;
-
+    
         &.jv-header {
             font-size: $h2;
             line-height: 1.2;
             // text-transform: uppercase;
-        }
-    }
+        }        
+    } @else {
+        font-size: $h2;        
+    } //End
 }
 
 h3 {
-    @if $mobile == false {
-        font-size: $h3;
-    }
-    @if $mobile == true {
-        font-size: $h3-m;
-    }
+    @if $mobile {
+        font-size: $h3-m;        
+    } @else {
+        font-size: $h3;        
+    } //End
     // color: $color-accent;
     line-height: 1.3;
 }
 
 h4 {
-    @if $mobile == false {
-        font-size: $h4;
-    }
-    @if $mobile == true {
-        font-size: $h4-m;
-    }
+    @if $mobile {
+        font-size: $h4-m;        
+    } @else {
+        font-size: $h4;        
+    } //End
 }
 
 h5 {
-    font-size: $h5;
+    @if $mobile {
+        font-size: $h5-m;
+    } @else {
+        font-size: $h5;        
+    } //End
     text-transform: uppercase;
 }
 
+h6 {
+    @if $mobile {
+        font-size: $h6-m;
+    } @else {
+        font-size: $h6;
+    } //End
+    //text-transform: uppercase;
+}
+
 p {
-    @if $mobile == false {
-        font-size: $p;
-    }
-    @if $mobile == true {
-        font-size: $p-m;
-    }
+    @if $mobile {
+        font-size: $p-m;        
+    } @else {
+        font-size: $p;        
+    } //End
     margin-bottom: 1.25em;
     line-height: $line-height-base;
 }
@@ -158,6 +163,8 @@ ul {
 }
 
 .section {
+    padding: $section-padding;
+
     &:focus {
         outline: none;
     }
@@ -177,7 +184,7 @@ ul {
 // }
 
 /*! =General */
-@if $mobile == false {
+@if not $mobile {
     .jv-page-content {
         padding: 0; // Add fixed header height to top padding
     }
@@ -191,7 +198,7 @@ ul {
 }
 
 .jv-page-body {
-    @if $mobile == true {
+    @if $mobile {
         font-size: 1em;
     }
 
@@ -215,12 +222,11 @@ ul {
     max-height: 100%;
     max-width: $browser-max-width;
     margin: 0 auto;
-    @if $mobile == false {
-        padding: 0 30px;
-    }
-    @if $mobile == true {
-        padding: 0 25px;
-    }
+    @if $mobile {
+        padding: 0 25px;        
+    } @else {
+        padding: 0 30px;        
+    } //End
 }
 
 // Contains header, page-body, footer

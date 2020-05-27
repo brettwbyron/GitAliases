@@ -134,10 +134,10 @@
     // }
 
     // .jv-page-body {
-    // @if $mobile == false {
+    // @if not $mobile {
     //     padding-top: 124px;
     // }
-    // @if $mobile == true {
+    // @if $mobile {
     //     padding-top: 54px;
     // }
     // }
@@ -150,7 +150,7 @@
     // text-align: center;
     // color: $color-white;
     //
-    // @if $mobile == false {
+    // @if not $mobile {
     //     font-size: 3vw;
     // }
     // }
@@ -385,7 +385,7 @@
 // -----------------------------------------------------------------------------
 // =Media Queries
 // -----------------------------------------------------------------------------
-// @if $mobile == false {
+// @if not $mobile {
 //     
 //     /*! min-width: #{$screen-md-px} */
 //     @media all and (min-width:$screen-md-em) {

@@ -19,7 +19,7 @@
         font-size: inherit;
     }
 
-    @if $area-nav-left == true {
+    @if $area-nav-left {
         right: auto;
         left: 0;
     }
@@ -35,7 +35,7 @@
     background: $color-background-light;
     z-index: $z-nav;
 
-    @if $area-nav-left == true {
+    @if $area-nav-left {
         left: -255px;
         right: auto;
 

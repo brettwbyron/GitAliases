@@ -40,7 +40,7 @@
 
 }
 
-@if $mobile == false {
+@if not $mobile {
 
     /*! min-width: #{$screen-md-px} and max-width: #{$screen-lg-px}  */
     @media all and (min-width:$screen-md-em) and (max-width:$screen-lg-em) {

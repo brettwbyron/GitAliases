@@ -1,5 +1,5 @@
 /* Video Containers */
-@if $area-video-container == true {
+@if $area-video-container {
     .video-container {
         max-height:100%;
         width: 100%;
