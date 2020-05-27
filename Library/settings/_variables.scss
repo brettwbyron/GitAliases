@@ -11,10 +11,10 @@ $area-fixed-header: false;
 $area-jua-inline: false;
 $area-nav-left: false;
 $area-back-to-top: false;
-$area-video-container: false;
-$area-form-labels: false;
-$area-iframe-site: false;
-$area-social-colors: false;
+$area-video-container: false; // Adds class for YouTube container
+$area-form-labels: false; // Hides form labels
+$area-iframe-site: false; // If your site is iframe
+$area-social-colors: false; // Social media colors
 $area-svg-icons: false; // SVG icons all the same size
 $area-svg-img: false; // SVG images of different sizes
 $area-hide-search-icon: true;
@@ -112,39 +112,41 @@ $img-suffix: '@0.5x';
 // -----------------------------------------------------------------------------
 $section-padding: 3em 0;
 
-
 // Forms
 // -----------------------------------------------------------------------------
+$input-font-size: (16 / $font-size-body) + em;
+
 $input-width: 300px; // Desktop
 $input-min: 200px;
 $input-max: 100%;
 $input-height: 40px;
 $input-focus-width: 3px; // Browser default: 5px
-$input-focus-color: $color-outline-focus; // Default: $color-outline-focus
-
-$input-font-size: (16 / $font-size-body) + em;
+$input-focus-color: $color-outline-focus; // See colors-base.scss
 
 $form-color-border: lighten($color-black,75%);
 $form-input-bkgd: $color-white;
 // $form-input-bkgd-select: $color-white;
-$form-input-spacing: 0.5em;
-$form-border-width: 1px;
-$form-border-radius: 0;
+$form-input-spacing: 0.25em;
 $form-padding: 0.4em;
 $form-label-width: 200px;
+$form-border-width: 1px;
+$form-border-radius: 0;
 
 // Transitions
 // -----------------------------------------------------------------------------
 $transition-fast: 0.2s;
 $transition-normal: 0.3s;
 $transition-slow: 0.5s;
-$transition-easing: ease-in-out; // $transition-easing: ease;
+// $transition-easing: ease-in-out;
+$transition-easing: ease;
+// $transition-easing: ease-in;
+// $transition-easing: ease-out;
 // $transition-easing: linear;
 
 // Buttons
 // -----------------------------------------------------------------------------
-$button-line-height: $line-height-base;
-$border-radius: 2px;
+$button-line-height: $line-height-base; // See Typography
+$border-radius: 0;
 
 // Box Shadow
 // -----------------------------------------------------------------------------
@@ -179,8 +181,8 @@ $screen-xl-em: ($screen-xl / $font-base) + em;
 
 // Z-index
 // -----------------------------------------------------------------------------
-$z-modal: 1010;
-$z-modal-bkgd: 1005;
-$z-dropdown: 1000;
-$z-slider-nav: 800;
 $z-nav: 500;
+$z-slider-nav: 800;
+$z-dropdown: 1000;
+$z-modal-bkgd: 1005;
+$z-modal: 1010;
