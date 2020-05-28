@@ -55,7 +55,7 @@ function cleanJS() {
 // compile styles ------------------------------------
 function compileStyles() {
     return src(PATHS.SASS.SRC)
-        .pipe(plugins.sass())
+        .pipe(plugins.dartSass().on('error', plugins.dartSass.logError))
         .pipe(plugins.prefixer())
         .pipe(dest(PATHS.SASS.OUTPUT));
 }

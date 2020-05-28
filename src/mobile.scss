@@ -1,13 +1,13 @@
 $mobile: true;
 
-@import "Library/settings/settings";
+@use "Library/settings/settings" as *;
 
-@import "Library/elements/elements";
+@use "Library/elements/elements" as *;
 
-@import "Library/elements/mobile";
+@use "Library/elements/mobile" as *;
 
-@import "Library/sections";
+@use "Library/sections" as *;
 
-@import "Library/objects/objects";
+@use "Library/objects/objects" as *;
 
-@import "Library/utilities/utilities";
+@use "Library/utilities/utilities" as *;
