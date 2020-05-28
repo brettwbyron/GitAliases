@@ -1,16 +1,25 @@
+@use "sass:meta";
+// -----------------------------------------------------------------------------
+// Desktop
+// -----------------------------------------------------------------------------
 $mobile: false;
-// -----------------------------------------------------------------------------
-// Settings
-// -----------------------------------------------------------------------------
 
-@use "Library/settings/settings" as *;
+@include meta.load-css("../Library/elements/fonts");
+@include meta.load-css("../Library/elements/base", $with:("mobile":$mobile));
+@include meta.load-css("../Library/elements/links", $with:("mobile":$mobile));
+@include meta.load-css("../Library/elements/forms", $with:("mobile":$mobile));
+@include meta.load-css("../Library/elements/buttons", $with:("mobile":$mobile));
+/*@include meta.load-css("../Library/elements/plugins", $with:("mobile":$mobile));*/
 
-@use "Library/elements/elements" as *;
+@include meta.load-css("../Library/elements/desktop");
 
-@use "Library/elements/desktop" as *;
+@include meta.load-css("../Library/sections", $with:("mobile":$mobile));
 
-@use "Library/sections" as *;
+@include meta.load-css("../Library/objects/flex", $with:("mobile":$mobile));
+/*@include meta.load-css("../Library/objects/grid", $with:("mobile":$mobile));*/
+/*@include meta.load-css("../Library/objects/cssgrid", $with:("mobile":$mobile));*/
 
-@use "Library/objects/objects" as *;
+@include meta.load-css("../Library/utilities/spacing", $with:("mobile":$mobile));
+@include meta.load-css("../Library/utilities/type", $with:("mobile":$mobile));
+@include meta.load-css("../Library/utilities/media", $with:("mobile":$mobile));
 
-@use "Library/utilities/utilities" as *;

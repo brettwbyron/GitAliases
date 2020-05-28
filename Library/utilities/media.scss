@@ -1,3 +1,6 @@
+@use "Library/settings/settings"as *;
+$mobile: false !default;
+
 /* Video Containers */
 @if $area-video-container {
     .video-container {

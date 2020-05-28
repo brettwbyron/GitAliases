@@ -12,7 +12,7 @@ $area-nav-left: false;
 $area-back-to-top: false;
 $area-video-container: false; // Adds class for YouTube container
 $area-form-labels: false; // Hides form labels
-$area-iframe-site: false; // If your site is iframe
+$area-iframe-site: true; // If your site is iframe
 $area-social-colors: false; // Social media colors
 $area-svg-icons: false; // SVG icons all the same size
 $area-svg-img: false; // SVG images of different sizes
@@ -41,14 +41,13 @@ $arrow-double: 'data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPS
 // Set arrow style
 $arrow-custom: $arrow-down;
 
+// Base Colors
 // -----------------------------------------------------------------------------
-// =Base Colors
-// -----------------------------------------------------------------------------
-
 $color-white: #fff;
 $color-black: #000; // $color-section-gray: #f1f1f1; // Gray background
 
 // Brand
+// -----------------------------------------------------------------------------
 $color-facebook: #204385;
 $color-twitter: #2AA9E0;
 $color-youtube: #EB2429;
@@ -57,7 +56,7 @@ $color-linkedin: #0077b5;
 $color-glassdoor: #0CAA41;
 $color-outline-focus: #3b99fc;
 
-// Colors
+// Customer Colors
 // -----------------------------------------------------------------------------
 $color-primary: #3d87cf;
 $color-secondary: #14317e;
