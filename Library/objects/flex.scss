@@ -1,8 +1,8 @@
-@use "Library/settings/settings"as *;
+@use "Library/settings/variables"as *;
 $mobile: false !default;
 
 // -----------------------------------------------------------------------------
-/*! =Flex classes */
+// =Flex classes
 // -----------------------------------------------------------------------------
 // m = main axis
 // w = wrap or space along cross axis

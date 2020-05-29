@@ -1,10 +1,11 @@
-/*@use 'Library/settings/desktop-variables'as *;*/
-@use "Library/settings/settings" as *;
+@use "Library/settings/variables" as *;
+@use "Library/tools/mixins" as *;
+@use "Library/tools/flex" as *;
 $mobile: false !default;
 
 
 // --------------------------------------------------------------------------
-/*! =Base */
+// =Base
 // --------------------------------------------------------------------------
 
 // Universal Box Sizing with Inheritance
@@ -132,11 +133,6 @@ p {
     line-height: $line-height-base;
 }
 
-.jv-jobAlertContainer,
-main {
-    flex: 1 0 auto;
-}
-
 // blockquote {
 //     font-size: $h3;
 //     font-weight: 200;
@@ -167,76 +163,30 @@ ul {
     text-shadow: none;
 }
 
-.section {
-    padding: $section-padding;
-
-    &:focus {
-        outline: none;
-    }
-
-    // Alternating background colors
-    // &:nth-of-type(1n+2) {
-    //     padding: 3em 0;
-    // }
-    //
-    // &:nth-of-type(odd) {
-    //     background-color: $color-gray-light;
-    // }
-}
-
 // :focus {
 //     outline: -webkit-focus-ring-color auto 2px;
 // }
 
-/*! =General */
-@if not $mobile {
-    .jv-page-content {
-        padding: 0; // Add fixed header height to top padding
-    }
-}
-// End Desktop
+// -----------------------------------------------------------------------------
+// =Links
+// -----------------------------------------------------------------------------
+a {
 
-.jv-jobAlertContainer,
-.jv-page-body {
-    flex: 1 0 auto;
-    padding: 0;
-}
-
-.jv-page-body {
-    @if $mobile {
-        font-size: 1em;
+    &,
+    &:visited {
+        color: $color-link;
+        text-decoration: none;
     }
 
-    .jv-wrapper {
-        background-color: transparent;
+    &:focus,
+    &:hover {
+        color: $color-link--hover;
+        text-decoration: none;
+        cursor: pointer;
     }
-}
 
-.jv-page,
-.jv-page-container {
-    min-height: 100vh;
-}
-
-.jv-page {
-    width: 100%;
-}
-
-.jv-wrapper {
-    position: relative;
-    width: 100%;
-    max-height: 100%;
-    max-width: $browser-max-width;
-    margin: 0 auto;
-    @if $mobile {
-        padding: 0 25px;        
-    } @else {
-        padding: 0 30px;        
-    } //End
-}
-
-// Contains header, page-body, footer
-.jv-page-content {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    &.disabled {
+        cursor: default;
+        pointer-events: none;
+    }
 }
