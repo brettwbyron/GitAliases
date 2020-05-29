@@ -120,8 +120,6 @@ a.disabled {cursor:default;pointer-events:none}
 .jv-logo {margin:0}
 .jv-logo a {display:inline-block}
 .jv-logo a img {height:50px;width:150px}
-.section {padding:3em 0}
-.section:focus {outline:0}
 .jv-page-jobs .jv-job-list ul,.jv-page-search .jv-job-list ul {margin-top:0}
 .jv-page-jobs .jv-job-list a,.jv-page-search .jv-job-list a {position:relative;-webkit-transition:all .3s ease;transition:all .3s ease;padding:.75em 2em;border-radius:0}
 .jv-page-jobs .jv-job-list a:hover,.jv-page-search .jv-job-list a:hover {background-color:rgba(204,204,204,.25)}
@@ -191,6 +189,8 @@ button:focus {outline:thin dotted rgba(0,103,244,.247)}
 .jv-footer .jv-powered-by:hover {color:#3d87cf}
 .jv-footer .jv-powered-by .icon span {width:1px;height:1px}
 /*! =Custom Sections */
+.section {padding:3em 0}
+.section:focus {outline:0}
 .m0 {margin:0}
 .mt0 {margin-top:0}
 .mr0 {margin-right:0}

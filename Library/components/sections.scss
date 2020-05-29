@@ -7,6 +7,25 @@ $mobile: false !default;
 /*! =Custom Sections */
 // -----------------------------------------------------------------------------
 
+// Section padding
+// -----------------------------------------------------------------------------
+.section {
+    padding: $section-padding;
+
+    &:focus {
+        outline: none;
+    }
+
+    // Alternating background colors
+    // &:nth-of-type(1n+2) {
+    //     padding: 3em 0;
+    // }
+    //
+    // &:nth-of-type(odd) {
+    //     background-color: $color-gray-light;
+    // }
+}
+
 // Banners
 // *Directions* @include of the desired mixin to use
 // and customize the properties.

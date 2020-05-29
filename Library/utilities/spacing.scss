@@ -70,13 +70,11 @@ $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
         }
 
         .#{$abbr}y#{$i} {
-            #{$prop}-top: calcSpacing($i);
-            #{$prop}-bottom: calcSpacing($i);
+            #{$prop}-top: calcSpacing($i); #{$prop}-bottom: calcSpacing($i);
         }
 
         .#{$abbr}x#{$i} {
-            #{$prop}-left: calcSpacing($i);
-            #{$prop}-right: calcSpacing($i);
+            #{$prop}-left: calcSpacing($i); #{$prop}-right: calcSpacing($i);
         }
     }
 }

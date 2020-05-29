@@ -397,14 +397,6 @@ main {
   width: 150px;
 }
 
-.section {
-  padding: 3em 0;
-}
-
-.section:focus {
-  outline: none;
-}
-
 .jv-page-jobs .jv-active-category .jv-job-category-link:before,
 .jv-page-search .jv-active-category .jv-job-category-link:before {
   content: none;
@@ -914,6 +906,14 @@ button:focus {
   }
 }
 /*! =Custom Sections */
+.section {
+  padding: 3em 0;
+}
+
+.section:focus {
+  outline: none;
+}
+
 /*@include meta.load-css("../Library/components/plugins", $with:("mobile":$mobile));*/
 .m0 {
   margin: 0em;

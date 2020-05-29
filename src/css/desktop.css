@@ -676,14 +676,6 @@ main {
   width: 150px;
 }
 
-.section {
-  padding: 3em 0;
-}
-
-.section:focus {
-  outline: none;
-}
-
 .jv-page-jobs .jv-job-list ul,
 .jv-page-search .jv-job-list ul {
   margin-top: 0;
@@ -1155,6 +1147,14 @@ button:focus {
 }
 
 /*! =Custom Sections */
+.section {
+  padding: 3em 0;
+}
+
+.section:focus {
+  outline: none;
+}
+
 /*@include meta.load-css("../Library/components/plugins", $with:("mobile":$mobile));*/
 .m0 {
   margin: 0em;
