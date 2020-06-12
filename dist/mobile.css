@@ -111,6 +111,7 @@ button:focus {outline:thin dotted rgba(0,103,244,.247)}
 .jv-page-apply .jv-sub-header {font-size:1.375em;color:#777}
 .jv-page-apply .jv-apply-meta {margin:.5em 0 1em;color:#777;font-size:1em}
 .jv-page-apply .jv-step-header {font-weight:400}
+.jv-page-apply .jv-current-openings {margin-bottom:1em}
 .jv-page-applyconfirm .jv-page-message {background-color:transparent;padding:5.5em 1em 5em}
 .jv-page-applyconfirm .jv-page-message p {margin-bottom:4em}
 .tools {margin:1em}

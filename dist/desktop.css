@@ -95,6 +95,7 @@ button:focus {outline:thin dotted rgba(0,103,244,.247)}
 .jv-page-jobs .jv-job-list a:hover,.jv-page-search .jv-job-list a:hover {background-color:rgba(204,204,204,.25)}
 .jv-page-jobs .jv-job-list .jv-job-list-location,.jv-page-search .jv-job-list .jv-job-list-location {color:#777;text-align:left}
 .jv-page-job .jv-job-detail-top-actions {position:absolute;right:30px;top:0}
+.jv-page-apply .jv-current-openings {margin-bottom:1em}
 .jv-page-applyconfirm .jv-page-message {background-color:transparent;padding:5.5em 1em 5em}
 .jv-page-applyconfirm .jv-page-message p {margin-bottom:4em}
 .tools {margin:1em}

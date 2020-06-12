@@ -328,7 +328,7 @@ a.disabled {
   .jv-form.jv-search-form .jv-form-field-select .jv-form-field-appearance label, .jv-form.jv-list-search-form .jv-form-field-select .jv-form-field-appearance label {
     display: none; }
 
-/* Buttons */
+/* =Buttons */
 button:focus {
   outline: thin dotted rgba(0, 103, 244, 0.247); }
 
@@ -532,6 +532,9 @@ button:focus {
 
 .jv-page-apply .jv-step-header {
   font-weight: 400; }
+
+.jv-page-apply .jv-current-openings {
+  margin-bottom: 1em; }
 
 .jv-page-applyconfirm .jv-page-message {
   background-color: transparent;

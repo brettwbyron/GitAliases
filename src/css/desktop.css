@@ -380,7 +380,7 @@ a.disabled {
               flex-direction: row;
       margin-left: 0; } }
 
-/* Buttons */
+/* =Buttons */
 button:focus {
   outline: thin dotted rgba(0, 103, 244, 0.247); }
 
@@ -517,6 +517,9 @@ button:focus {
   position: absolute;
   right: 30px;
   top: 0; }
+
+.jv-page-apply .jv-current-openings {
+  margin-bottom: 1em; }
 
 .jv-page-applyconfirm .jv-page-message {
   background-color: transparent;
