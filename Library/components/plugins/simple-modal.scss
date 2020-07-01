@@ -25,35 +25,41 @@ $mobile: false !default;
     &.is-active {
         display: flex;
     }
-}
 
-.modal-content {
-    @include flex-col;
-    @include flex-c-center;
-    @include flex-m-center;
-    width: 90vw;
-    max-width: 600px;
-    height: 90vh;
-    max-height: 400px;
-    padding: 10px;
-    background-color: $color-white;
-    border-radius: 8px;
-    position: relative;
-
-    &:after {
-        content: '\e677';
-        font-family: $font-jv;
-        @include square(30px);
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: 2px;
-        cursor: pointer;
+    &-open {
+        /* disable global scrolling when modals are visible */
+        overflow: hidden;
     }
 
-    h1 {
-        font-size: $h2;
-        text-align: center;
+    &-content {
+        @include flex-col;
+        @include flex-c-center;
+        @include flex-m-center;
+        width: 90vw;
+        max-width: 600px;
+        height: 90vh;
+        max-height: 400px;
+        padding: 10px;
+        background-color: $color-white;
+        border-radius: 8px;
+        position: relative;
+        z-index: 2;
+    
+        &:after {
+            content: '\e677';
+            font-family: $font-jv;
+            @include square(30px);
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 2px;
+            cursor: pointer;
+        }
+    
+        h1 {
+            font-size: $h2;
+            text-align: center;
+        }
     }
 }
 
@@ -62,10 +68,10 @@ $mobile: false !default;
     float: right;
     font-size: 28px;
     cursor: pointer;
-}
-
-.close:hover {
-    color: #ddd;
+    
+    &:hover {
+        color: #ddd;
+    }
 }
 
 .clear::after {

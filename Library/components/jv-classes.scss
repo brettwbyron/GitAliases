@@ -317,6 +317,10 @@ main {
             font-weight: 400;
         }
     }
+    
+    .jv-current-openings {
+        margin-bottom: 1em;
+    }
 }
 
 // Apply Conform
@@ -362,7 +366,7 @@ main {
 
 // }
 
-@if $area-featured==true {
+@if $area-featured {
 
     // Featured Jobs -----------------------------------------------------------
     #featured {

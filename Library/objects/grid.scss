@@ -33,11 +33,10 @@ $grid-columns: [];
 }
 
 @each $col in $grid-columns {
-    .row-#{$col}-col {
+    .row {
         $col-width: (100% / $col);
-        // @debug $col-width;
+        width: 100%;
         @include flex-row;
-        @include flex-wrap;
 
         @for $i from 1 through $col {
             > .col-#{$i} {
@@ -55,7 +54,7 @@ $grid-columns: [];
         $suffix: '-sm';
     
         @each $col in $grid-columns {
-            .row-#{$col}-col#{$suffix} {
+            .row#{$suffix} {
                 $col-width: (100% / $col);
                 // @debug $col-width;
     
@@ -73,7 +72,7 @@ $grid-columns: [];
         $suffix: '-md';
     
         @each $col in $grid-columns {
-            .row-#{$col}-col#{$suffix} {
+            .row#{$suffix} {
                 $col-width: (100% / $col);
                 // @debug $col-width;
     
@@ -92,7 +91,7 @@ $grid-columns: [];
         $suffix: '-lg';
     
         @each $col in $grid-columns {
-            .row-#{$col}-col#{$suffix} {
+            .row#{$suffix} {
                 $col-width: (100% / $col);
                 // @debug $col-width;
     

@@ -30,8 +30,8 @@ body {
   cursor: default;
 }
 
-.h2,
 h1,
+.h2,
 h2,
 h3,
 h4,
@@ -460,6 +460,10 @@ main {
 
 .jv-page-apply .jv-step-header {
   font-weight: 400;
+}
+
+.jv-page-apply .jv-current-openings {
+  margin-bottom: 1em;
 }
 
 .jv-page-applyconfirm .jv-page-message {
