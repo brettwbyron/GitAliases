@@ -14,9 +14,12 @@
 // <div id="banner" class="fixed">
 //     <img src="//careers.jobvite.com/path-to-customer-folder/banner.jpg" />
 // </div>
-@mixin banner-fixed($w:1200px) {
+@mixin banner-fixed($w:null,$h:null,$h-m:null) {
     @if type-of($w) != number {
         @error "The value of $w:#{$w} must be in pixels.";
+    }
+    @if $h !=null and type-of($h) !=number {
+        @error "The value of $h:#{$h} must be in pixels.";
     }
 
     #banner.fixed {
@@ -27,6 +30,11 @@
 
         img {
             max-width: $w;
+            @if $mobile {
+                height: $h-m;
+            } @else {
+                height: $h;
+            } //End
         }
 
         @content;
@@ -285,6 +293,13 @@
 }
 
 // -----------------------------------------------------------------------------
+// =Transition
+// -----------------------------------------------------------------------------
+@mixin transition($property:all, $duration:0.3s, $ease:ease-in-out) {
+    transition: $property $duration $ease;
+}
+
+// -----------------------------------------------------------------------------
 // =Scrolling
 // -----------------------------------------------------------------------------
 @mixin scroller-y() {
@@ -294,6 +309,29 @@
 @mixin scroller() {
     overflow-y: auto;
     overflow-x: auto;
+}
+
+// -----------------------------------------------------------------------------
+// =Width and =Height - thanks Brett for helping me ;)
+// -----------------------------------------------------------------------------
+@mixin generate-width($start:0,$end:100,$inc:5) {
+    @for $i from $start through $end {
+        @if ($i % $inc == 0) {
+            .w-#{$i} {
+                width: $i * 1%;
+            }
+        }
+    }
+}
+
+@mixin generate-height($start:0, $end:100, $inc:5) {
+    @for $i from $start through $end {
+        @if ($i % $inc==0) {
+            .h-#{$i} {
+                height: $i * 1%;
+            }
+        }
+    }
 }
 
 // -----------------------------------------------------------------------------

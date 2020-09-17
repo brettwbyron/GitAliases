@@ -55,7 +55,7 @@
 // }
 @if not $mobile {
 
-    /* Medium devices (desktops, #{$screen-lg-px} and up) */
+    /* Medium devices (desktops, #{$screen-md-px} and up) */
     @media all and (min-width:$screen-md-em) {
         .grid {
             -ms-grid-rows: auto auto;
