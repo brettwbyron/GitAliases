@@ -1,0 +1,8 @@
+@use "Library/tools/mixins"as *;
+
+/*! =Size classes */
+// ------------------
+
+@include generate-width($start:0, $end:100, $inc:25);
+
+@include generate-height($start:0, $end:100, $inc:25);

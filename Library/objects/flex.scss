@@ -29,11 +29,16 @@ $mobile: false !default;
 
 // -----------------------------------------------------------------------------
 // This defines the main axis
-.flex-row, .flex-col {
+.flex-row,
+.flex-col,
+.flex-col-reverse,
+.flex-row-reverse {
     @extend .flex;
 }
 .flex-col  { flex-direction: column }
 .flex-row  { flex-direction: row }
+.flex-col-reverse  { flex-direction: column-reverse }
+.flex-row-reverse  { flex-direction: row-reverse }
 
 .flex-wrap            { flex-wrap: wrap }
 .flex-nowrap          { flex-wrap: nowrap }
@@ -81,7 +86,6 @@ $mobile: false !default;
 .flex-self-auto     { align-self: auto }
 
 .flex-center {
-    @extend .flex-col;
     @extend .flex-m-center;
     @extend .flex-c-center;
 }
@@ -98,92 +102,100 @@ $mobile: false !default;
 // Responsive layout
 // -----------------------------------------------------------------------------
 @if not $mobile {
-    /*! min-width: #{$screen-sm-px} */
-    @media all and (min-width: $screen-sm-em) {
-       $suffix: "-sm";
-       .flex#{$suffix} { display: flex }
-       .flex-inline#{$suffix} { display: inline-flex }
-       .flex-col#{$suffix}  { flex-direction: column }
-       .flex-row#{$suffix}  { flex-direction: row }
-       .flex-m-end#{$suffix} { justify-content: flex-end }
-       .flex-m-center#{$suffix} { justify-content: center }
-       .flex-wrap#{$suffix}      { flex-wrap: wrap }
-       .flex-nowrap#{$suffix}    { flex-wrap: nowrap }
+    @if $area-screen-small {
+        /*! min-width: #{$screen-sm-px} */
+        @media all and (min-width: $screen-sm-em) {
+            $suffix: "-sm";
+            .flex#{$suffix} { display: flex }
+            .flex-inline#{$suffix} { display: inline-flex }
+            .flex-col#{$suffix}  { flex-direction: column }
+            .flex-row#{$suffix}  { flex-direction: row }
+            .flex-m-end#{$suffix} { justify-content: flex-end }
+            .flex-m-center#{$suffix} { justify-content: center }
+            .flex-wrap#{$suffix}      { flex-wrap: wrap }
+            .flex-nowrap#{$suffix}    { flex-wrap: nowrap }
+        }
     }
-    /*! min-width: #{$screen-md-px} */
-    @media all and (min-width: $screen-md-em) {
-        $suffix: "-md";
-        .flex#{$suffix}          { display: flex }
-        .flex-inline#{$suffix}   { display: inline-flex }
-        .flex-col#{$suffix}      { flex-direction: column }
-        .flex-row#{$suffix}      { flex-direction: row }
-        .flex-c-center#{$suffix} { align-items: center }
-        .flex-m-start#{$suffix}  { justify-content: flex-start }
-        .flex-m-end#{$suffix}    { justify-content: flex-end }
-        .flex-m-center#{$suffix} { justify-content: center }
-        .flex-wrap#{$suffix}     { flex-wrap: wrap }
-        .flex-nowrap#{$suffix}   { flex-wrap: nowrap }
+    @if $area-screen-medium {
+        /*! min-width: #{$screen-md-px} */
+        @media all and (min-width: $screen-md-em) {
+            $suffix: "-md";
+            .flex#{$suffix}          { display: flex }
+            .flex-inline#{$suffix}   { display: inline-flex }
+            .flex-col#{$suffix}      { flex-direction: column }
+            .flex-row#{$suffix}      { flex-direction: row }
+            .flex-c-center#{$suffix} { align-items: center }
+            .flex-m-start#{$suffix}  { justify-content: flex-start }
+            .flex-m-end#{$suffix}    { justify-content: flex-end }
+            .flex-m-center#{$suffix} { justify-content: center }
+            .flex-wrap#{$suffix}     { flex-wrap: wrap }
+            .flex-nowrap#{$suffix}   { flex-wrap: nowrap }
 
-        .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
-        .ml-auto#{$suffix} { margin-left: auto; }
-        .mr-auto#{$suffix} { margin-right: auto; }
+            .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
+            .ml-auto#{$suffix} { margin-left: auto; }
+            .mr-auto#{$suffix} { margin-right: auto; }
 
-        @if $area-flex-order {
-            @for $i from 1 through $max-pos {
-                .pos-#{$i}#{$suffix} {
-                    @include flex-order($i);
+            @if $area-flex-order {
+                @for $i from 1 through $max-pos {
+                    .pos-#{$i}#{$suffix} {
+                        @include flex-order($i);
+                    }
                 }
             }
         }
     }
-    /*! min-width: #{$screen-lg-px} */
-    @media all and (min-width: $screen-lg-em) {
-        $suffix: "-lg";
-        .flex#{$suffix}          { display: flex }
-        .flex-inline#{$suffix}   { display: inline-flex }
-        .flex-col#{$suffix}      { flex-direction: column }
-        .flex-row#{$suffix}      { flex-direction: row }
-        .flex-c-center#{$suffix} { align-items: center }
-        .flex-m-start#{$suffix}  { justify-content: flex-start }
-        .flex-m-end#{$suffix}    { justify-content: flex-end }
-        .flex-m-center#{$suffix} { justify-content: center }
-        .flex-wrap#{$suffix}     { flex-wrap: wrap }
-        .flex-nowrap#{$suffix}   { flex-wrap: nowrap }
+    @if $area-screen-large {
+        /*! min-width: #{$screen-lg-px} */
+        @media all and (min-width: $screen-lg-em) {
+            $suffix: "-lg";
+            .flex#{$suffix}          { display: flex }
+            .flex-inline#{$suffix}   { display: inline-flex }
+            .flex-col#{$suffix}      { flex-direction: column }
+            .flex-row#{$suffix}      { flex-direction: row }
+            .flex-c-center#{$suffix} { align-items: center }
+            .flex-m-start#{$suffix}  { justify-content: flex-start }
+            .flex-m-end#{$suffix}    { justify-content: flex-end }
+            .flex-m-center#{$suffix} { justify-content: center }
+            .flex-wrap#{$suffix}     { flex-wrap: wrap }
+            .flex-nowrap#{$suffix}   { flex-wrap: nowrap }
 
-        .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
-        .ml-auto#{$suffix} { margin-left: auto; }
-        .mr-auto#{$suffix} { margin-right: auto; }
+            .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
+            .ml-auto#{$suffix} { margin-left: auto; }
+            .mr-auto#{$suffix} { margin-right: auto; }
 
-        @if $area-flex-order {
-            @for $i from 1 through $max-pos {
-                .pos-#{$i}#{$suffix} {
-                    @include flex-order($i);
+            @if $area-flex-order {
+                @for $i from 1 through $max-pos {
+                    .pos-#{$i}#{$suffix} {
+                        @include flex-order($i);
+                    }
                 }
             }
         }
     }
-    /*! min-width: #{$screen-xl-px} */
-    @media all and (min-width: $screen-xl-em) {
-        $suffix: "-xl";
-        .flex#{$suffix}          { display: flex }
-        .flex-inline#{$suffix}   { display: inline-flex }
-        .flex-col#{$suffix}      { flex-direction: column }
-        .flex-row#{$suffix}      { flex-direction: row }
-        .flex-c-center#{$suffix} { align-items: center }
-        .flex-m-start#{$suffix}  { justify-content: flex-start }
-        .flex-m-end#{$suffix}    { justify-content: flex-end }
-        .flex-m-center#{$suffix} { justify-content: center }
-        .flex-wrap#{$suffix}     { flex-wrap: wrap }
-        .flex-nowrap#{$suffix}   { flex-wrap: nowrap }
+    @if $area-screen-xl {
+        /*! min-width: #{$screen-xl-px} */
+        @media all and (min-width: $screen-xl-em) {
+            $suffix: "-xl";
+            .flex#{$suffix}          { display: flex }
+            .flex-inline#{$suffix}   { display: inline-flex }
+            .flex-col#{$suffix}      { flex-direction: column }
+            .flex-row#{$suffix}      { flex-direction: row }
+            .flex-c-center#{$suffix} { align-items: center }
+            .flex-m-start#{$suffix}  { justify-content: flex-start }
+            .flex-m-end#{$suffix}    { justify-content: flex-end }
+            .flex-m-center#{$suffix} { justify-content: center }
+            .flex-wrap#{$suffix}     { flex-wrap: wrap }
+            .flex-nowrap#{$suffix}   { flex-wrap: nowrap }
 
-        .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
-        .ml-auto#{$suffix} { margin-left: auto; }
-        .mr-auto#{$suffix} { margin-right: auto; }
+            .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
+            .ml-auto#{$suffix} { margin-left: auto; }
+            .mr-auto#{$suffix} { margin-right: auto; }
 
-        @if $area-flex-order {
-            @for $i from 1 through $max-pos {
-                .pos-#{$i}#{$suffix} {
-                    @include flex-order($i);
+            @if $area-flex-order {
+                @for $i from 1 through $max-pos {
+                    .pos-#{$i}#{$suffix} {
+                        @include flex-order($i);
+                    }
                 }
             }
         }

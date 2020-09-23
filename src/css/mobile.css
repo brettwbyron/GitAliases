@@ -118,7 +118,10 @@ a.disabled {
   pointer-events: none;
 }
 
-.flex, .flex-row, .flex-col, .flex-center {
+.flex, .flex-row,
+.flex-col,
+.flex-col-reverse,
+.flex-row-reverse {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -174,7 +177,7 @@ a.disabled {
           order: 99999;
 }
 
-.flex-col, .flex-center {
+.flex-col {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -186,6 +189,20 @@ a.disabled {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+}
+
+.flex-col-reverse {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+}
+
+.flex-row-reverse {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
 }
 
 .flex-wrap {
@@ -740,8 +757,8 @@ button:focus {
   border: 1px solid transparent;
   background-color: transparent;
   border-radius: 0;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   min-width: 100px;
   width: 100%;
 }

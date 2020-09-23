@@ -235,6 +235,27 @@
     @include size($s, $s);
 }
 
+@mixin generate-width($start:0, $end:100, $inc:5) {
+    @for $i from $start through $end {
+        @if ($i % $inc==0) {
+            .w-#{$i} {
+                width: $i * 1%;
+            }
+        }
+    }
+}
+
+@mixin generate-height($start:0, $end:100, $inc:5) {
+    @for $i from $start through $end {
+        @if ($i % $inc==0) {
+            .h-#{$i} {
+                height: $i * 1%;
+            }
+        }
+    }
+}
+
+
 //------------------------------------------------------------------------------
 // Shadows
 //------------------------------------------------------------------------------
@@ -299,41 +320,24 @@
 // -----------------------------------------------------------------------------
 // =Grid
 // -----------------------------------------------------------------------------
-// $max: 8
-//
-// @for $i from 1 through $max {
-//     &.col-#{$i} {
-//         @include ie-grid-col($i);
-//     }
-//     &.row-#{$i} {
-//         @include ie-grid-row($i);
-//     }
-// }
 
-@mixin ie-grid() {
-    @for $i from 1 through $max {
-        &.col-#{$i} {
-            @include ie-grid-col($i);
-        }
-
-        &.row-#{$i} {
-            @include ie-grid-row($i);
-        }
+@mixin ie-grid-item($row, $row-span, $col, $col-span, $area:null) {
+    -ms-grid-row: $row;
+    -ms-grid-row-span: $row-span;
+    @if ($row-span > 1) {
+        grid-row: $row / span $row-span;
+    } @else {
+        grid-row: $row;
     }
-}
+    -ms-grid-column: $col;
+    -ms-grid-column-span: $col-span;
 
-@mixin ie-grid-col($col-num, $span:0) {
-    -ms-grid-column: $col-num;
-    @if $span > 0 {
-        -ms-grid-col-span: $span;
+    @if ($col-span > 1) {
+        grid-column: $col / span $col-span;
+    } @else {
+        grid-column: $col;
     }
-}
-
-@mixin ie-grid-row($row-num, $span:0) {
-    -ms-grid-row: $row-num;
-    @if $span > 0 {
-        -ms-grid-row-span: $span;
-    }
+    grid-area: $area;
 }
 
 // -----------------------------------------------------------------------------

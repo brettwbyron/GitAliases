@@ -2,94 +2,71 @@
 /*! =CSS Grid layout */
 // -----------------------------------------------------------------------------
 
-/* EXAMPLE - https://jobs.jobvite.com/rackspace/jobs/culture
+/*
     <div class="grid">
-        <div class="cta-box col-1 row-1 col-1-md row-1-md">
+        <div class="grid-item grid-item-1">
 
         </div>
-        <div class="spacer"></div>
-        <div class="cta-box col-2 row-2 col-2-md row-2-md">
+        <div class="grid-item grid-item-2">
 
         </div>
-        <div class="cta-box col-1 row-3 col-4-md row-1-md">
+        <div class="grid-item grid-item-3">
 
         </div>
-        <div class="cta-box col-2 row-3 col-4-md row-2-md">
+        <div class="grid-item grid-item-4">
 
         </div>
     </div>
 */
-// *Spacer* class is for empty grid cells
 
 .grid {
-    $max: 6;
-    display: -ms-grid;
-    -ms-grid-rows: auto auto auto auto auto auto;
-    -ms-grid-columns: 1fr 1fr;
+    max-width: 100%;
     display: grid;
-    grid-template: auto auto auto auto auto auto / 1fr 1fr;
+    @if $mobile {
+        grid-template: repeat(2, minmax(200px, auto)) / repeat(2, 1fr);
+    } @else {
+        display: -ms-grid;
+        -ms-grid-rows: minmax(200px, auto) minmax(200px, auto);
+        -ms-grid-columns: 1fr 1fr;
+        grid-template: repeat(2, minmax(200px, auto)) / repeat(2, 1fr);
+    } //End
+    grid-template-areas: "grid-item-1 grid-item-2""grid-item-3 grid-item-4";
+    grid-gap: 0;
     transition: all $transition-normal $transition-easing;
-
-    @for $i from 1 through $max {
-        .col-#{$i} {
-            @include ie-grid-col($i);
-        }
-
-        .row-#{$i} {
-            @include ie-grid-row($i);
-        }
-    }
 
     .grid-item {
         @include flex-col;
-        @include flex-m-center;
-        @include flex-c-center;
+        @include flex-center;
         flex: 1 1 auto;
         height: 100%;
+        border: 1px solid $color-white;
     }
+
+    .grid-item-1 {
+        @include ie-grid-item(1, 1, 1, 1, grid-item-1);
+    }
+    .grid-item-2 {
+        @include ie-grid-item(1, 1, 2, 1, grid-item-2);
+    }
+    .grid-item-3 {
+        @include ie-grid-item(2, 1, 1, 1, grid-item-3);
+    }
+    .grid-item-4 {
+        @include ie-grid-item(2, 1, 2, 1, grid-item-4);
+    }
+
+    // Repeat for additional grid-items...
 }
 
-// /* Small devices (tablets, #{$screen-sm-px} and up) */
-// @media all and (min-width:$screen-sm-em) {
-//
-// }
 @if not $mobile {
 
     /* Medium devices (desktops, #{$screen-lg-px} and up) */
     @media all and (min-width:$screen-md-em) {
         .grid {
-            -ms-grid-rows: auto auto;
-            -ms-grid-columns: 1fr 1fr 1fr;
-            grid-template: auto auto / 1fr 1fr 1fr;
-
-            @for $i from 1 through $max {
-                &.col-md-#{$i} {
-                    @include ie-grid-col($i);
-                }
-
-                &.row-md-#{$i} {
-                    @include ie-grid-row($i);
-                }
-            }
-        }
-    }
-
-    /* Large devices (large desktops, #{$screen-lg-px} and up) */
-    @media all and (min-width: $screen-lg-em) {
-        .grid {
-            -ms-grid-rows: auto;
-            -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-            grid-template: auto / 1fr 1fr 1fr 1fr 1fr 1fr;
-
-            @for $i from 1 through $max {
-                &.col-lg-#{$i} {
-                    @include ie-grid-col($i);
-                }
-
-                &.row-lg-#{$i} {
-                    @include ie-grid-row($i);
-                }
-            }
+            -ms-grid-rows: minmax(200px, auto);
+            -ms-grid-columns: 1fr 1fr 1fr 1fr;
+            grid-template: minmax(200px, auto) / repeat(4, 1fr);
+            grid-template-areas: "grid-item-1 grid-item-2 grid-item-3 grid-item-4";
         }
     }
 

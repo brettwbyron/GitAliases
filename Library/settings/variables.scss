@@ -12,11 +12,15 @@ $area-nav-left: false;
 $area-back-to-top: false;
 $area-video-container: false; // Adds class for YouTube container
 $area-form-labels: false; // Hides form labels
-$area-iframe-site: true; // If your site is iframe
+$area-iframe-site: false; // If your site is iframe
 $area-social-colors: false; // Social media colors
 $area-svg-icons: false; // SVG icons all the same size
 $area-svg-img: false; // SVG images of different sizes
 $area-hide-search-icon: true;
+$area-screen-small: false;
+$area-screen-medium: true;
+$area-screen-large: false;
+$area-screen-xl: false;
 $max-spacing: 3; // Padding and margin spacing
 
 // Flex order
@@ -148,14 +152,15 @@ $form-border-radius: 0;
 
 // Transitions
 // -----------------------------------------------------------------------------
+$ease: ease;
+$ease-in: ease-in;
+$ease-out: ease-out;
+$ease-in-out: ease-in-out;
+$linear: linear;
 $transition-fast: 0.2s;
 $transition-normal: 0.3s;
 $transition-slow: 0.5s;
-// $transition-easing: ease-in-out;
-$transition-easing: ease;
-// $transition-easing: ease-in;
-// $transition-easing: ease-out;
-// $transition-easing: linear;
+$transition-easing: $ease-in-out;
 
 // Buttons
 // -----------------------------------------------------------------------------
