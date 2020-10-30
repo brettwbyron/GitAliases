@@ -33,11 +33,10 @@ $grid-columns: [];
 }
 
 @each $col in $grid-columns {
-    .row-#{$col}-col {
+    .row {
         $col-width: (100% / $col);
-        // @debug $col-width;
+        width: 100%;
         @include flex-row;
-        @include flex-wrap;
 
         @for $i from 1 through $col {
             > .col-#{$i} {
@@ -48,57 +47,61 @@ $grid-columns: [];
     }
 }
 
-/* Small devices (tablets, #{$screen-sm-px} and up) */
-@media all and (min-width:$screen-sm-em) {
-    $suffix: '-sm';
+@if not $mobile {
 
-    @each $col in $grid-columns {
-        .row-#{$col}-col#{$suffix} {
-            $col-width: (100% / $col);
-            // @debug $col-width;
-
-            @for $i from 1 through $col {
-                > .col-#{$i}#{$suffix} {
-                    width: ($col-width * $i);
+    /* Small devices (tablets, #{$screen-sm-px} and up) */
+    @media all and (min-width:$screen-sm-em) {
+        $suffix: '-sm';
+    
+        @each $col in $grid-columns {
+            .row#{$suffix} {
+                $col-width: (100% / $col);
+                // @debug $col-width;
+    
+                @for $i from 1 through $col {
+                    > .col-#{$i}#{$suffix} {
+                        width: ($col-width * $i);
+                    }
                 }
             }
         }
     }
-}
-
-/* Medium devices (desktops, #{$screen-lg-px} and up) */
-@media all and (min-width:$screen-md-em) {
-    $suffix: '-md';
-
-    @each $col in $grid-columns {
-        .row-#{$col}-col#{$suffix} {
-            $col-width: (100% / $col);
-            // @debug $col-width;
-
-            @for $i from 1 through $col {
-                > .col-#{$i}#{$suffix} {
-                    width: ($col-width * $i);
+    
+    /* Medium devices (desktops, #{$screen-lg-px} and up) */
+    @media all and (min-width:$screen-md-em) {
+        $suffix: '-md';
+    
+        @each $col in $grid-columns {
+            .row#{$suffix} {
+                $col-width: (100% / $col);
+                // @debug $col-width;
+    
+                @for $i from 1 through $col {
+                    > .col-#{$i}#{$suffix} {
+                        width: ($col-width * $i);
+                    }
+                }
+            }
+        }
+    
+    }
+    
+    /* Large devices (large desktops, #{$screen-lg-px} and up) */
+    @media all and (min-width: $screen-lg-em) {
+        $suffix: '-lg';
+    
+        @each $col in $grid-columns {
+            .row#{$suffix} {
+                $col-width: (100% / $col);
+                // @debug $col-width;
+    
+                @for $i from 1 through $col {
+                    > .col-#{$i}#{$suffix} {
+                        width: ($col-width * $i);
+                    }
                 }
             }
         }
     }
-
-}
-
-/* Large devices (large desktops, #{$screen-lg-px} and up) */
-@media all and (min-width: $screen-lg-em) {
-    $suffix: '-lg';
-
-    @each $col in $grid-columns {
-        .row-#{$col}-col#{$suffix} {
-            $col-width: (100% / $col);
-            // @debug $col-width;
-
-            @for $i from 1 through $col {
-                > .col-#{$i}#{$suffix} {
-                    width: ($col-width * $i);
-                }
-            }
-        }
-    }
+    
 }

@@ -1,3 +1,8 @@
+@use "Library/settings/variables" as *;
+@use "Library/tools/mixins" as *;
+@use "Library/tools/flex" as *;
+$mobile: false !default;
+
 // --------------------------------------------------------------------------
 /*! Forms */
 // --------------------------------------------------------------------------
@@ -71,7 +76,7 @@
         display: block;
         background: none;
         border: none;
-        color: $color-text;
+        //color: $color-text; // don't set this, see https://jobvite.atlassian.net/browse/SUPPORT-2795
         font-size: $input-font-size;
         border-radius: $form-border-radius;
         padding: $form-padding;
@@ -108,48 +113,6 @@
             max-height: 180px;
             min-height: 180px;
         } // End Desktop
-    }
-
-    // Select reset
-    @if not $mobile and $select-input-custom-arrow {
-        .jv-form-field-select .jv-form-field-appearance {
-
-            .jv-select-icon {
-                display: none;
-            }
-
-            select {
-                padding-right: 2em;
-            }
-        }
-
-        select {
-            // min-width: ($input-width - 2 * $form-border-width);
-            background: url($arrow-custom) no-repeat 98% 50%; // Adds select input arrows to background
-            -moz-appearance: none;
-            -webkit-appearance: none;
-            appearance: none;
-        }
-
-        @media screen and (-ms-high-contrast: active),
-        (-ms-high-contrast: none) {
-
-            /* IE10+ specific styles go here */
-            select {
-                background: none; // Hides background images for IE11
-            }
-        }
-    } @else if not $mobile {
-        .jv-form-field-select .jv-form-field-appearance {
-
-            .jv-select-icon {
-                right: 0.5em;
-            }
-
-            select {
-                padding-right: 2em;
-            }
-        }
     }
 
     .jv-form-buttons {
@@ -296,34 +259,6 @@
                 border: none;
                 font-size: $input-font-size;
             }
-
-            .jv-form-field-select label {
-                display: none;
-            }
-        }
-
-        // Hides extra select label
-        .jv-form-field-select {
-            .jv-form-field-appearance label {
-                display: none;
-            }
-        }
-
-        @if $select-input-custom-arrow {
-            .jv-form-field-select {
-                position: relative;
-
-                &:after {
-                    position: absolute;
-                    @include square(16px);
-                    content: '';
-                    margin-top: -0.5em;
-                    pointer-events: none;
-                    right: 1.2em;
-                    top: 50%;
-                    background: url($root-url +'icon-downarrow.svg') no-repeat 50% 50%;
-                }
-            }
         }
     }
 }
@@ -364,7 +299,7 @@
                         @include flex-row;
                         margin-left: 0;
                     }
-                }  // End
+                }
             }
         } // End .jv-form
     }

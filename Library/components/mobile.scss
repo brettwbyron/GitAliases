@@ -1,7 +1,73 @@
+@use "Library/settings/variables" as *;
+@use "Library/tools/mixins" as *;
+@use "Library/tools/flex" as *;
+
 // -----------------------------------------------------------------------------
 // =Mobile styles
 // -----------------------------------------------------------------------------
 
+// -----------------------------------------------------------------------------
+/* =Header/Footer */
+// -----------------------------------------------------------------------------
+.jv-page-header {
+    background: $color-background-light;
+    padding: 0;
+
+    .jv-wrapper {
+        padding: 11px 0;
+    }
+
+    @if $area-fixed-header {
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: block;
+            background-color: $color-background-light;
+            z-index: $z-nav;
+        }
+    }
+}
+
+.jv-footer {
+    background-color: $color-accent;
+    color: $color-text;
+    padding: 2em 0;
+
+    .jv-wrapper {
+        padding: 0 20px;
+    }
+
+    .copyright {
+        font-size: $h6;
+    }
+
+    a {
+        color: $color-text;
+    }
+
+    .jv-powered-by {
+        margin: 0;
+        display: inline-flex;
+
+        &,
+        &:visited {
+            color: $color-white;
+        }
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        .icon span {
+            width: 1px;
+            height: 1px;
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
 // Nav Styles
 // -----------------------------------------------------------------------------
 
@@ -25,6 +91,7 @@
     }
 }
 
+// Moves open link to the right
 @media only screen and (min-width: 40.063em) {
     .jv-nav-open-link {
         right: 0.5em;
@@ -76,54 +143,6 @@
 //         display: none!important;
 //     }
 // }
-
-// Header/Footer
-// -----------------------------------------------------------------------------h
-.jv-page-header {
-    background: $color-background-light;
-    padding: 0;
-
-    .jv-wrapper {
-        padding: 11px 0;
-    }
-}
-
-.jv-footer {
-    background-color: $color-accent;
-    color: $color-text;
-    padding: 2em 0;
-
-    .jv-wrapper {
-        padding: 0 20px;
-    }
-
-    .copyright {
-        font-size: $h6;
-    }
-
-    a {
-        color: $color-text;
-    }
-
-    .jv-powered-by {
-        margin: 0;
-        display: inline-flex;
-
-        &,
-        &:visited {
-            color: $color-white;
-        }
-
-        &:hover {
-            text-decoration: none;
-        }
-
-        .icon span {
-            width: 1px;
-            height: 1px;
-        }
-    }
-}
 
 .jv-page {
     background-color: transparent;

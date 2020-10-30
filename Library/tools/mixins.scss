@@ -1,6 +1,8 @@
 // --------------------------------------------------------------------------
 //  =Mixins
 // --------------------------------------------------------------------------
+@use "Library/settings/variables"as *;
+$mobile: false !default;
 
 // -----------------------------------------------------------------------------
 // Banners - fixed | scaling
@@ -14,8 +16,8 @@
 // <div id="banner" class="fixed">
 //     <img src="//careers.jobvite.com/path-to-customer-folder/banner.jpg" />
 // </div>
-@mixin banner-fixed($w:null,$h:null,$h-m:null) {
-    @if type-of($w) != number {
+@mixin banner-fixed($w:1200px) {
+    @if type-of($w) !=number {
         @error "The value of $w:#{$w} must be in pixels.";
     }
     @if $h !=null and type-of($h) !=number {
@@ -63,36 +65,36 @@
 // </div>
 
 @mixin banner-scaling($imgH, $imgW, $h:null, $h-m:null, $min:null, $max:null, $class:null, $imgName:null, $pos:'50% 50%') {
-    @if $h != null and type-of($h) != number {
+    @if $h !=null and type-of($h) !=number {
         @error "The value of $h:#{$h} must be in pixels.";
     }
 
-    @if $h-m != null and type-of($h-m) != number {
+    @if $h-m !=null and type-of($h-m) !=number {
         @error "The value of $h-m:#{$h-m} must be in pixels.";
     }
 
-    @if $min != null and type-of($min) != number {
+    @if $min !=null and type-of($min) !=number {
         @error "The value of $min:#{$min} must be in pixels.";
     }
 
-    @if $max != null and type-of($max) != number {
+    @if $max !=null and type-of($max) !=number {
         @error "The value of $max:#{$max} must be in pixels.";
     }
 
-    @if type-of($imgH) != number {
+    @if type-of($imgH) !=number {
         @error "The image height value of $imgH:#{$imgH} must be in pixels.";
     }
 
-    @if type-of($imgW) != number {
+    @if type-of($imgW) !=number {
         @error "The image width value of $imgW:#{$imgW} must be in pixels.";
     }
 
-    @if $class != null {
-        $class: ("." + $class);
+    @if $class !=null {
+        $class: ("."+ $class);
     }
 
-    @if $imgName != null {
-        @if type-of($imgName) != string {
+    @if $imgName !=null {
+        @if type-of($imgName) !=string {
             @error "The image name must be a string with file format. ex: banner.jpg";
         }
     }
@@ -100,9 +102,12 @@
     #banner#{$class} {
         width: 100%;
         position: relative;
+
         @if $mobile {
             height: $h-m;
-        } @else {
+        }
+
+        @else {
             height: $h;
             min-height: $min;
             max-height: $max;
@@ -145,7 +150,8 @@
                 background-position: unquote($pos);
                 background-repeat: no-repeat;
                 background-size: cover;
-                @if $imgName != null {
+
+                @if $imgName !=null {
                     background-image: url($root-url+$imgName);
                 }
             }
@@ -153,6 +159,25 @@
 
         @content;
     }
+}
+
+// -----------------------------------------------------------------------------
+// Background Image
+// -----------------------------------------------------------------------------
+@mixin bg-img($img:null, $suffix:false, $pos:50% 50%, $size:cover, $repeat:no-repeat) {
+    @if $suffix {
+        $index: str-index($img, '.');
+        $output: str-insert($img, $img-suffix, $index);
+        background-image: url($root-url+$output);
+    }
+
+    @else {
+        background-image: url($root-url+$img);
+    }
+
+    background-position: $pos;
+    background-size: $size;
+    background-repeat: $repeat;
 }
 
 // -----------------------------------------------------------------------------
@@ -190,6 +215,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
 @mixin truncate-none() {
     max-width: none;
     overflow: auto;
@@ -237,11 +263,33 @@
     height: $h;
     width: $w;
 }
+
 // $s: <integer>
 // Positive and negative accepted
 @mixin square($s:5px) {
     @include size($s, $s);
 }
+
+@mixin generate-width($start:0, $end:100, $inc:5, $suffix:null) {
+    @for $i from $start through $end {
+        @if ($i % $inc==0) {
+            .w-#{$i}#{$suffix} {
+                width: $i * 1%;
+            }
+        }
+    }
+}
+
+@mixin generate-height($start:0, $end:100, $inc:5, $suffix:null) {
+    @for $i from $start through $end {
+        @if ($i % $inc==0) {
+            .h-#{$i}#{$suffix} {
+                height: $i * 1%;
+            }
+        }
+    }
+}
+
 
 //------------------------------------------------------------------------------
 // Shadows
@@ -249,15 +297,17 @@
 
 // $x: <integer>, $y: <integer>, $blur: <integer>, $spread: <integer>, $alpha: <decimal number 0-1>
 @mixin box-shadow-adv($x: 0, $y: 1, $blur: 2, $spread: 0, $alpha: 0.25) {
-    $val: ($x + px) ($y + px) ($blur + px) ($spread + px) rgba(0,0,0,$alpha);
+    $val: ($x + px) ($y + px) ($blur + px) ($spread + px) rgba(0, 0, 0, $alpha);
     box-shadow: $val;
 }
+
 // $x: <integer>, $y: <integer>, $blur: <integer>, $spread: <integer>, $alpha: <decimal number 0-1>
 // .inner-shadow(0; 1; 1; 1; 0.25)
 @mixin inner-shadow($x: 0, $y: 1, $blur: 2, $spread: 0, $r: 0, $g: 0, $b: 0, $alpha: 0.25) {
-    $val: inset ($x + px) ($y + px) ($blur + px) ($spread + px) rgba($r,$g,$b,$alpha);
+    $val: inset ($x + px) ($y + px) ($blur + px) ($spread + px) rgba($r, $g, $b, $alpha);
     box-shadow: $val;
 }
+
 @mixin no-shadow() {
     box-shadow: none;
 }
@@ -271,21 +321,25 @@
     $val: $t $r $b $l;
     border-radius: $val;
 }
+
 // $rounded: <integer>
 @mixin border-radius-top($rounded) {
     $val: $rounded $rounded 0 0;
     border-radius: $val;
 }
+
 // $rounded: <integer>
 @mixin border-radius-bottom($rounded) {
     $val: 0 0 $rounded $rounded;
     border-radius: $val;
 }
+
 // $rounded: <integer>
 @mixin border-radius-left($rounded) {
     $val: $rounded 0 0 $rounded;
     border-radius: $val;
 }
+
 // $rounded: <integer>
 @mixin border-radius-right($rounded) {
     $val: 0 $rounded $rounded 0;
@@ -306,6 +360,7 @@
     overflow-y: auto;
     overflow-x: hidden;
 }
+
 @mixin scroller() {
     overflow-y: auto;
     overflow-x: auto;
@@ -337,41 +392,31 @@
 // -----------------------------------------------------------------------------
 // =Grid
 // -----------------------------------------------------------------------------
-// $max: 8
-//
-// @for $i from 1 through $max {
-//     &.col-#{$i} {
-//         @include ie-grid-col($i);
-//     }
-//     &.row-#{$i} {
-//         @include ie-grid-row($i);
-//     }
-// }
 
-@mixin ie-grid() {
-    @for $i from 1 through $max {
-        &.col-#{$i} {
-            @include ie-grid-col($i);
-        }
+@mixin ie-grid-item($row, $row-span, $col, $col-span, $area:null) {
+    -ms-grid-row: $row;
+    -ms-grid-row-span: $row-span;
 
-        &.row-#{$i} {
-            @include ie-grid-row($i);
-        }
+    @if ($row-span > 1) {
+        grid-row: $row / span $row-span;
     }
-}
 
-@mixin ie-grid-col($col-num, $span:0) {
-    -ms-grid-column: $col-num;
-    @if $span > 0 {
-        -ms-grid-col-span: $span;
+    @else {
+        grid-row: $row;
     }
-}
 
-@mixin ie-grid-row($row-num, $span:0) {
-    -ms-grid-row: $row-num;
-    @if $span > 0 {
-        -ms-grid-row-span: $span;
+    -ms-grid-column: $col;
+    -ms-grid-column-span: $col-span;
+
+    @if ($col-span > 1) {
+        grid-column: $col / span $col-span;
     }
+
+    @else {
+        grid-column: $col;
+    }
+
+    grid-area: $area;
 }
 
 // -----------------------------------------------------------------------------
@@ -451,3 +496,16 @@
 // }
 
 ////////////////////////////////////////////////////////////////////////////
+
+
+// Set variable for desktop and mobile
+// Ex: $variable: set-var(380px,380px);
+@function set-var($m, $d) {
+    @if $mobile {
+        @return $m;
+    }
+
+    @else {
+        @return $d;
+    }
+}

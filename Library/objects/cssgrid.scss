@@ -1,0 +1,74 @@
+// -----------------------------------------------------------------------------
+/*! =CSS Grid layout */
+// -----------------------------------------------------------------------------
+
+/*
+    <div class="grid">
+        <div class="grid-item grid-item-1">
+
+        </div>
+        <div class="grid-item grid-item-2">
+
+        </div>
+        <div class="grid-item grid-item-3">
+
+        </div>
+        <div class="grid-item grid-item-4">
+
+        </div>
+    </div>
+*/
+
+.grid {
+    max-width: 100%;
+    display: grid;
+    @if $mobile {
+        grid-template: repeat(2, minmax(200px, auto)) / repeat(2, 1fr);
+    } @else {
+        display: -ms-grid;
+        -ms-grid-rows: minmax(200px, auto) minmax(200px, auto);
+        -ms-grid-columns: 1fr 1fr;
+        grid-template: repeat(2, minmax(200px, auto)) / repeat(2, 1fr);
+    } //End
+    grid-template-areas: "grid-item-1 grid-item-2""grid-item-3 grid-item-4";
+    grid-gap: 0;
+    transition: all $transition-normal $transition-easing;
+
+    .grid-item {
+        @include flex-col;
+        @include flex-center;
+        flex: 1 1 auto;
+        height: 100%;
+        border: 1px solid $color-white;
+    }
+
+    .grid-item-1 {
+        @include ie-grid-item(1, 1, 1, 1, grid-item-1);
+    }
+    .grid-item-2 {
+        @include ie-grid-item(1, 1, 2, 1, grid-item-2);
+    }
+    .grid-item-3 {
+        @include ie-grid-item(2, 1, 1, 1, grid-item-3);
+    }
+    .grid-item-4 {
+        @include ie-grid-item(2, 1, 2, 1, grid-item-4);
+    }
+
+    // Repeat for additional grid-items...
+}
+
+@if not $mobile {
+
+    /* Medium devices (desktops, #{$screen-lg-px} and up) */
+    @media all and (min-width:$screen-md-em) {
+        .grid {
+            -ms-grid-rows: minmax(200px, auto);
+            -ms-grid-columns: 1fr 1fr 1fr 1fr;
+            grid-template: minmax(200px, auto) / repeat(4, 1fr);
+            grid-template-areas: "grid-item-1 grid-item-2 grid-item-3 grid-item-4";
+        }
+    }
+
+}
+// End Desktop

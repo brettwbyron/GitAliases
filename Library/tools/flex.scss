@@ -28,8 +28,8 @@
 // -----------------------------------------------------------------------------
 // This defines the main axis
 @mixin flex-col  { @include flex; flex-direction: column }
-@mixin flex-row  { @include flex; flex-direction: row }
 @mixin flex-col-reverse  { @include flex; flex-direction: column-reverse }
+@mixin flex-row  { @include flex; flex-direction: row }
 @mixin flex-row-reverse  { @include flex; flex-direction: row-reverse }
 
 @mixin flex-wrap      { flex-wrap: wrap }

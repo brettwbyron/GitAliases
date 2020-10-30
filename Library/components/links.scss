@@ -1,25 +1,9 @@
-// -----------------------------------------------------------------------------
-/*! =Links */
-// -----------------------------------------------------------------------------
+@use "Library/settings/variables" as *;
+@use "Library/tools/mixins" as *;
+@use "Library/tools/flex" as *;
+$mobile: false !default;
+
 a {
-    &,
-    &:visited {
-        color: $color-link;
-        text-decoration: none;
-    }
-
-    &:focus,
-    &:hover {
-        color: $color-link--hover;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    &.disabled {
-        cursor: default;
-        pointer-events: none;
-    }
-
     @if $area-back-to-top {
         &.back-to-top {
             background-color: rgba($color-black,0.3);

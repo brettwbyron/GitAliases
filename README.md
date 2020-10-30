@@ -5,6 +5,7 @@ Kickoff is a framework for Jobvite CWS team to make starting a new site easier a
 ## Table of Contents
 * [Get Setup](#setup)
 * [Start A New Project](#start)
+* [Documentation](/documentation/README.md)
 
 ## Get Setup <a name="setup"></a>
 
@@ -58,4 +59,9 @@ Checkout the [starter_branch](https://github.com/brettwbyron-jobvite/CWS/tree/st
 
 ## Kickoff v1.4.0 Update
 
-With this version update, add folders for Desktop and Mobile in the customer root folder to keep Velocity and JavaScript files in. Any JavaScript file will be automatically minified and output to the Dist folder. 
+- With this version update, add folders for Desktop and Mobile in the customer root folder to keep Velocity and JavaScript files in. Any JavaScript file will be automatically minified and output to the Dist folder. 
+
+## Kickoff v2.0.0 Update
+
+- Big changes to file framework with change to dart-sass to support @use. From SASS website, "The Sass team discourages the continued use of the @import rule. Sass will gradually phase it out over the next few years, and eventually remove it from the language entirely. Prefer the @use rule instead."
+- Moved WebP image conversion out to the root folder in the `convert` folder.

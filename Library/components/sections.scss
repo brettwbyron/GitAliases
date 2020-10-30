@@ -1,0 +1,78 @@
+@use "Library/settings/variables"as *;
+@use "Library/tools/mixins"as *;
+@use "Library/tools/flex"as *;
+$mobile: false !default;
+
+// -----------------------------------------------------------------------------
+/*! =Custom Sections */
+// -----------------------------------------------------------------------------
+
+// Section padding
+// -----------------------------------------------------------------------------
+.section {
+    padding: $section-padding;
+
+    &:focus {
+        outline: none;
+    }
+
+    // Alternating background colors
+    // &:nth-of-type(1n+2) {
+    //     padding: 3em 0;
+    // }
+    //
+    // &:nth-of-type(odd) {
+    //     background-color: $color-gray-light;
+    // }
+}
+
+// Banners
+// *Directions* @include of the desired mixin to use
+// and customize the properties.
+// -----------------------------------------------------------------------------
+
+// @include banner-fixed()
+
+// scaling:
+// @include banner-scaling($imgH:700px, $imgW:2000px, $h:null, $h-m:null, $min:null, $max:null, $class:null, $imgName:null, $pos:'50% 50%') {
+//     &.banner-home {
+//         $n: 3;
+//         
+//         @for $i from 1 through ($n) {
+//             .slide-#{$i} {
+//                 background-image: url($root-url+"banner-home-#{$i}.jpg");
+//             }
+//         }
+//     }
+//     .overlay {
+//         @include absolute(0, 0, 0, 0);
+//         background-color: rgba($color-black, 0.3);
+//     }
+//     
+//     .overlay-text {
+//     
+//         h1, p {
+//             color: $color-white;
+//             text-shadow: 0 2px 4px rgba($color-black, 0.8);
+//         }
+//     
+//         /*p {
+//             font-size: 20px;
+//         }*/
+//     }
+// }
+
+// >>>>>>>>>>> Add you sections here <<<<<<<<<<
+
+// -----------------------------------------------------------------------------
+// =Media Queries
+// -----------------------------------------------------------------------------
+// @if not $mobile {
+//     
+//     /*! min-width: #{$screen-md-px} */
+//     @media all and (min-width:$screen-md-em) {
+//
+//          @include banner-scaling($imgH:1080px, $imgW:1920px, $h:null, $h-m:null, $min:null, $max:null, $class:null, $imgName:null, $pos:'50% 50%') {}
+//     }
+// }
+// End Desktop

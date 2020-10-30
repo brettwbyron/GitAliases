@@ -1,16 +1,36 @@
-$mobile: false;
+@use "sass:meta";
 // -----------------------------------------------------------------------------
+// Desktop
+// -----------------------------------------------------------------------------
+$mobile: false;
+
 // Settings
 // -----------------------------------------------------------------------------
+@include meta.load-css("../Library/settings/fonts");
 
-@import "Library/settings/settings";
+// Elements
+// -----------------------------------------------------------------------------
+@include meta.load-css("../Library/elements/base", $with:("mobile":$mobile));
 
-@import "Library/elements/elements";
+// Objects
+// -----------------------------------------------------------------------------
+@include meta.load-css("../Library/objects/flex", $with:("mobile":$mobile));
+/*@include meta.load-css("../Library/objects/grid", $with:("mobile":$mobile));*/
+/*@include meta.load-css("../Library/objects/cssgrid", $with:("mobile":$mobile));*/
 
-@import "Library/elements/desktop";
+// Components
+// -----------------------------------------------------------------------------
+@include meta.load-css("../Library/components/jv-classes", $with:("mobile":$mobile));
+@include meta.load-css("../Library/components/links", $with:("mobile":$mobile));
+@include meta.load-css("../Library/components/forms", $with:("mobile":$mobile));
+@include meta.load-css("../Library/components/buttons", $with:("mobile":$mobile));
+@include meta.load-css("../Library/components/desktop");
+@include meta.load-css("../Library/components/sections", $with:("mobile":$mobile));
+// @include meta.load-css("../Library/components/plugins/plugins", $with:("mobile":$mobile));
 
-@import "Library/sections";
-
-@import "Library/objects/objects";
-
-@import "Library/utilities/utilities";
+// Utilities
+// -----------------------------------------------------------------------------
+@include meta.load-css("../Library/utilities/spacing", $with:("mobile":$mobile));
+@include meta.load-css("../Library/utilities/sizing");
+@include meta.load-css("../Library/utilities/type");
+@include meta.load-css("../Library/utilities/media", $with:("mobile":$mobile));

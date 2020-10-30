@@ -1,5 +1,7 @@
+@use "Library/settings/variables" as *;
+$mobile: false !default;
 // -----------------------------------------------------------------------------
-/*! =Spacing */
+// =Spacing
 // -----------------------------------------------------------------------------
 // Classname key
 //   m = margin
@@ -68,13 +70,11 @@ $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
         }
 
         .#{$abbr}y#{$i} {
-            #{$prop}-top: calcSpacing($i);
-            #{$prop}-bottom: calcSpacing($i);
+            #{$prop}-top: calcSpacing($i); #{$prop}-bottom: calcSpacing($i);
         }
 
         .#{$abbr}x#{$i} {
-            #{$prop}-left: calcSpacing($i);
-            #{$prop}-right: calcSpacing($i);
+            #{$prop}-left: calcSpacing($i); #{$prop}-right: calcSpacing($i);
         }
     }
 }
@@ -103,21 +103,21 @@ $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
             // Margin
             @for $i from 0 through $max-spacing {
                 $props: ("margin": "m");
-    
+
                 @each $prop,$abbr in $props {
                     $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
-    
+
                     @each $clip,$side in $sides {
                         .#{$abbr}#{$clip}#{$i}#{$suffix} {
                             #{$prop}#{$side}: calcSpacing($i);
                         }
                     }
-    
+
                     .#{$abbr}y#{$i}#{$suffix} {
                         #{$prop}-top: calcSpacing($i);
                         #{$prop}-bottom: calcSpacing($i);
                     }
-    
+
                     .#{$abbr}x#{$i}#{$suffix} {
                         #{$prop}-left: calcSpacing($i);
                         #{$prop}-right: calcSpacing($i);
@@ -130,21 +130,21 @@ $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
             // Padding
             @for $i from 0 through $max-spacing {
                 $props: ("padding": "p");
-    
+
                 @each $prop,$abbr in $props {
                     $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
-    
+
                     @each $clip,$side in $sides {
                         .#{$abbr}#{$clip}#{$i}#{$suffix} {
                             #{$prop}#{$side}: calcSpacing($i);
                         }
                     }
-    
+
                     .#{$abbr}y#{$i}#{$suffix} {
                         #{$prop}-top: calcSpacing($i);
                         #{$prop}-bottom: calcSpacing($i);
                     }
-    
+
                     .#{$abbr}x#{$i}#{$suffix} {
                         #{$prop}-left: calcSpacing($i);
                         #{$prop}-right: calcSpacing($i);
@@ -160,21 +160,21 @@ $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
             // Margin
             @for $i from 0 through $max-spacing {
                 $props: ("margin": "m");
-    
+
                 @each $prop,$abbr in $props {
                     $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
-    
+
                     @each $clip,$side in $sides {
                         .#{$abbr}#{$clip}#{$i}#{$suffix} {
                             #{$prop}#{$side}: calcSpacing($i);
                         }
                     }
-    
+
                     .#{$abbr}y#{$i}#{$suffix} {
                         #{$prop}-top: calcSpacing($i);
                         #{$prop}-bottom: calcSpacing($i);
                     }
-    
+
                     .#{$abbr}x#{$i}#{$suffix} {
                         #{$prop}-left: calcSpacing($i);
                         #{$prop}-right: calcSpacing($i);
@@ -184,25 +184,25 @@ $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
             .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
             .ml-auto#{$suffix} { margin-left: auto }
             .mr-auto#{$suffix} { margin-right: auto }
-    
+
             // Padding
             @for $i from 0 through $max-spacing {
                 $props: ("padding": "p");
-    
+
                 @each $prop,$abbr in $props {
                     $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
-    
+
                     @each $clip,$side in $sides {
                         .#{$abbr}#{$clip}#{$i}#{$suffix} {
                             #{$prop}#{$side}: calcSpacing($i);
                         }
                     }
-    
+
                     .#{$abbr}y#{$i}#{$suffix} {
                         #{$prop}-top: calcSpacing($i);
                         #{$prop}-bottom: calcSpacing($i);
                     }
-    
+
                     .#{$abbr}x#{$i}#{$suffix} {
                         #{$prop}-left: calcSpacing($i);
                         #{$prop}-right: calcSpacing($i);
@@ -218,21 +218,21 @@ $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
             // Margin
             @for $i from 0 through $max-spacing {
                 $props: ("margin": "m");
-    
+
                 @each $prop,$abbr in $props {
                     $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
-    
+
                     @each $clip,$side in $sides {
                         .#{$abbr}#{$clip}#{$i}#{$suffix} {
                             #{$prop}#{$side}: calcSpacing($i);
                         }
                     }
-    
+
                     .#{$abbr}y#{$i}#{$suffix} {
                         #{$prop}-top: calcSpacing($i);
                         #{$prop}-bottom: calcSpacing($i);
                     }
-    
+
                     .#{$abbr}x#{$i}#{$suffix} {
                         #{$prop}-left: calcSpacing($i);
                         #{$prop}-right: calcSpacing($i);
@@ -246,21 +246,21 @@ $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
             // Padding
             @for $i from 0 through $max-spacing {
                 $props: ("padding": "p");
-    
+
                 @each $prop,$abbr in $props {
                     $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
-    
+
                     @each $clip,$side in $sides {
                         .#{$abbr}#{$clip}#{$i}#{$suffix} {
                             #{$prop}#{$side}: calcSpacing($i);
                         }
                     }
-    
+
                     .#{$abbr}y#{$i}#{$suffix} {
                         #{$prop}-top: calcSpacing($i);
                         #{$prop}-bottom: calcSpacing($i);
                     }
-    
+
                     .#{$abbr}x#{$i}#{$suffix} {
                         #{$prop}-left: calcSpacing($i);
                         #{$prop}-right: calcSpacing($i);
@@ -270,6 +270,7 @@ $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
         }
     }
     @if $area-screen-xl {
+
         /*! min-width: #{$screen-xl-px} */
         @media all and (min-width: $screen-xl-em) {
             $suffix: "-xl";
