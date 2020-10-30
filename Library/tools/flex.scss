@@ -79,7 +79,6 @@
 
 // -----------------------------------------------------------------------------
 @mixin flex-center {
-    @include flex-col;
     @include flex-c-center;
     @include flex-m-center;
 }

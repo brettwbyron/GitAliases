@@ -22,7 +22,6 @@ const PATHS = {
     SASS: {
         ALL: './**/*.{scss,sass}',
         SRC: './src/**/*.{scss,sass}',
-        OUTPUT: './src/css',
         DIST: './dist'
         // OPTS: {
         //
@@ -57,23 +56,6 @@ function compileStyles() {
     return src(PATHS.SASS.SRC)
         .pipe(plugins.dartSass().on('error', plugins.dartSass.logError))
         .pipe(plugins.prefixer())
-        .pipe(dest(PATHS.SASS.OUTPUT));
-}
-
-// compile scripts ----------------------------------
-function compileScripts() {
-    return src(PATHS.JS.SRC)
-        .pipe(plugins.minify({
-            ext: {
-                min: '.min.js'
-            }
-        }))
-        .pipe(dest(PATHS.JS.DIST))
-}
-
-// minify styles ------------------------------------
-function minify() {
-    return src(PATHS.SASS.OUTPUT + '/*.css')
         .pipe(plugins.beauty({
             indent_size: 4
         }))
@@ -93,6 +75,17 @@ function minify() {
             }
         }))
         .pipe(dest(PATHS.SASS.DIST));
+}
+
+// compile scripts ----------------------------------
+function compileScripts() {
+    return src(PATHS.JS.SRC)
+        .pipe(plugins.minify({
+            ext: {
+                min: '.min.js'
+            }
+        }))
+        .pipe(dest(PATHS.JS.DIST))
 }
 
 // Convert images to WebP ------------------------------------
@@ -128,7 +121,7 @@ function imgMsg(cb) {
 exports.default = function () {
     watch(PATHS.SASS.ALL, {
         ignoreInitial: false
-    }, series(cleanCSS, compileStyles, minify, compileScripts, endMsg));
+    }, series(cleanCSS, compileStyles, compileScripts, endMsg));
     watch(PATHS.JS.SRC, {
         ignoreInitial: false
     }, series(cleanJS, compileScripts, endJSMsg))

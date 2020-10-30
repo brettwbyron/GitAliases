@@ -44,10 +44,6 @@ button:focus {
             color: $color-gray-dark;
         }
 
-        &:active {
-            background: $color-gray-dark;
-            color: $color-white;
-        }
     }
 
     &.jv-button-apply,
@@ -55,14 +51,12 @@ button:focus {
         background: $color-primary;
         color: $color-white;
 
-        &:hover {
+        &:hover,
+        &:active {
             background: darken($color-primary,15%);
             color: $color-white;
         }
 
-        &:active {
-            background: darken($color-primary,25%);
-        }
     }
 
     &.jv-button-apply-later,

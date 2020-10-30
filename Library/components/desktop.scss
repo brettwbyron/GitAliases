@@ -13,13 +13,12 @@
     height: 100px;
     padding: 25px 0;
 
-    nav {
-        a {
-            padding: 0.25em 0.5em;
-        }
-    }
+    //nav {
+    //    a {
+    //        padding: 0.25em 0.5em;
+    //    }
+    //}
 }
-// END header
 
 @if $area-fixed-header {
     .fixed-header {

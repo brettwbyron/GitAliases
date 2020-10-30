@@ -95,6 +95,16 @@ main {
 .jv-page-jobs,
 .jv-page-search {
 
+    .jv-page-error {
+        @include flex-row;
+        @include flex-center;
+
+        .jv-icon-warning {
+            @include square(1.5em);
+            line-height: 1.3;
+        }
+    }
+
     @if $mobile {
         .jv-active-category .jv-job-category-link:before {
             content: none;
@@ -401,6 +411,22 @@ main {
 
         .jv-featured-job-location {
             font-size: 1em;
+        }
+    }
+}
+
+/* min-width: #{screen-md-px} */
+@media all and (min-width: $screen-md-em) {
+
+    @if $area-featured {
+
+        // Featured Jobs -----------------------------------------------------------
+        #featured {
+
+            .jv-featured-job {
+                flex: 1 1 auto;
+                max-width: 100%;
+            }
         }
     }
 }

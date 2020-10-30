@@ -3,7 +3,6 @@
 @use "Library/tools/flex" as *;
 $mobile: false !default;
 
-
 // --------------------------------------------------------------------------
 // =Base
 // --------------------------------------------------------------------------
@@ -25,6 +24,9 @@ html {
         height: 100vh;
     } @else if not $mobile and not $area-iframe-site {
         height: 100%;
+    }
+    @if $area-iframe-site {
+        overflow: hidden;
     }
     font-family: $font-body;
     font-size: 100%;
