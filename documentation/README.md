@@ -17,3 +17,18 @@ Kickoff is a framework for Jobvite CWS team to make starting a new site easier a
     * sections.scss
 * Elements/
     * base.scss
+* Objects/
+    * cssgrid.scss
+    * flex.scss
+    * grid.scss
+* Settings/
+    * fonts.scss
+    * variables.scss
+* Tools/
+    * flex.scss
+    * mixins.scss
+* Utilities/
+    * media.scss
+    * sizing.scss
+    * spacing.scss
+    * type.scss
