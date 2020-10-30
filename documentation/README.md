@@ -5,3 +5,15 @@ Kickoff is a framework for Jobvite CWS team to make starting a new site easier a
 ## Table of Contents
 * [Package.json](package.md)
 * [gulpfile.js](gulpfile.md)
+* Components/
+    * plugins/
+        * [plugins.scss](components-plugins.md)
+    * buttons.scss
+    * desktop.scss
+    * forms.scss
+    * jv-classes.scss
+    * links.scss
+    * mobile.scss
+    * sections.scss
+* Elements/
+    * base.scss
