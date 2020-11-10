@@ -3,35 +3,48 @@
 // -----------------------------------------------------------------------------
 
 // Root URL
+// Set this to your customer's ftp folder path
 // -----------------------------------------------------------------------------
-$root-url: '//careers.jobvite.com/customer-folder/'; // Set this to your customer's ftp folder path
+$root-url: '//careers.jobvite.com/customer-folder/';
 
 // -----------------------------------------------------------------------------
-$area-featured: true;
-$area-fixed-header: false;
-$area-jua-inline: false;
-$area-nav-left: false;
-$area-back-to-top: false;
+// "Areas" are parts of SCSS code that can be hidden or included in your final CSS output
+// False = hide
+// True = include
+// -----------------------------------------------------------------------------
+
+// Desktop/Mobile --------------------------------------------------------------
+$area-featured: true; // Adds styles for Featured Jobs
+$area-fixed-header: false; // Adds styles for Fixed headers
+$area-back-to-top: false; // Adds styles for back-to-top button
 $area-video-container: false; // Adds class for YouTube container
 $area-form-labels: false; // Hides form labels
-$area-iframe-site: false; // If your site is iframe
-$area-social-colors: false; // Social media colors
+$area-social-colors: false; // Social media brand colors
 $area-svg-icons: false; // SVG icons all the same size
 $area-svg-img: false; // SVG images of different sizes
-$area-hide-search-icon: true;
-$area-screen-small: false;
-$area-screen-medium: true;
-$area-screen-large: false;
-$area-screen-xl: false;
-$max-spacing: 3; // Padding and margin spacing
+$area-hide-search-icon: true; // Reduces padding in the keyword search input when you hide the keyword Search icon
+// Desktop ---------------------------------------------------------------------
+$area-iframe-site: false; // Set to "true" if your site is iframe
+$area-screen-small: false; // Adds media queries for a given screen size
+$area-screen-medium: true; // Adds media queries for a given screen size
+$area-screen-large: true; // Adds media queries for a given screen size
+$area-screen-xl: false; // Adds media queries for a given screen size
+// Mobile ----------------------------------------------------------------------
+$area-nav-left: false; // Moves the navigation to slide in from the left
 
-// Flex order
+// -----------------------------------------------------------------------------
+// Padding and margin spacing max-value, refers to utilities/spacing.scss
+// -----------------------------------------------------------------------------
+$max-spacing: 3;
+
+// -----------------------------------------------------------------------------
+// Flex order - if you need to re-order flex containers using flex-order
 // -----------------------------------------------------------------------------
 $area-flex-order: false;
 $max-pos: 5;
 
 // CSS flex-based grid variables
-// Import objects > _grid to use this
+// Import objects/grid to use this
 // -----------------------------------------------------------------------------
 $max-columns: 4;
 $column-gutter: 10px;
@@ -160,6 +173,7 @@ $border-radius: 0;
 // Box Shadow
 // -----------------------------------------------------------------------------
 $box-shadow: 0 12px 32px rgba($color-black,.15);
+$text-shadow: 0 2px 4px rgba($color-black, .4);
 
 // Spacing
 // -----------------------------------------------------------------------------
@@ -175,7 +189,7 @@ $browser-max-width: 1200px;
 
 // Screen breakpoints
 // -----------------------------------------------------------------------------
-$screen-sm: 640;
+$screen-sm: 720;
 $screen-sm-px: $screen-sm + px;
 $screen-sm-em: ($screen-sm / $font-base) + em;
 $screen-md: 960;

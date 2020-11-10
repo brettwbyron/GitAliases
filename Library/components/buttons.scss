@@ -13,8 +13,7 @@ button:focus {
 
 .jv-button {
     @include flex-inline;
-    @include flex-c-center;
-    @include flex-m-center;
+    @include flex-center;
     padding: 0 20px;
     margin: 0;
     line-height: 35px;

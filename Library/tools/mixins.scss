@@ -13,10 +13,10 @@ $mobile: false !default;
 // -----------------------------------------------------------------------------
 // $w (width): <pixels>
 //
-// <div id="banner" class="fixed">
+// <div id="banner" class="banner">
 //     <img src="//careers.jobvite.com/path-to-customer-folder/banner.jpg" />
 // </div>
-@mixin banner-fixed($w:1200px) {
+@mixin banner-fixed($w:1200px, $h:500px) {
     @if type-of($w) !=number {
         @error "The value of $w:#{$w} must be in pixels.";
     }
@@ -24,7 +24,7 @@ $mobile: false !default;
         @error "The value of $h:#{$h} must be in pixels.";
     }
 
-    #banner.fixed {
+    .banner {
         margin: 0;
         padding: 0;
         width: 100%;
@@ -65,20 +65,20 @@ $mobile: false !default;
 // </div>
 
 @mixin banner-scaling($imgH, $imgW, $h:null, $h-m:null, $min:null, $max:null, $class:null, $imgName:null, $pos:'50% 50%') {
-    @if $h !=null and type-of($h) !=number {
-        @error "The value of $h:#{$h} must be in pixels.";
+    @if $h !=null and type-of($h) !=number and not str-index($h, 'vh') and not str-index($h, "%") and $h !='auto' {
+        @error "The value of $h:#{$h} must be in pixels, vh, or %.";
     }
 
-    @if $h-m !=null and type-of($h-m) !=number {
-        @error "The value of $h-m:#{$h-m} must be in pixels.";
+    @if $h-m !=null and type-of($h-m) !=number and not str-index($h-m, 'vh') and not str-index($h-m, "%") and $h-m !='auto' {
+        @error "The value of $h-m:#{$h-m} must be in pixels, vh, or %.";
     }
 
-    @if $min !=null and type-of($min) !=number {
-        @error "The value of $min:#{$min} must be in pixels.";
+    @if $min !=null and type-of($min) !=number and not str-index($min, 'vh') and not str-index($min, "%") {
+        @error "The value of $min:#{$min} must be in pixels, vh, or %.";
     }
 
-    @if $max !=null and type-of($max) !=number {
-        @error "The value of $max:#{$max} must be in pixels.";
+    @if $max !=null and type-of($max) !=number and not str-index($max, 'vh') and not str-index($max, "%") {
+        @error "The value of $max:#{$max} must be in pixels, vh, or %.";
     }
 
     @if type-of($imgH) !=number {
@@ -99,7 +99,7 @@ $mobile: false !default;
         }
     }
 
-    #banner#{$class} {
+    .banner#{$class} {
         width: 100%;
         position: relative;
 
@@ -289,7 +289,6 @@ $mobile: false !default;
         }
     }
 }
-
 
 //------------------------------------------------------------------------------
 // Shadows

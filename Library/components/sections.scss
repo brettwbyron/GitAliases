@@ -31,7 +31,7 @@ $mobile: false !default;
 // and customize the properties.
 // -----------------------------------------------------------------------------
 
-// @include banner-fixed()
+// @include banner-fixed($w:1200px,$h:500px)
 
 // scaling:
 // @include banner-scaling($imgH:700px, $imgW:2000px, $h:null, $h-m:null, $min:null, $max:null, $class:null, $imgName:null, $pos:'50% 50%') {
@@ -67,12 +67,11 @@ $mobile: false !default;
 // -----------------------------------------------------------------------------
 // =Media Queries
 // -----------------------------------------------------------------------------
-// @if not $mobile {
-//     
-//     /*! min-width: #{$screen-md-px} */
-//     @media all and (min-width:$screen-md-em) {
-//
-//          @include banner-scaling($imgH:1080px, $imgW:1920px, $h:null, $h-m:null, $min:null, $max:null, $class:null, $imgName:null, $pos:'50% 50%') {}
-//     }
-// }
-// End Desktop
+//@if not $mobile {
+//    @if $area-screen-medium {    
+//        /*! min-width: #{$screen-md-px} */
+//        @media all and (min-width:$screen-md-em) {
+//            @include banner-scaling($imgH:1080px, $imgW:1920px, $h:null, $h-m:null, $min:null, $max:null, $class:null, $imgName:null, $pos:'50% 50%') {}
+//        }
+//    }
+//} // End Desktop

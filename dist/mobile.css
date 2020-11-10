@@ -104,7 +104,7 @@ a.disabled {cursor:default;pointer-events:none}
 .jv-form .jv-form-field .jv-form-field-checkbox .jv-form-field-control,.jv-form .jv-form-field .jv-form-field-heading .jv-form-field-control,.jv-form .jv-form-field .jv-form-field-hr .jv-form-field-control,.jv-form .jv-form-field .jv-form-field-p .jv-form-field-control,.jv-form .jv-form-field .jv-form-field-radio .jv-form-field-control {border:none;border-radius:0;background:0 0;min-width:none;max-width:none}
 .jv-form input[type=date],.jv-form input[type=email],.jv-form input[type=number],.jv-form input[type=password],.jv-form input[type=search],.jv-form input[type=tel],.jv-form input[type=text],.jv-form select,.jv-form textarea {width:100%;display:block;background:0 0;border:none;font-size:1em;border-radius:0;padding:.4em}
 .jv-form input[type=date]:focus,.jv-form input[type=email]:focus,.jv-form input[type=number]:focus,.jv-form input[type=password]:focus,.jv-form input[type=search]:focus,.jv-form input[type=tel]:focus,.jv-form input[type=text]:focus,.jv-form select:focus,.jv-form textarea:focus {outline-width:3px;outline-color:#3b99fc}
-.jv-form input[type=search] {padding:.4em .4em .4em 2.5em}
+.jv-form input[type=search] {padding:.4em}
 .jv-form input[type=date],.jv-form input[type=email],.jv-form input[type=number],.jv-form input[type=password],.jv-form input[type=search],.jv-form input[type=tel],.jv-form input[type=text],.jv-form select {height:40px}
 .jv-form textarea {min-width:100%;max-width:100%;border:1px solid #bfbfbf;border-radius:0}
 .jv-form .jv-form-buttons {text-align:left}
