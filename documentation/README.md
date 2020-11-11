@@ -8,27 +8,27 @@ Kickoff is a framework for Jobvite CWS team to make starting a new site easier a
 * Components/
     * plugins/
         * [plugins.scss](components-plugins.md)
-    * buttons.scss
-    * desktop.scss
-    * forms.scss
-    * jv-classes.scss
-    * links.scss
-    * mobile.scss
-    * sections.scss
+    * [buttons.scss](components-buttons.md)
+    * [desktop.scss](components-desktop.md)
+    * [forms.scss](components-forms.md)
+    * [jv-classes.scss](components-jv-classes.md)
+    * [links.scss](components-links.md)
+    * [mobile.scss](components-mobile.md)
+    * [sections.scss](components-sections.md)
 * Elements/
-    * base.scss
+    * [base.scss](elements-base.md)
 * Objects/
-    * cssgrid.scss
-    * flex.scss
-    * grid.scss
+    * [cssgrid.scss](objects-cssgrid.md)
+    * [flex.scss](objects-flex.md)
+    * [grid.scss](objects-grid.md)
 * Settings/
-    * fonts.scss
-    * variables.scss
+    * [fonts.scss](settings-fonts.md)
+    * [variables.scss](settings-variables.md)
 * Tools/
-    * flex.scss
-    * mixins.scss
+    * [flex.scss](tools-flex.md)
+    * [mixins.scss](tools-mixins.md)
 * Utilities/
-    * media.scss
-    * sizing.scss
-    * spacing.scss
-    * type.scss
+    * [media.scss](utilities-media.d)
+    * [sizing.scss](utilities-sizing.md)
+    * [spacing.scss](utilities-spacing.md)
+    * [type.scss](utilities-type.md)

@@ -132,8 +132,8 @@ $mobile: false !default;
         .jv-button {
             flex: 1 1 100%;
 
-            &:first-of-type {
-                margin-right: 5px;
+            &:first-child {
+                margin-right: $form-input-spacing;
             }
 
             .fa-search {
