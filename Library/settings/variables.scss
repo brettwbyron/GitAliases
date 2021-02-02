@@ -125,6 +125,9 @@ $h6-m: (14 / $font-size-body)+em;
 $p: (16 / $font-size-body)+em;
 $p-m: (16 / $font-size-body)+em;
 
+// -webkit-font-smoothing: antialiased | auto | none
+$font-smoothing: antialiased;
+
 // Images
 // -----------------------------------------------------------------------------
 $img-suffix: '@0.5x';

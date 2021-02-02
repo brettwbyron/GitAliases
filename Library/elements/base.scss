@@ -23,21 +23,22 @@ body,
 html {
     @if $mobile {
         height: 100vh;
-    } @else if not $mobile and not $area-iframe-site {
-        height: 100%;
-    }
-    @if $area-iframe-site {
-        overflow: hidden;
+    } @else {
+        @if not $area-iframe-site {
+            height: 100%;
+        } @else {
+            overflow: hidden;
+        }
     }
     font-family: $font-body;
     font-size: 100%;
     font-weight: 400;
     -webkit-text-size-adjust: 100%;
-    -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: $font-smoothing;
 }
 
 body {
-    @if not $mobile {
+    @if not $mobile and not $area-iframe-site {
         @include flex;
         @include flex-col;
     }

@@ -1,0 +1,8 @@
+@use "Library/settings/variables"as *;
+@use "Library/tools/mixins"as *;
+@use "Library/tools/flex"as *;
+$mobile: false !default;
+
+.r-nav {
+    background-color: $color-gray;
+}
