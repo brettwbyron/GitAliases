@@ -23,11 +23,12 @@ $area-social-colors: false; // Social media brand colors
 $area-svg-icons: false; // SVG icons all the same size
 $area-svg-img: false; // SVG images of different sizes
 $area-hide-search-icon: true; // Reduces padding in the keyword search input when you hide the keyword Search icon
+$area-internal-site: false; // Use "if" statements to style internal sites
 // Desktop ---------------------------------------------------------------------
 $area-iframe-site: false; // Set to "true" if your site is iframe
-$area-screen-small: false; // Adds media queries for a given screen size
+$area-screen-small: true; // Adds media queries for a given screen size
 $area-screen-medium: true; // Adds media queries for a given screen size
-$area-screen-large: true; // Adds media queries for a given screen size
+$area-screen-large: false; // Adds media queries for a given screen size
 $area-screen-xl: false; // Adds media queries for a given screen size
 // Mobile ----------------------------------------------------------------------
 $area-nav-left: false; // Moves the navigation to slide in from the left
@@ -185,23 +186,23 @@ $spacing-1: 1em;
 
 // Browser width
 // -----------------------------------------------------------------------------
-$browser-max-sm: 720px;
-$browser-max-md: 960px;
-$browser-max-lg: 1200px;
+$browser-max-sm: 576px;
+$browser-max-md: 768px;
+$browser-max-lg: 992px;
 $browser-max-width: 1200px;
 
 // Screen breakpoints
 // -----------------------------------------------------------------------------
-$screen-sm: 720;
+$screen-sm: 576;
 $screen-sm-px: $screen-sm + px;
 $screen-sm-em: ($screen-sm / $font-base) + em;
-$screen-md: 960;
+$screen-md: 768;
 $screen-md-px: $screen-md + px;
 $screen-md-em: ($screen-md / $font-base) + em;
-$screen-lg: 1200;
+$screen-lg: 992;
 $screen-lg-px: $screen-lg + px;
 $screen-lg-em: ($screen-lg / $font-base) + em;
-$screen-xl: 2000;
+$screen-xl: 1200;
 $screen-xl-px: $screen-xl + px;
 $screen-xl-em: ($screen-xl / $font-base) + em;
 

@@ -131,10 +131,6 @@ $mobile: false !default;
             .flex-wrap#{$suffix}     { flex-wrap: wrap }
             .flex-nowrap#{$suffix}   { flex-wrap: nowrap }
 
-            .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
-            .ml-auto#{$suffix} { margin-left: auto; }
-            .mr-auto#{$suffix} { margin-right: auto; }
-
             @if $area-flex-order {
                 @for $i from 1 through $max-pos {
                     .pos-#{$i}#{$suffix} {
@@ -159,10 +155,6 @@ $mobile: false !default;
             .flex-wrap#{$suffix}     { flex-wrap: wrap }
             .flex-nowrap#{$suffix}   { flex-wrap: nowrap }
 
-            .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
-            .ml-auto#{$suffix} { margin-left: auto; }
-            .mr-auto#{$suffix} { margin-right: auto; }
-
             @if $area-flex-order {
                 @for $i from 1 through $max-pos {
                     .pos-#{$i}#{$suffix} {
@@ -186,10 +178,6 @@ $mobile: false !default;
             .flex-m-center#{$suffix} { justify-content: center }
             .flex-wrap#{$suffix}     { flex-wrap: wrap }
             .flex-nowrap#{$suffix}   { flex-wrap: nowrap }
-
-            .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
-            .ml-auto#{$suffix} { margin-left: auto; }
-            .mr-auto#{$suffix} { margin-right: auto; }
 
             @if $area-flex-order {
                 @for $i from 1 through $max-pos {

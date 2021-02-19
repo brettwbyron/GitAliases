@@ -48,7 +48,7 @@ main {
 .jv-wrapper {
     position: relative;
     width: 100%;
-    max-height: 100%;
+    //max-height: 100%; // Can create problems with IE11 and mobile
     max-width: $browser-max-width;
     margin: 0 auto;
 
@@ -110,18 +110,17 @@ main {
             content: none;
         }
 
-        // .jv-job-category-label {
+        .jv-job-category-label {
         // font-family: $font-headings;
         // font-size: $h2-m;
         // font-weight: 700;
         // margin: 0 2em;
-        // color: $color-text;
-        // }
+            color: $color-text;
+        }
 
-        // .jv-job-category-meta {
-        // color: $color-text-brown;
-        // text-align: center;
-        // }
+        .jv-job-category-meta {
+            color: $color-gray-dark;
+        }
 
         .jv-job-list-inner {
             background: $color-white;
@@ -151,7 +150,9 @@ main {
                 }
             }
     
-            // .jv-job-list-name { }
+            .jv-job-list-name {
+                color: $color-primary;
+            }
     
             .jv-job-list-location {
                 color: $color-text;
@@ -163,26 +164,24 @@ main {
 
 @if $mobile {
 
-    .jv-search-list .jv-list-icon,
-    .jv-search-list .jv-list-label,
     .jv-text-link {
         color: $color-text;
     }
 
-    .jv-job-categories,
-    .jv-job-list-inner,
-    .jv-list,
-    .jv-search-list {
-        background: none;
-    }
-
+    .jv-search-list,
     .jv-job-item {
 
+        .jv-list-icon {
+            color: $color-primary;
+        }
+
         .jv-list-label,
-        .jv-list-icon,
         .jv-meta {
             color: $color-text;
         }
+    }
+    
+    .jv-job-item {
 
         .jv-meta {
             font-size: (14 / $font-size-body) + em;

@@ -32,7 +32,8 @@ $mobile: false !default;
     height: auto;
 }
 
-.d-hide {
+.d-hide,
+[x-cloak] {
     display: none;
 }
 

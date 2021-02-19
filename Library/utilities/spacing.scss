@@ -51,8 +51,11 @@ $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
 // .mxn4 { margin-left: -$spacing-4; margin-right: -$spacing-4; }
 
 .mx-auto { margin-left: auto; margin-right: auto; }
+.my-auto { margin-top: auto; margin-bottom: auto; }
 .ml-auto { margin-left: auto }
 .mr-auto { margin-right: auto }
+.mt-auto { margin-top: auto }
+.mb-auto { margin-bottom: auto }
 
 // END Margin
 
@@ -125,8 +128,11 @@ $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
                 }
             }
             .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
+            .my-auto#{$suffix} { margin-top: auto; margin-bottom: auto; }
             .ml-auto#{$suffix} { margin-left: auto }
             .mr-auto#{$suffix} { margin-right: auto }
+            .mt-auto#{$suffix} { margin-top: auto }
+            .mb-auto#{$suffix} { margin-bottom: auto }
             // Padding
             @for $i from 0 through $max-spacing {
                 $props: ("padding": "p");
@@ -182,8 +188,11 @@ $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
                 }
             }
             .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
+            .my-auto#{$suffix} { margin-top: auto; margin-bottom: auto; }
             .ml-auto#{$suffix} { margin-left: auto }
             .mr-auto#{$suffix} { margin-right: auto }
+            .mt-auto#{$suffix} { margin-top: auto }
+            .mb-auto#{$suffix} { margin-bottom: auto }
 
             // Padding
             @for $i from 0 through $max-spacing {
@@ -240,8 +249,11 @@ $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
                 }
             }
             .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
+            .my-auto#{$suffix} { margin-top: auto; margin-bottom: auto; }
             .ml-auto#{$suffix} { margin-left: auto }
             .mr-auto#{$suffix} { margin-right: auto }
+            .mt-auto#{$suffix} { margin-top: auto }
+            .mb-auto#{$suffix} { margin-bottom: auto }
             
             // Padding
             @for $i from 0 through $max-spacing {
@@ -302,18 +314,12 @@ $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
                 }
             }
 
-            .mx-auto#{$suffix} {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .ml-auto#{$suffix} {
-                margin-left: auto
-            }
-
-            .mr-auto#{$suffix} {
-                margin-right: auto
-            }
+            .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
+            .my-auto#{$suffix} { margin-top: auto; margin-bottom: auto; }
+            .ml-auto#{$suffix} { margin-left: auto }
+            .mr-auto#{$suffix} { margin-right: auto }
+            .mt-auto#{$suffix} { margin-top: auto }
+            .mb-auto#{$suffix} { margin-bottom: auto }
 
             // Padding
             @for $i from 0 through $max-spacing {

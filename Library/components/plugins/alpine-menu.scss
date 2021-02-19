@@ -1,0 +1,200 @@
+@use "Library/settings/variables"as *;
+@use "Library/tools/mixins"as *;
+@use "Library/tools/flex"as *;
+$mobile: false !default;
+
+// Menu settings
+// -----------------------------------------------------------------------------
+$color-menu-text: $color-primary;
+$color-menu-text-hover: $color-white;
+$color-menu-background: $color-gray-light;
+$color-submenu-background: $color-background;
+$menu-toggle-width: 30px;
+$menu-toggle-padding: 5px;
+$menu-pos-right: true;
+$menu-dropdowns: true;
+$menu-open-speed: 0.15s;
+// -----------------------------------------------------------------------------
+
+.r-nav {
+    position: relative;
+
+    .menu-toggle {
+        @include square($menu-toggle-width);
+        display: block;
+        margin: 0;
+        padding: 0;
+        color: $color-menu-text;
+        border: 0;
+        background: $color-white;
+        cursor: pointer;
+        position: absolute;
+        @if $menu-pos-right {
+            right: 10px;
+        } @else {
+            left: 10px;
+        }
+        //top: 50%;
+        transform: translateY(-50%);
+        // border-radius: 4px 4px 0 0;
+        transition: background 0.2s linear 0s;
+        -webkit-tap-highlight-color: $color-black;
+
+        &-inner {
+
+            &,
+            &:before,
+            &:after {
+                display: inline-block;
+                content: '';
+                width: $menu-toggle-width - ($menu-toggle-padding * 2);
+                height: 3px;
+                background-color: currentColor;
+                position: absolute;
+                transition: all $transition-normal;
+                left: 0;
+            }
+            
+            & {
+                left: $menu-toggle-padding;
+                transform: translateY(-50%);
+            }
+    
+            &:before {
+                transform: translateY(-7px);
+            }
+    
+            &:after {
+                transform: translateY(7px);
+            }
+
+        }
+        
+        &[aria-expanded="true"] .menu-toggle-inner {
+            background-color: transparent;
+
+            &:before {
+                transform: translateY(0) rotate(-45deg);
+            }
+            &:after {
+                transform: translateY(0) rotate(45deg);
+            }
+        }
+
+        &:active,
+        &:hover {
+            color: darken($color-menu-text,15%);
+        }
+    }
+
+    nav {
+        background-color: $color-menu-background;
+        padding: 5px;
+
+        ul {
+            margin: 0;
+
+            li {
+                display: block;
+            }
+        }
+
+        a,
+        .menu-parent span {
+            color: $color-menu-text;
+            padding: 5px 10px;
+            display: block;
+            white-space: nowrap;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $color-menu-text;
+                color: $color-menu-text-hover;
+            }
+        }
+
+        .menu-parent {
+            position: relative;
+            @include user-select(none);
+
+            &.is-open {
+
+                .submenu {
+                    max-height:unset;
+                    background-color: $color-submenu-background;
+                }
+            }
+        }
+
+        // Submenu styles
+        .submenu {
+            @include flex-col;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height $menu-open-speed linear 0s;
+        }
+    }
+}
+
+/*! max-width: #{$screen-sm-px} */
+@media all and (max-width:$screen-sm-em) {
+
+    .r-nav {
+
+        nav {
+            position: absolute;
+            top: 15px;
+            padding: 0;
+            @if $menu-pos-right {
+                right: 10px;
+            } @else {
+                left: 10px;
+            }
+        }
+    }
+}
+
+@if not $mobile {
+    
+    @if $area-screen-small {
+        /*! min-width: #{$screen-sm-px} */
+        @media all and (min-width:$screen-sm-em) {
+            
+            .r-nav {
+
+                .menu-toggle {
+                    display: none;
+                }
+
+                nav {
+                    display: block!important;
+                }
+
+                .menu-parent {
+
+                    &.is-open {
+
+                        .submenu {
+                            max-height: 360px;
+                            overflow-y: auto;
+                        }
+                    }
+                }
+
+                // Submenu styles
+                .submenu {
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    max-height: 0;
+                    z-index: $z-dropdown;
+                    transition: max-height $menu-open-speed linear 0s;
+                }
+            }
+
+        }
+    }
+} //End desktop

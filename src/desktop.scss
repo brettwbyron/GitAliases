@@ -28,13 +28,10 @@ $mobile: false;
 @include meta.load-css("../Library/components/sections", $with:("mobile":$mobile));
 @include meta.load-css("../Library/components/plugins/plugins", $with:("mobile":$mobile));
 
-/*! =Documentation */
-// -----------------------------------------------------------------------------
-@include meta.load-css("../documentation/docs");
-
 // Utilities
 // -----------------------------------------------------------------------------
 @include meta.load-css("../Library/utilities/spacing", $with:("mobile":$mobile));
 @include meta.load-css("../Library/utilities/sizing");
 @include meta.load-css("../Library/utilities/type");
+//@include meta.load-css("../Library/utilities/colors");
 @include meta.load-css("../Library/utilities/media", $with:("mobile":$mobile));

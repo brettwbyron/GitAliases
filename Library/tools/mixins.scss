@@ -169,9 +169,7 @@ $mobile: false !default;
         $index: str-index($img, '.');
         $output: str-insert($img, $img-suffix, $index);
         background-image: url($root-url+$output);
-    }
-
-    @else {
+    } @else {
         background-image: url($root-url+$img);
     }
 
@@ -183,9 +181,15 @@ $mobile: false !default;
 // -----------------------------------------------------------------------------
 // WebP Image
 // -----------------------------------------------------------------------------
-@mixin webp-bg($img) {
+@mixin webp-bg($img, $suffix:false) {
     .webp & {
-        background-image: url($root-url+$img+".webp");
+        @if $suffix {
+            $index: str-index($img, '.');
+            $output: str-insert($img, $img-suffix, $index);
+            background-image: url($root-url+$output);
+        } @else {
+            background-image: url($root-url+$img);
+        }
     }
 }
 
