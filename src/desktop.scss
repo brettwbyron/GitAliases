@@ -4,6 +4,8 @@
 // -----------------------------------------------------------------------------
 $mobile: false;
 
+@include meta.load-css("../Library/settings/site-info", $with:("mobile":$mobile));
+
 // Settings
 // -----------------------------------------------------------------------------
 @include meta.load-css("../Library/settings/fonts");

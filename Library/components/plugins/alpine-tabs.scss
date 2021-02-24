@@ -17,21 +17,40 @@ snap-tabs {
     overflow: hidden;
     position: relative;
 
-    & > section {
+    > section {
         /* be pushy about consuming all space */
         block-size: 100%;
     }
 
-    & > header {
+    > header {
         /* defend against <section> needing 100% */
         flex-shrink: 0;
         /* fixes cross browser quarks */
         min-block-size: fit-content;
-    }
-
-    header {
         display: flex;
         flex-direction: column;
+        outline-offset: -5px;
+        
+        > nav {
+            display: flex;
+    
+            a {
+                scroll-snap-align: start;
+    
+                display: inline-flex;
+                align-items: center;
+                white-space: nowrap;
+                // Appearance properties
+                padding: 10px 20px;
+            }
+        }
+
+        .snap-indicator {
+            inline-size: 150px;
+            block-size: 2px;
+            border-radius: 2px;
+            background: $color-primary;
+        }
     }
 
     .scroll-snap-x {
@@ -58,19 +77,6 @@ snap-tabs {
         }
     }
 
-    nav {
-        display: flex;
-
-        & a {
-            scroll-snap-align: start;
-
-            display: inline-flex;
-            align-items: center;
-            white-space: nowrap;
-            // Appearance properties
-            padding: 2px 5px;
-        }
-    }
 
     section {
         block-size: 100%;
@@ -85,6 +91,8 @@ snap-tabs {
 
         overflow-y: auto;
         overscroll-behavior-y: contain;
+
+        max-height: 350px;
     }
 
     @media (prefers-reduced-motion: reduce) {
