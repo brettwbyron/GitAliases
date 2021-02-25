@@ -170,17 +170,25 @@ button:focus {outline:thin dotted rgba(0,103,244,.247)}
 snap-tabs {display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;overflow:hidden;position:relative}
 snap-tabs>section {block-size:100%}
 snap-tabs>header {-ms-flex-negative:0;flex-shrink:0;min-block-size:-webkit-fit-content;min-block-size:-moz-fit-content;min-block-size:fit-content;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;outline-offset:-5px}
-snap-tabs>header>nav {display:-webkit-box;display:-ms-flexbox;display:flex}
-snap-tabs>header>nav a {scroll-snap-align:start;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;white-space:nowrap;padding:10px 20px}
-snap-tabs>header .snap-indicator {inline-size:150px;block-size:2px;border-radius:2px;background:#3d87cf}
+snap-tabs>header>nav {display:-webkit-box;display:-ms-flexbox;display:flex;position:relative}
+snap-tabs>header>nav a {scroll-snap-align:start;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;white-space:nowrap;padding:10px 20px;width:145px}
+snap-tabs>header>nav a.active {color:#000}
+snap-tabs>header>nav a.active .snap-indicator {color:#cb0013}
+snap-tabs>header>nav a.active:nth-child(1)~.snap-indicator {left:-145px}
+snap-tabs>header>nav a.active:nth-child(2)~.snap-indicator {left:0}
+snap-tabs>header>nav a.active:nth-child(3)~.snap-indicator {left:145px}
+snap-tabs>header>nav a.active:nth-child(4)~.snap-indicator {left:290px}
+snap-tabs>header>nav a.active:nth-child(5)~.snap-indicator {left:435px}
+snap-tabs>header>nav a.active:nth-child(6)~.snap-indicator {left:580px}
+snap-tabs>header .snap-indicator {position:absolute;top:calc(100% - 2px);inline-size:145px;block-size:2px;border-radius:2px;background:#3d87cf;-webkit-transition:left .3s ease-in-out;transition:left .3s ease-in-out}
 snap-tabs .scroll-snap-x {overflow:auto hidden;overscroll-behavior-x:contain;-ms-scroll-snap-type:x mandatory;scroll-snap-type:x mandatory}
 @media (hover:none) {
 snap-tabs .scroll-snap-x {scrollbar-width:none}
 snap-tabs .scroll-snap-x::-webkit-scrollbar {width:0;height:0}}
 @media (prefers-reduced-motion:no-preference) {
 snap-tabs .scroll-snap-x {scroll-behavior:smooth}}
-snap-tabs section {block-size:100%;display:grid;grid-auto-flow:column;grid-auto-columns:100%}
-snap-tabs article {scroll-snap-align:start;overflow-y:auto;overscroll-behavior-y:contain;max-height:350px}
+snap-tabs>section {block-size:100%;display:grid;grid-auto-flow:column;grid-auto-columns:100%}
+snap-tabs article {scroll-snap-align:start;overflow-y:auto;overscroll-behavior-y:contain;max-height:350px;padding:2rem}
 @media (prefers-reduced-motion:reduce) {
 snap-tabs snap-tabs>header a {-webkit-border-after:var(--indicator-size) solid hsl(var(--accent)/0%);border-block-end:var(--indicator-size) solid hsl(var(--accent)/0%);-webkit-transition:color .7s ease,border-color .5s ease;transition:color .7s ease,border-color .5s ease}
 snap-tabs snap-tabs>header a:is(:target,:active,[active]) {color:var(--text-active-color);border-block-end-color:hsl(var(--accent))}

@@ -5,7 +5,8 @@ $mobile: false !default;
 
 // Tab settings
 // -----------------------------------------------------------------------------
-
+$tab-width: 145px;
+$tabs: 5;
 
 // -----------------------------------------------------------------------------
 
@@ -33,6 +34,7 @@ snap-tabs {
         
         > nav {
             display: flex;
+            position: relative;
     
             a {
                 scroll-snap-align: start;
@@ -42,14 +44,32 @@ snap-tabs {
                 white-space: nowrap;
                 // Appearance properties
                 padding: 10px 20px;
+                width: $tab-width;
+
+                &.active {
+                    color: $color-black;
+
+                    .snap-indicator {
+                        color: $color-error;
+                    }
+                }
+
+                @for $i from 1 through ($tabs + 1) {
+                    &.active:nth-child(#{$i}) ~ .snap-indicator {
+                        left: (($tab-width * $i) - (2 * $tab-width));
+                    }
+                }
             }
         }
 
         .snap-indicator {
-            inline-size: 150px;
+            position: absolute;
+            top:calc(100% - 2px);
+            inline-size: $tab-width;
             block-size: 2px;
             border-radius: 2px;
             background: $color-primary;
+            transition: left $transition-normal $transition-easing;
         }
     }
 
@@ -78,7 +98,7 @@ snap-tabs {
     }
 
 
-    section {
+    > section {
         block-size: 100%;
 
         display: grid;
@@ -91,8 +111,9 @@ snap-tabs {
 
         overflow-y: auto;
         overscroll-behavior-y: contain;
-
+        // Appearance
         max-height: 350px;
+        padding: 2rem;
     }
 
     @media (prefers-reduced-motion: reduce) {
