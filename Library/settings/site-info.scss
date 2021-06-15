@@ -1,6 +1,7 @@
 @use "Library/settings/variables"as *;
 @use "Library/tools/mixins"as *;
 $mobile: false !default;
+$internal: false !default;
 
 @if $mobile {
     /*! Styles for #{$customer-name} -Mobile */    

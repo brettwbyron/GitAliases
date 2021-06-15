@@ -95,14 +95,13 @@ a.disabled {cursor:default;pointer-events:none}
 #featured .jv-featured-jobs {background-color:transparent;border:none;padding:1em 0}
 #featured .jv-featured-job,#featured .jv-featured-jobs-header {text-align:center}
 #featured .jv-featured-jobs-header {margin:0 0 .25em;width:100%}
-#featured .jv-featured-job {-webkit-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto;padding:1em 0;margin:0}
+#featured .jv-featured-job {-webkit-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto;width:100%;padding:.5em;margin:0}
 #featured .jv-featured-job-title {font-weight:700;font-size:1.25em;text-align:center}
 #featured .jv-featured-job-location {font-size:1em}
-@media all and (min-width:48em) {
-#featured .jv-featured-job {-webkit-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto;max-width:100%}}
 /*! Forms */
 .jv-form.jv-apply-form:focus {outline:0}
 .jv-form select {border:none;background:0 0}
+.jv-form option {color:#777}
 .jv-form .jv-form-field .jv-form-field-control {background:#fff;border:1px solid #bfbfbf;border-radius:0}
 .jv-form .jv-form-field .jv-form-field-checkbox .jv-form-field-control,.jv-form .jv-form-field .jv-form-field-heading .jv-form-field-control,.jv-form .jv-form-field .jv-form-field-hr .jv-form-field-control,.jv-form .jv-form-field .jv-form-field-p .jv-form-field-control,.jv-form .jv-form-field .jv-form-field-radio .jv-form-field-control {border:none;border-radius:0;background:0 0;min-width:none;max-width:none}
 .jv-form input[type=date],.jv-form input[type=email],.jv-form input[type=number],.jv-form input[type=password],.jv-form input[type=search],.jv-form input[type=tel],.jv-form input[type=text],.jv-form select,.jv-form textarea {width:100%;display:block;background:0 0;border:none;font-size:1em;border-radius:0;padding:.4em}
@@ -111,7 +110,7 @@ a.disabled {cursor:default;pointer-events:none}
 .jv-form input[type=date],.jv-form input[type=email],.jv-form input[type=number],.jv-form input[type=password],.jv-form input[type=search],.jv-form input[type=tel],.jv-form input[type=text],.jv-form select {height:40px}
 .jv-form textarea {min-width:100%;max-width:100%;border:1px solid #bfbfbf;border-radius:0}
 .jv-form .jv-form-buttons {text-align:left}
-.jv-form .jv-form-buttons .jv-button {-webkit-box-flex:1;-ms-flex:1 1 100%;flex:1 1 100%}
+.jv-form .jv-form-buttons .jv-button {-webkit-box-flex:1;-ms-flex:1 1 100%;flex:1 1 100%;width:100%}
 .jv-form .jv-form-buttons .jv-button:first-child {margin-right:.25em}
 .jv-form .jv-form-buttons .jv-button .fa-search {margin-right:10px}
 .jv-form .jv-invalid-field .jv-input-group-row,.jv-form .jv-invalid-field button,.jv-form .jv-invalid-field input,.jv-form .jv-invalid-field select,.jv-form .jv-invalid-field textarea {border:1px solid #cb0013!important}
@@ -122,7 +121,7 @@ a.disabled {cursor:default;pointer-events:none}
 .jv-additional-files .jv-button,.jv-apply-section-content .jv-button {width:100%;margin-bottom:.5em}
 .jv-add-attachment-paste-buttons {margin-top:.5em}
 .jv-apply-error {margin-bottom:1em;padding:.5em}
-.jv-form.jv-list-search-form,.jv-form.jv-search-form {display:-webkit-box;display:-ms-flexbox;display:flex;min-width:0;min-height:0;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;padding:0;margin:0;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:0 0 auto;background:0 0;border:none;width:100%}
+.jv-form.jv-list-search-form,.jv-form.jv-search-form {display:-webkit-box;display:-ms-flexbox;display:flex;min-width:0;min-height:0;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;padding:0;margin:0;padding:0;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:0 0 auto;background:0 0;border:none;width:100%}
 .jv-form.jv-list-search-form .jv-form-field,.jv-form.jv-search-form .jv-form-field {-webkit-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto;background-color:transparent}
 .jv-form.jv-list-search-form .jv-form-field:last-of-type,.jv-form.jv-search-form .jv-form-field:last-of-type {margin-right:0}
 .jv-form.jv-list-search-form .jv-search-field .jv-search-input[type=search],.jv-form.jv-search-form .jv-search-field .jv-search-input[type=search] {background:0 0}

@@ -2,6 +2,7 @@
 @use "Library/tools/mixins"as *;
 @use "Library/tools/flex"as *;
 $mobile: false !default;
+$internal: false !default;
 
 // -----------------------------------------------------------------------------
 /*! Jobvite Classes */
@@ -141,9 +142,10 @@ main {
     
             a {
                 position: relative;
-                transition: all $transition-normal $transition-easing;
+                width: 100%; // Add width
                 padding: 0.75em 2em;
                 border-radius: $border-radius;
+                transition: all $transition-normal $transition-easing;
     
                 &:hover {
                     background-color: rgba($color-gray, 0.25);
@@ -398,7 +400,8 @@ main {
 
         .jv-featured-job {
             flex: 1 1 auto;
-            padding: 1em 0;
+            width: 100%;
+            padding: 0.5em;
             margin: 0;
         }
 
@@ -414,18 +417,35 @@ main {
     }
 }
 
-/* min-width: #{screen-md-px} */
-@media all and (min-width: $screen-md-em) {
-
-    @if $area-featured {
-
-        // Featured Jobs -----------------------------------------------------------
-        #featured {
-
-            .jv-featured-job {
-                flex: 1 1 auto;
-                max-width: 100%;
+@if not $mobile {
+    
+    /* min-width: #{screen-md-px} */
+    @media all and (min-width: $screen-md-em) {
+        
+        @if $area-featured {
+            
+            // Featured Jobs -----------------------------------------------------------
+            #featured {
+                
+                .jv-featured-job {
+                    width: calc(50% - 1em);
+                }
             }
         }
     }
-}
+
+    /* min-width: #{screen-lg-px} */
+    @media all and (min-width: $screen-lg-em) {
+        
+        @if $area-featured {
+
+            // Featured Jobs -----------------------------------------------------------
+            #featured {
+
+                .jv-featured-job {
+                    width: calc(25% - 1em);
+                }
+            }
+        }
+    }
+} //End desktop

@@ -17,7 +17,7 @@ $mobile: true;
 // Objects
 // -----------------------------------------------------------------------------
 @include meta.load-css("../Library/objects/flex", $with:("mobile":$mobile));
-/*@include meta.load-css("../Library/objects/grid", $with:("mobile":$mobile));*/
+/*@include meta.load-css("../Library/objects/flex-grid", $with:("mobile":$mobile));*/
 /*@include meta.load-css("../Library/objects/cssgrid", $with:("mobile":$mobile));*/
 
 // Components
@@ -28,7 +28,7 @@ $mobile: true;
 @include meta.load-css("../Library/components/buttons", $with:("mobile":$mobile));
 @include meta.load-css("../Library/components/mobile");
 @include meta.load-css("../Library/components/sections", $with:("mobile":$mobile));
-/*@include meta.load-css("../Library/components/plugins", $with:("mobile":$mobile));*/
+/*@include meta.load-css("../Library/components/plugins/plugins", $with:("mobile":$mobile));*/
 
 // Utilities
 // -----------------------------------------------------------------------------

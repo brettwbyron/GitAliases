@@ -1,6 +1,7 @@
 @use "Library/settings/variables" as *;
 @use "Library/tools/mixins" as *;
 @use "Library/tools/flex" as *;
+$internal: false !default;
 
 // -----------------------------------------------------------------------------
 // =Desktop specific styles
@@ -22,13 +23,14 @@
 
 @if $area-fixed-header {
     .fixed-header {
-        position: fixed;
+        position: sticky;
         top: 0;
         left: 0;
         width: 100%;
         display: block;
-        background-color: $color-background-light;
+        background-color: $color-white;
         z-index: $z-nav;
+        box-shadow: $box-shadow;
     }
 }
 

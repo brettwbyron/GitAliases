@@ -1,6 +1,7 @@
 @use "Library/settings/variables" as *;
 @use "Library/tools/mixins" as *;
 @use "Library/tools/flex" as *;
+$internal: false !default;
 
 // -----------------------------------------------------------------------------
 // =Mobile styles

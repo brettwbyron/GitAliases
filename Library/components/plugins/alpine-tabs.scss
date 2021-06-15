@@ -2,11 +2,12 @@
 @use "Library/tools/mixins"as *;
 @use "Library/tools/flex"as *;
 $mobile: false !default;
+$internal: false !default;
 
 // Tab settings
 // -----------------------------------------------------------------------------
-$tab-width: 145px;
-$tabs: 5;
+$tab-width: 150px;
+$tabs: 7; // Used for a
 
 // -----------------------------------------------------------------------------
 
@@ -31,31 +32,51 @@ snap-tabs {
         display: flex;
         flex-direction: column;
         outline-offset: -5px;
-        
-        > nav {
+
+        img {
+            width: $tab-width;
+            height: auto;
+            border: 0;
+        }
+
+        .top-border {
+            @include absolute(0, 0, 0, 0);
+            height: 10px;
+            border-top: 10px solid $color-black;
+        }
+
+        >nav {
             display: flex;
             position: relative;
-    
-            a {
-                scroll-snap-align: start;
-    
+
+            button {
+                scroll-snap-align: center;
+
                 display: inline-flex;
                 align-items: center;
                 white-space: nowrap;
                 // Appearance properties
-                padding: 10px 20px;
+                padding: 15px 0;
                 width: $tab-width;
+                background: transparent;
+                border: 0;
 
                 &.active {
                     color: $color-black;
+                    scroll-snap-align: center; // Makes scroller align to focused tab
 
                     .snap-indicator {
                         color: $color-error;
                     }
                 }
 
+                &:focus {
+                    outline: thin dotted currentColor;
+                    outline-offset: -2px;
+                }
+
                 @for $i from 1 through ($tabs + 1) {
-                    &.active:nth-child(#{$i}) ~ .snap-indicator {
+                    &.active:nth-child(#{$i})~.snap-indicator {
                         left: (($tab-width * $i) - (2 * $tab-width));
                     }
                 }
@@ -64,10 +85,10 @@ snap-tabs {
 
         .snap-indicator {
             position: absolute;
-            top:calc(100% - 2px);
+            top: 0;
             inline-size: $tab-width;
-            block-size: 2px;
-            border-radius: 2px;
+            block-size: 10px;
+            /* border-radius: 2px; */
             background: $color-primary;
             transition: left $transition-normal $transition-easing;
         }
@@ -111,13 +132,25 @@ snap-tabs {
 
         overflow-y: auto;
         overscroll-behavior-y: contain;
+
         // Appearance
-        max-height: 350px;
-        padding: 2rem;
+        @if $mobile {
+            padding: 0;
+            max-height: 1100px;
+            min-height: 100%;
+            height: auto;
+        }
+
+        @else {
+            max-height: 900px;
+            padding: 2rem;
+        }
+
+        //End
     }
 
     @media (prefers-reduced-motion: reduce) {
-        snap-tabs > header a {
+        snap-tabs>header a {
             border-block-end: var(--indicator-size) solid hsl(var(--accent) / 0%);
             transition: color .7s ease, border-color .5s ease;
 

@@ -2,6 +2,7 @@
 @use "Library/tools/mixins" as *;
 @use "Library/tools/flex" as *;
 $mobile: false !default;
+$internal: false !default;
 
 // --------------------------------------------------------------------------
 /*! Forms */
@@ -19,6 +20,10 @@ $mobile: false !default;
     select {
         border: none;
         background: transparent;
+    }
+
+    option {
+        color: $color-text; // Neccesary for PC's to display text correctly in dropdowns if font is white
     }
 
     // Wraps label and input
@@ -121,8 +126,10 @@ $mobile: false !default;
 
     .jv-form-buttons {
         text-align: left;
+
         @if not $mobile {
             width: $input-width;
+            height: $input-height+($form-border-width * 2); // IE11 fix for button height
         } // End Desktop
 
         @if $area-form-labels {
@@ -131,6 +138,7 @@ $mobile: false !default;
 
         .jv-button {
             flex: 1 1 100%;
+            width: 100%;
 
             &:first-child {
                 margin-right: $form-input-spacing;
@@ -223,7 +231,10 @@ $mobile: false !default;
         padding: 0;
         @if $mobile {
             margin: 0;
+        } @else {
+            @include flex-c-center;
         }
+        padding: 0;
         flex: 0 0 auto;
         background: none;
         border: none;

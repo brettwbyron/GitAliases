@@ -13,23 +13,27 @@ Kickoff is a framework for Jobvite CWS team to make starting a new site easier a
 
     >    `git checkout starter_branch`
 
-2. Add your new worktree branch with the following command. The `<customer branch name>` will be the folder name.
+2. Do a get pull to make sure you have the most up-to-date version.
+
+    >    `git pull`
+
+3. Add your new worktree branch with the following command. The `<customer branch name>` will be the folder name. Recommended: use the company's folder name from the FTP server.
 
     >    `git worktree add <customer branch name>`
 
-3. Checkout the root branch again in the CWS project directory.
+4. Checkout the root branch again in the CWS project directory.
 
     >    `git checkout root`
 
-4. Navigate into the new customer project directory
+5. Navigate into the new customer project directory
 
     >    `cd <customer branch name>`
 
-5. Set upstream directory in Github. This associates your folder with the respective Github folder.
+6. Set upstream directory in Github. This associates your folder with the respective Github folder.
 
     >    `git push -u origin <customer branch name>`
 
-6. Check the status to make sure everything is setup right. Fix issues if needed.
+7. Check the status to make sure everything is setup right. Fix issues if needed.
 
     >    `git status`
 
