@@ -5,7 +5,8 @@
     "description": "starter file",
     "main": "gulpfile.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "gulp": "gulp"
     },
     "author": "Kevin Meyer",
     "license": "ISC",

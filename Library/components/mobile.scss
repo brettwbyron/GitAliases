@@ -11,7 +11,7 @@ $internal: false !default;
 /* =Header/Footer */
 // -----------------------------------------------------------------------------
 .jv-page-header {
-    background: $color-background-light;
+    background: $color-white;
     padding: 0;
 
     .jv-wrapper {
@@ -25,15 +25,15 @@ $internal: false !default;
             left: 0;
             width: 100%;
             display: block;
-            background-color: $color-background-light;
+            background-color: $color-white;
             z-index: $z-nav;
         }
     }
 }
 
 .jv-footer {
-    background-color: $color-accent;
-    color: $color-text;
+    background-color: $color-black;
+    color: $color-white;
     padding: 2em 0;
 
     .jv-wrapper {

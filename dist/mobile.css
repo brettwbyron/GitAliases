@@ -139,9 +139,9 @@ button:focus {outline:thin dotted rgba(0,103,244,.247)}
 .jv-button .jv-text-icon {margin-right:.5em;margin-left:.5em}
 .jv-additional-files .jv-button,.jv-additional-files .jv-button:visited,.jv-apply-section-content .jv-button,.jv-apply-section-content .jv-button:visited {border-width:1px;background-color:transparent;border-color:#777;color:#777}
 .jv-additional-files .jv-button:hover,.jv-additional-files .jv-button:visited:hover,.jv-apply-section-content .jv-button:hover,.jv-apply-section-content .jv-button:visited:hover {background:#777;color:#fff}
-.jv-page-header {background:#fcfbf9;padding:0}
+.jv-page-header {background:#fff;padding:0}
 .jv-page-header .jv-wrapper {padding:11px 0}
-.jv-footer {background-color:#173a5c;color:#777;padding:2em 0}
+.jv-footer {background-color:#000;color:#fff;padding:2em 0}
 .jv-footer .jv-wrapper {padding:0 20px}
 .jv-footer .copyright {font-size:.875em}
 .jv-footer a {color:#777}
@@ -253,6 +253,7 @@ button:focus {outline:thin dotted rgba(0,103,244,.247)}
 .sr-only {position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;-webkit-clip-path:inset(50%);clip-path:inset(50%);border:0}
 .sr-only-focusable:active,.sr-only-focusable:focus {position:static;width:auto;height:auto;overflow:visible;clip:auto;white-space:normal;-webkit-clip-path:none;clip-path:none}
 .list-unstyled {list-style:none;padding-left:0}
+.list-roman {list-style-type:lower-roman}
 .u-text-center {text-align:center}
 .u-text-left {text-align:left}
 .u-text-right {text-align:right}
