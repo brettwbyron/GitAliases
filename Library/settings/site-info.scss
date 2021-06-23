@@ -4,7 +4,15 @@ $mobile: false !default;
 $internal: false !default;
 
 @if $mobile {
-    /*! Styles for #{$customer-name} -Mobile */    
+    @if $internal {
+        /*! Styles for #{$customer-name} -Mobile Internal */
+    } @else {
+        /*! Styles for #{$customer-name} -Mobile */
+    } //End
 } @else {
-    /*! Styles for #{$customer-name} -Desktop */
+    @if $internal {
+        /*! Styles for #{$customer-name} -Desktop Internal */
+    } @else {
+        /*! Styles for #{$customer-name} -Desktop */        
+    } //End
 } //End

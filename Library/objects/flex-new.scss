@@ -1,0 +1,147 @@
+@use "sass:map";
+@use "Library/settings/variables"as *;
+@use "Library/tools/mixins"as *;
+@use "Library/tools/flex"as *;
+$mobile: false !default;
+$internal: false !default;
+
+// -----------------------------------------------------------------------------
+/*!  =Flex New */
+// -----------------------------------------------------------------------------
+// m = main axis
+// w = wrap or space along cross axis
+// c = cross axis alignment
+// self = align-self
+
+$fx-class: flex;
+
+.flex {
+    display: flex;
+    min-width: 0;
+    min-height: 0;
+}
+.flex-inline { display: inline-flex }
+
+.flex-auto     { flex: 1 1 auto } // grow and shrink
+.flex-grow     { flex: 1 0 auto } // grow only
+.flex-shrink   { flex: 0 1 auto } // shrink only
+.flex-static   { flex: 0 0 auto } // won't grow or shrink
+.flex-none     { flex: none }
+
+.flex-first { order: -1 }
+.flex-last  { order: 99999 }
+
+// -----------------------------------------------------------------------------
+// This defines the main axis
+.flex-row,
+.flex-col,
+.flex-col-reverse,
+.flex-row-reverse {
+    @extend .flex;
+}
+.flex-col  { flex-direction: column }
+.flex-row  { flex-direction: row }
+.flex-col-reverse  { flex-direction: column-reverse }
+.flex-row-reverse  { flex-direction: row-reverse }
+
+.flex-wrap            { flex-wrap: wrap }
+.flex-nowrap          { flex-wrap: nowrap }
+.flex-wrap-reverse    { flex-wrap: wrap-reverse; }
+
+/*! Generate flex classes */
+
+$fx-config: (
+    main: (
+        start: flex-start,
+        space-around: space-around,
+        space-between: space-between,
+        space-evenly: space-evenly,
+        end: end,
+        center: center
+    ),
+    wrap: (
+        stretch: stretch,
+        center: center,
+        start: flex-start,
+        end: flex-end,
+        space-around: space-around,
+        space-between: space-between
+    ),
+    cross: (
+        center: center,
+        baseline: baseline,
+        stretch: stretch,
+        start: flex-start,
+        end: flex-end
+    ),
+    self:(
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        stretch: stretch,
+        baseline: baseline,
+        auto: auto
+    )
+) !default;
+
+@function map-deep-get($map, $keys...) {
+    @each $key in $keys {
+        $map: map-get($map, $key);
+    }
+    @return $map;
+}
+
+@function map-flex-get($alignment, $name, $value, $map) {
+    @debug "property: #{$property}";
+    @debug "name: #{$name}";
+    @debug "value: #{$value}";
+}
+
+@mixin flex-base($namespace, $property, $name, $value) {
+    .#{$fx-class}-#{$namespace}-#{$name} {
+        //#{$property}: #{$name};
+        //@debug "name: #{$name}";
+        //@debug "value: #{$value}";
+        #{$prop}: #{$value};
+    }
+}
+
+@each $alignment, $val-details in $fx-config {
+    $property: null;
+    $namespace: null;
+    //$name: nth($val-details,1);
+    //$value: nth($val-details,2);
+
+    @if $alignment == main {
+        $namespace: m;
+        $property: justify-content;
+        
+        $result: map-deep-get($fx-config, $alignment);
+    } @else if $alignment == wrap {
+        $namespace: w;
+        $property: align-content;
+    } @else if $alignment == cross {
+        $namespace: c;
+        $property: align-items;
+    } @else if $alignment == self {
+        $namespace: self;
+        $property: align-self;
+    } @else {
+        @debug "Error with flex properties";
+    }
+
+    @debug "namespace: #{$namespace}";
+    //@include flex-base($namespace, $prop, );
+}
+
+// Conditions
+@supports (-ms-accelerator: true) {
+
+    /* Edge only - source: https://dev.to/mornir/flexbox-space-evenly-value-58gf */
+    .flex-m-space-evenly {
+        justify-content: space-around;
+        /* you can also add some other adjustments to size, margins etc to get the same positioning */
+    }
+}
+
+/*!  End - Flex New */

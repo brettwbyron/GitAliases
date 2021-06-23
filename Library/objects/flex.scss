@@ -50,9 +50,17 @@ $internal: false !default;
 .flex-m-start         { justify-content: flex-start } // Default
 .flex-m-space-around  { justify-content: space-around }
 .flex-m-space-between { justify-content: space-between }
-.flex-m-space-evenly  { justify-content: space-between } // May have IE11 issues, use catiously
+.flex-m-space-evenly  { justify-content: space-evenly } // May have IE11 issues, use catiously
 .flex-m-end           { justify-content: flex-end }
 .flex-m-center        { justify-content: center }
+
+// Conditions
+@supports (-ms-accelerator: true) {
+    /* Edge only - source: https://dev.to/mornir/flexbox-space-evenly-value-58gf */
+    .flex-m-space-evenly {
+        justify-content: space-around; /* you can also add some other adjustments to size, margins etc to get the same positioning */
+    }
+}
 
 // -----------------------------------------------------------------------------
 // This aligns a flex container's lines within when there is extra space in
@@ -64,7 +72,7 @@ $internal: false !default;
 .flex-w-start         { align-content: flex-start }
 .flex-w-end           { align-content: flex-end }
 .flex-w-space-around  { align-content: space-around }
-.flex-w-sapce-between { align-content: space-between }
+.flex-w-space-between { align-content: space-between }
 
 // -----------------------------------------------------------------------------
 // This defines the default behaviour for how flex items are laid out along the
@@ -103,6 +111,20 @@ $internal: false !default;
 // Responsive layout
 // -----------------------------------------------------------------------------
 @if not $mobile {
+    @if $area-screen-x-small {
+        /*! max-width: #{$screen-sm-px} */
+        @media all and (max-width: $screen-sm-em) {
+            $suffix: "-xs";
+            .flex#{$suffix} { display: flex }
+            .flex-inline#{$suffix} { display: inline-flex }
+            .flex-col#{$suffix}  { flex-direction: column }
+            .flex-row#{$suffix}  { flex-direction: row }
+            .flex-m-end#{$suffix} { justify-content: flex-end }
+            .flex-m-center#{$suffix} { justify-content: center }
+            .flex-wrap#{$suffix}      { flex-wrap: wrap }
+            .flex-nowrap#{$suffix}    { flex-wrap: nowrap }
+        }
+    }
     @if $area-screen-small {
         /*! min-width: #{$screen-sm-px} */
         @media all and (min-width: $screen-sm-em) {

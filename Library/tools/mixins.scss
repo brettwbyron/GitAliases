@@ -274,26 +274,6 @@ $mobile: false !default;
     @include size($s, $s);
 }
 
-@mixin generate-width($start:0, $end:100, $inc:5, $suffix:null) {
-    @for $i from $start through $end {
-        @if ($i % $inc==0) {
-            .w-#{$i}#{$suffix} {
-                width: $i * 1%;
-            }
-        }
-    }
-}
-
-@mixin generate-height($start:0, $end:100, $inc:5, $suffix:null) {
-    @for $i from $start through $end {
-        @if ($i % $inc==0) {
-            .h-#{$i}#{$suffix} {
-                height: $i * 1%;
-            }
-        }
-    }
-}
-
 //------------------------------------------------------------------------------
 // Shadows
 //------------------------------------------------------------------------------
@@ -372,26 +352,25 @@ $mobile: false !default;
 // -----------------------------------------------------------------------------
 // =Width and =Height - thanks Brett for helping me ;)
 // -----------------------------------------------------------------------------
-@mixin generate-width($start:0,$end:100,$inc:5) {
+@mixin generate-width($start:0, $end:100, $inc:5, $suffix:null) {
     @for $i from $start through $end {
-        @if ($i % $inc == 0) {
-            .w-#{$i} {
+        @if ($i % $inc==0) {
+            .w-#{$i}#{$suffix} {
                 width: $i * 1%;
             }
         }
     }
 }
 
-@mixin generate-height($start:0, $end:100, $inc:5) {
+@mixin generate-height($start:0, $end:100, $inc:5, $suffix:null) {
     @for $i from $start through $end {
         @if ($i % $inc==0) {
-            .h-#{$i} {
+            .h-#{$i}#{$suffix} {
                 height: $i * 1%;
             }
         }
     }
 }
-
 // -----------------------------------------------------------------------------
 // =Grid
 // -----------------------------------------------------------------------------
@@ -402,9 +381,7 @@ $mobile: false !default;
 
     @if ($row-span > 1) {
         grid-row: $row / span $row-span;
-    }
-
-    @else {
+    } @else {
         grid-row: $row;
     }
 
@@ -413,9 +390,7 @@ $mobile: false !default;
 
     @if ($col-span > 1) {
         grid-column: $col / span $col-span;
-    }
-
-    @else {
+    } @else {
         grid-column: $col;
     }
 
