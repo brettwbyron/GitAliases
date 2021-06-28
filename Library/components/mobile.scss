@@ -111,6 +111,24 @@ $internal: false !default;
             transform: translate3d(255px, 0px, 0px) scale3d(1, 1, 1)!important;
         }
     }
+    @if $area-nav-top {
+        padding-top: 80px;
+        padding-bottom: 9px;
+        width: 100vw;
+        height: auto;
+        top: -100vh;
+        right: auto;
+        transform: translate3d(0, -100vh, 0px) scale3d(1, 1, 1) !important;
+
+        .jv-nav-visible & {
+            transform: translate3d(0, 100vh, 0px) scale3d(1, 1, 1) !important;
+        }
+    }
+
+    // .jv-nav-item {
+    //     margin: 0.5rem 0 0.5rem 18px;
+    //     border-left: 2px solid $color-accent;
+    // }
 
     .jv-nav-link {
         padding: 15px 15px 18px;
@@ -134,16 +152,79 @@ $internal: false !default;
 
 }
 
+@if $area-animated-menu-button {
+    .btn-menu-burger {
+        background: transparent;
+        display: flex;
+    
+        .btn-menu-burger-inner {
+            background: $color-white;
+            border: 0;
+            display: flex;
+            outline: none;
+            cursor: pointer;
+            transition: all $transition-normal $transition-easing;
+    
+            &,
+            &:before,
+            &:after {
+                background: $color-white;
+                content: '';
+                height: 3px;
+                position: absolute;
+                transition: all $transition-normal $transition-easing;
+                width: 100%;
+                border-radius: 1px;
+                //will-change: transform;
+            }
+    
+            & {
+                top: 7px;
+            }
+    
+            &:before {
+                transform: translateY(-6px);
+            }
+    
+            &:after {
+                transform: translateY(6px);
+            }
+    
+            .jv-nav-visible & {
+    
+                & {
+                    background: transparent;
+                }
+    
+                &:before,
+                &:after {
+                    background: $color-white;
+                }
+    
+                &:before {
+                    transform: translateY(0) rotate(45deg);
+                }
+    
+                &:after {
+                    transform: translateY(0) rotate(-45deg);
+                }
+            }
+        }
+    }
+}
+
 // Hides the nav shadow
-// .jv-nav-visible {
-//     .jv-nav {
-//         box-shadow: none;
-//     }
-//
-//     .jv-page-content:after {
-//         display: none!important;
-//     }
-// }
+@if not $area-nav-shadow {
+    .jv-nav-visible {
+        .jv-nav {
+            box-shadow: none;
+        }
+
+        .jv-page-content:after {
+            display: none !important;
+        }
+    }
+}
 
 .jv-page {
     background-color: transparent;

@@ -12,7 +12,7 @@
     "license": "ISC",
     "devDependencies": {
         "babel-core": "^6.26.3",
-        "caniuse-lite": "^1.0.30001237",
+        "caniuse-lite": "^1.0.30001240",
         "del": "^6.0.0",
         "gulp": "^4.0.2",
         "gulp-autoprefixer": "^8.0.0",
@@ -28,7 +28,7 @@
     "dependencies": {
         "@babel/core": "^7.14.6",
         "fancy-log": "^1.3.3",
-        "npm-check-updates": "^11.6.0",
+        "npm-check-updates": "^11.7.1",
         "nvm": "0.0.4",
         "yarn": "^1.22.10"
     },

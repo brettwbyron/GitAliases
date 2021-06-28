@@ -35,6 +35,9 @@ $area-screen-large: false; // Adds media queries for a given screen size
 $area-screen-xl: false; // Adds media queries for a given screen size
 // Mobile ----------------------------------------------------------------------
 $area-nav-left: false; // Moves the navigation to slide in from the left
+$area-nav-top: false;
+$area-nav-shadow: true; // true = shadow on, false = shadow off
+$area-animated-menu-button: false; // animated hamburger menu
 
 // -----------------------------------------------------------------------------
 // Padding and margin spacing max-value, refers to utilities/spacing.scss
