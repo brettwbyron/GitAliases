@@ -49,77 +49,90 @@ $fx-class: flex;
 .flex-wrap-reverse    { flex-wrap: wrap-reverse; }
 
 /*! Generate flex classes */
-$main: (
-    start: flex-start,
-    space-around: space-around,
-    space-between: space-between,
-    space-evenly: space-evenly,
-    end: end,
-    center: center
+$fx-classes: (
+    main: (
+        namespace: m,
+        property: justify-content,
+        classes: (
+            start: flex-start,
+            space-around: space-around,
+            space-between: space-between,
+            space-evenly: space-evenly,
+            end: end,
+            center: center
+        )
+    ),
+    wrap: (
+        namespace: w,
+        property: align-content,
+        classes: (
+            stretch: stretch,
+            center: center,
+            start: flex-start,
+            end: flex-end,
+            space-around: space-around,
+            space-between: space-between
+        )
+    ),
+    cross: (
+        namespace: c,
+        property: align-items,
+        classes: (
+            center: center,
+            baseline: baseline,
+            stretch: stretch,
+            start: flex-start,
+            end: flex-end
+        )
+    ),
+    self: (
+        namespace: self,
+        property: align-self,
+        classes: (
+            start: flex-start,
+            end: flex-end,
+            center: center,
+            stretch: stretch,
+            baseline: baseline,
+            auto: auto
+        )
+    )
 );
-$wrap: (
-    stretch: stretch,
-    center: center,
-    start: flex-start,
-    end: flex-end,
-    space-around: space-around,
-    space-between: space-between
-);
-$cross: (
-    center: center,
-    baseline: baseline,
-    stretch: stretch,
-    start: flex-start,
-    end: flex-end
-);
-$self: (
-    start: flex-start,
-    end: flex-end,
-    center: center,
-    stretch: stretch,
-    baseline: baseline,
-    auto: auto
-);
+
+@function map-deep-get($map, $keys...) {
+    @each $key in $keys {
+        $map: map-get($map, $key);
+    }
+    @return $map;
+}
 
 @mixin flex-base($namespace, $property, $name, $value, $suffix:null) {
     .flex-#{$namespace}-#{$name}#{$suffix} {
         #{$property}: #{$value};
     }
 }
-@mixin flex-classes($config, $suffix:null) {
-    $property: null;
-    $namespace: null;
-
-    @if $config == main {
-        $namespace: m;
-        $property: justify-content;
-        @each $name, $value in $main {
-           @include flex-base($namespace, $property, $name, $value, $suffix);
+@mixin flex-classes($suffix:null) {
+    
+    @each $key in $fx-classes {
+        $namespace: nth($key,1);
+        ///$namespace: map-deep-get($fx-classes, $key, "namespace");
+        $property: map-deep-get($fx-classes, $key, "property");
+        $classes: map-deep-get($fx-classes, $key, "classes");
+        @debug "namespace: #{$namespace}";
+        @debug "property: #{$property}";
+        @debug "key: #{$key}";
+        @each $key, $val in $classes {
+            //@debug "val: #{$val}";
+            @debug "key: #{$key}";
+            //@debug "name: #{$key}";
+            //@debug "value: #{$val}";
+            //@debug "suffix: #{$suffix}";
+            @include flex-base($namespace, $property, $key, $val, $suffix);
         }
-    } @else if $config == wrap {
-        $namespace: w;
-        $property: align-content;
-        @each $name, $value in $wrap {
-            @include flex-base($namespace, $property, $name, $value, $suffix);
-        }
-    } @else if $config == cross {
-        $namespace: c;
-        $property: align-items;
-        @each $name, $value in $cross {
-            @include flex-base($namespace, $property, $name, $value, $suffix);
-        }
-    } @else if $config == self {
-        $namespace: self;
-        $property: align-self;
-        @each $name, $value in $self {
-            @include flex-base($namespace, $property, $name, $value, $suffix);
-        }
-    } @else {
-        @debug "Error with flex properties";
     }
 }
 
-@include flex-classes(main);
+@include flex-classes();
 // Conditions
 @supports (-ms-accelerator: true) {
 
@@ -129,14 +142,14 @@ $self: (
         /* you can also add some other adjustments to size, margins etc to get the same positioning */
     }
 }
-@include flex-classes(wrap);
-@include flex-classes(cross);
-@include flex-classes(self);
+//@include flex-classes(wrap);
+//@include flex-classes(cross);
+//@include flex-classes(self);
 
-.flex-center {
-    @extend .flex-m-center;
-    @extend .flex-c-center;
-}
+//.flex-center {
+//    @extend .flex-m-center;
+//    @extend .flex-c-center;
+//}
 
 @if $area-flex-order {
     @for $i from 1 through $max-pos {
@@ -152,93 +165,31 @@ $self: (
         /*! max-width: #{$screen-sm-px} */
         @media all and (max-width: $screen-sm-em) {
             $suffix: "-xs";
-            @include flex-classes(main, $suffix);
-            // Conditions
-            @supports (-ms-accelerator: true) {
-
-                /* Edge only - source: https://dev.to/mornir/flexbox-space-evenly-value-58gf */
-                .flex-m-space-evenly#{$suffix} {
-                    justify-content: space-around;
-                    /* you can also add some other adjustments to size, margins etc to get the same positioning */
-                }
-            }
-            @include flex-classes(wrap, $suffix);
-            @include flex-classes(cross, $suffix);
-            @include flex-classes(self, $suffix);
+            
         }
     }
     @if $area-screen-small {
         /*! min-width: #{$screen-sm-px} */
         @media all and (min-width: $screen-sm-em) {
-            $suffix: "-sm";
-            @include flex-classes(main, $suffix);
-
-            // Conditions
-            @supports (-ms-accelerator: true) {
-                /* Edge only - source: https://dev.to/mornir/flexbox-space-evenly-value-58gf */
-                .flex-m-space-evenly#{$suffix} {
-                    justify-content: space-around;
-                    /* you can also add some other adjustments to size, margins etc to get the same positioning */
-                }
-            }
-            @include flex-classes(wrap, $suffix);
-            @include flex-classes(cross, $suffix);
-            @include flex-classes(self, $suffix);
+            @include flex-classes("-sm");
         }
     }
     @if $area-screen-medium {
         /*! min-width: #{$screen-md-px} */
         @media all and (min-width: $screen-md-em) {
-            $suffix: "-md";
-            @include flex-classes(main, $suffix);
-
-            // Conditions
-            @supports (-ms-accelerator: true) {
-                /* Edge only - source: https://dev.to/mornir/flexbox-space-evenly-value-58gf */
-                .flex-m-space-evenly#{$suffix} {
-                    justify-content: space-around;
-                    /* you can also add some other adjustments to size, margins etc to get the same positioning */
-                }
-            }
-            @include flex-classes(wrap, $suffix);
-            @include flex-classes(cross, $suffix);
-            @include flex-classes(self, $suffix);
+            @include flex-classes("-md");
         }
     }
     @if $area-screen-large {
         /*! min-width: #{$screen-lg-px} */
         @media all and (min-width: $screen-lg-em) {
-            $suffix: "-lg";
-            @include flex-classes(main, $suffix);
-            // Conditions
-            @supports (-ms-accelerator: true) {
-                /* Edge only - source: https://dev.to/mornir/flexbox-space-evenly-value-58gf */
-                .flex-m-space-evenly#{$suffix} {
-                    justify-content: space-around;
-                    /* you can also add some other adjustments to size, margins etc to get the same positioning */
-                }
-            }
-            @include flex-classes(wrap, $suffix);
-            @include flex-classes(cross, $suffix);
-            @include flex-classes(self, $suffix);
+            @include flex-classes("-lg");
         }
     }
     @if $area-screen-xl {
         /*! min-width: #{$screen-xl-px} */
         @media all and (min-width: $screen-xl-em) {
-            $suffix: "-xl";
-            @include flex-classes(main, $suffix);
-            // Conditions
-            @supports (-ms-accelerator: true) {
-                /* Edge only - source: https://dev.to/mornir/flexbox-space-evenly-value-58gf */
-                .flex-m-space-evenly#{$suffix} {
-                    justify-content: space-around;
-                    /* you can also add some other adjustments to size, margins etc to get the same positioning */
-                }
-            }
-            @include flex-classes(wrap, $suffix);
-            @include flex-classes(cross, $suffix);
-            @include flex-classes(self, $suffix);
+            @include flex-classes("-xl");
         }
     }
 }
