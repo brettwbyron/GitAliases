@@ -245,7 +245,7 @@ $internal: false !default;
             @if not $mobile {
                 margin-bottom: $form-input-spacing; // Spacing between stacked inputs
             }
-            flex: 1 1 auto;
+            flex: 1 1;
             background-color: transparent;
 
             &:last-of-type {
@@ -256,6 +256,7 @@ $internal: false !default;
         .jv-search-field .jv-search-input[type="search"] {
             background: none;
 
+            &::placeholder,
             &::-webkit-input-placeholder,
             &::-moz-placeholder,
             &:-ms-input-placeholder,

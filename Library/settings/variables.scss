@@ -24,12 +24,12 @@ $area-form-labels: false; // Hides form labels
 $area-social-colors: false; // Social media brand colors
 $area-svg-icons: false; // SVG icons all the same size
 $area-svg-img: false; // SVG images of different sizes
-$area-hide-search-icon: true; // Reduces padding in the keyword search input when you hide the keyword Search icon
+$area-hide-search-icon: false; // Reduces padding in the keyword search input when you hide the keyword Search icon
 $area-internal-site: false; // Use "if" statements to style internal sites
 // Desktop ---------------------------------------------------------------------
 $area-iframe-site: false; // Set to "true" if your site is iframe
 $area-screen-x-small: false; // Adds media queries for a given screen size
-$area-screen-small: true; // Adds media queries for a given screen size
+$area-screen-small: false; // Adds media queries for a given screen size
 $area-screen-medium: true; // Adds media queries for a given screen size
 $area-screen-large: false; // Adds media queries for a given screen size
 $area-screen-xl: false; // Adds media queries for a given screen size

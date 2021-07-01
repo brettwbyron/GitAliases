@@ -19,7 +19,7 @@ $internal: true;
 // -----------------------------------------------------------------------------
 @include meta.load-css("../Library/objects/flex", $with:("mobile":$mobile, "internal":$internal));
 @include meta.load-css("../Library/objects/flex-grid", $with:("mobile":$mobile, "internal":$internal));
-/*@include meta.load-css("../Library/objects/cssgrid", $with:("mobile":$mobile, "internal":$internal));*/
+//@include meta.load-css("../Library/objects/cssgrid", $with:("mobile":$mobile, "internal":$internal));
 
 // Components
 // -----------------------------------------------------------------------------
@@ -36,5 +36,4 @@ $internal: true;
 @include meta.load-css("../Library/utilities/spacing", $with:("mobile":$mobile, "internal":$internal));
 @include meta.load-css("../Library/utilities/sizing");
 @include meta.load-css("../Library/utilities/type");
-//@include meta.load-css("../Library/utilities/colors");
 @include meta.load-css("../Library/utilities/media", $with:("mobile":$mobile, "internal":$internal));

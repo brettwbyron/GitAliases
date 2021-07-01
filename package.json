@@ -1,6 +1,6 @@
 {
     "name": "gulp-default",
-    "version": "2.3.3",
+    "version": "2.4.1",
     "private": true,
     "description": "starter file",
     "main": "gulpfile.js",
@@ -12,7 +12,7 @@
     "license": "ISC",
     "devDependencies": {
         "babel-core": "^6.26.3",
-        "caniuse-lite": "^1.0.30001240",
+        "caniuse-lite": "^1.0.30001241",
         "del": "^6.0.0",
         "gulp": "^4.0.2",
         "gulp-autoprefixer": "^8.0.0",

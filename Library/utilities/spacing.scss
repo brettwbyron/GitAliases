@@ -296,8 +296,7 @@ $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
                 $abbr in $props {
                     $sides: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
 
-                    @each $clip,
-                    $side in $sides {
+                    @each $clip,$side in $sides {
                         .#{$abbr}#{$clip}#{$i}#{$suffix} {
                             #{$prop}#{$side}: calcSpacing($i);
                         }

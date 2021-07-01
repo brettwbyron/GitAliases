@@ -1,0 +1,187 @@
+@use "Library/settings/variables"as *;
+@use "Library/tools/mixins"as *;
+$mobile: false !default;
+
+.scroll-reveal {
+    $photo-height: set-var(200px,400px);
+    $photo-width: set-var(335px,45%);
+    $text-width: set-var(100%,50%);
+    $angle-width: 100px;
+    $cover-color: $color-white;
+
+    position: relative;
+    /*overflow: hidden;*/
+    @if $mobile {
+        //padding: calc(#{$photo-height} + 1em) 0 2em;
+        padding: 1em 0 2em;
+        //min-height: 700px;
+    } @else {
+        padding: 2em 0;
+        min-height: 500px;        
+    } //End
+
+    .left-angle {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        border-style: solid;
+        border-width: 0 $angle-width $photo-height 0;
+        border-color: transparent $cover-color transparent transparent;
+    }
+
+    .right-angle {
+        @extend .left-angle;
+        right: auto;
+        left: 0;
+        border-width: 0 0 $photo-height $angle-width;
+        border-color: transparent transparent transparent $cover-color;
+    }
+
+    &.slide-left {
+
+        .photo-cover {
+            @if $mobile {
+                left: 0;
+            } @else {
+                left: 0;                
+            } //End
+
+            &:before {
+                @extend .left-angle;
+                right: auto;
+                left: -$angle-width;
+                border-right-color: $cover-color;
+            }
+        }
+
+        .photo-shape {
+            left: 0;
+
+            &:after {
+                @extend .left-angle;
+            }
+
+            .photo {
+                background-position: 100% 50%;
+
+            }
+        }
+
+        .slide-text {
+            margin-left: auto;
+
+            @if not $mobile {
+                padding-right: 4em;
+            }
+        }
+    }
+
+    &.slide-right {
+
+        .photo-cover {
+            @if $mobile {
+                right: 0;
+            } @else {
+                right: 0;                
+            } //End
+
+            &:before {
+                @extend .right-angle;
+                right: -$angle-width;
+                left: auto;
+                border-right-color: $cover-color;
+            }
+        }
+
+        .photo-shape {
+            @if $mobile {
+                margin-left: auto;
+            } @else {
+                right: 0;                
+            } //End
+
+            &:after {
+                @extend .right-angle;
+            }
+
+            .photo {
+                background-position: 0% 50%;
+            }
+        }
+
+        .slide-text {
+            margin-right: auto;
+
+            @if not $mobile {
+                padding-left: 4em;
+            }
+        }
+    }
+
+    .slide-text {
+        width: $text-width;
+    }
+
+    .photo-shape {
+        @if $mobile {
+            position: relative;
+            top: 0;
+        } @else {
+            overflow: hidden;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);            
+        } //End
+
+        @if $mobile {
+            width: $photo-width;
+
+            /*@media screen and (orientation:portrait) {
+                bottom: 65%;
+            }
+            
+            @media screen and (orientation:landscape) {
+                bottom: 50%;
+            }*/
+        } @else {            
+            width: $photo-width;
+        }
+
+        .photo {
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: $photo-height;
+        }
+    }
+
+    .photo-cover {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        content: '';
+        background-color: $cover-color;
+        transition: left $transition-normal $ease, right $transition-normal $ease;
+        // background-color: rgba($color-white,0.8);
+        // outline: 1px dotted red;
+        // outline-offset: -2px;
+    }
+
+    > .jv-wrapper {
+        @if $mobile {
+            //position: absolute;
+            height: auto;
+            
+            /*@media screen and (orientation:portrait) {
+                top: 40%;
+            }
+            
+            @media screen and (orientation:landscape) {
+                top: 55%;
+            }*/
+        } @else {
+            height: 100%;
+        }
+    }
+}
