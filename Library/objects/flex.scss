@@ -81,6 +81,20 @@ $self: (
     auto: auto
 );
 
+@mixin flex-foundation($suffix) {
+    .flex-row#{$suffix},
+    .flex-col#{$suffix},
+    .flex-col-reverse#{$suffix},
+    .flex-row-reverse#{$suffix} {
+        @extend .flex;
+    }
+    .flex#{$suffix} { display: flex }
+    .flex-inline#{$suffix} { display: inline-flex }
+    .flex-col#{$suffix}  { flex-direction: column }
+    .flex-row#{$suffix}  { flex-direction: row }
+    .flex-col-reverse#{$suffix}  { flex-direction: column-reverse }
+    .flex-row-reverse#{$suffix}  { flex-direction: row-reverse }
+}
 @mixin flex-base($namespace, $property, $name, $value, $suffix:null) {
     .flex-#{$namespace}-#{$name}#{$suffix} {
         #{$property}: #{$value};
@@ -151,6 +165,7 @@ $self: (
         /*! max-width: #{$screen-sm-px} */
         @media all and (max-width: $screen-sm-em) {
             $suffix: "-xs";
+            @include flex-foundation($suffix);
             @include flex-classes(main, $suffix);
             // Conditions
             @supports (-ms-accelerator: true) {
@@ -170,6 +185,7 @@ $self: (
         /*! min-width: #{$screen-sm-px} */
         @media all and (min-width: $screen-sm-em) {
             $suffix: "-sm";
+            @include flex-foundation($suffix);
             @include flex-classes(main, $suffix);
 
             // Conditions
@@ -197,6 +213,7 @@ $self: (
         /*! min-width: #{$screen-md-px} */
         @media all and (min-width: $screen-md-em) {
             $suffix: "-md";
+            @include flex-foundation($suffix);
             @include flex-classes(main, $suffix);
 
             // Conditions
@@ -224,6 +241,7 @@ $self: (
         /*! min-width: #{$screen-lg-px} */
         @media all and (min-width: $screen-lg-em) {
             $suffix: "-lg";
+            @include flex-foundation($suffix);
             @include flex-classes(main, $suffix);
             // Conditions
             @supports (-ms-accelerator: true) {
@@ -250,6 +268,7 @@ $self: (
         /*! min-width: #{$screen-xl-px} */
         @media all and (min-width: $screen-xl-em) {
             $suffix: "-xl";
+            @include flex-foundation($suffix);
             @include flex-classes(main, $suffix);
             // Conditions
             @supports (-ms-accelerator: true) {
