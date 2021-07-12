@@ -92,14 +92,6 @@ $internal: false !default;
         }
     }
 
-    input[type=search] {
-        @if $area-hide-search-icon {
-            padding: $form-padding;
-        } @else {
-            padding: $form-padding $form-padding $form-padding 2.5em;
-        }
-    }
-
     input[type=date],
     input[type=email],
     input[type=number],
@@ -255,6 +247,11 @@ $internal: false !default;
 
         .jv-search-field .jv-search-input[type="search"] {
             background: none;
+            @if $area-hide-search-icon {
+                padding: $form-padding;
+            } @else {
+                padding: $form-padding $form-padding $form-padding 2.5em;
+            }
 
             &::placeholder,
             &::-webkit-input-placeholder,

@@ -86,7 +86,9 @@ $self: (
     .flex-col#{$suffix},
     .flex-col-reverse#{$suffix},
     .flex-row-reverse#{$suffix} {
-        @extend .flex;
+        display: flex;
+        min-width: 0;
+        min-height: 0;
     }
     .flex#{$suffix} { display: flex }
     .flex-inline#{$suffix} { display: inline-flex }
