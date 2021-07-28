@@ -1,4 +1,5 @@
-@use "Library/settings/variables" as *;
+@use "sass:math";
+@use "Library/settings/variables"as *;
 @use "Library/tools/mixins" as *;
 @use "Library/tools/flex" as *;
 $mobile: false !default;

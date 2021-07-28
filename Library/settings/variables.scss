@@ -1,3 +1,4 @@
+@use "sass:math"; 
 // -----------------------------------------------------------------------------
 // =Variables - Global
 // -----------------------------------------------------------------------------
@@ -100,7 +101,7 @@ $color-selection-background: $color-black;
 // -----------------------------------------------------------------------------
 $font-base: 16;
 $font-base-px: ($font-base + px);
-$font-size-base: $font-base/16;
+$font-size-base: math.div($font-base,16);
 $font-size-body: 16;
 $font-sm: ($font-size-body - 2);
 $font-size-button: $font-size-base;
@@ -118,20 +119,20 @@ $font-headings: $font-web, $font-sans-serif;
 $font-body: $font-web, $font-sans-serif;
 $font-btn: $font-web, $font-sans-serif;
 
-$h1: (50 / $font-size-body)+em;
-$h1-m: (40 / $font-size-body)+em;
-$h2: (30 / $font-size-body)+em;
-$h2-m: (22 / $font-size-body)+em;
-$h3: (20 / $font-size-body)+em;
-$h3-m: (18 / $font-size-body)+em;
-$h4: (17 / $font-size-body)+em;
-$h4-m: (17 / $font-size-body)+em;
+$h1: (math.div(50, $font-size-body))+em;
+$h1-m: (math.div(40, $font-size-body))+em;
+$h2: (math.div(30, $font-size-body))+em;
+$h2-m: (math.div(22, $font-size-body))+em;
+$h3: (math.div(20, $font-size-body))+em;
+$h3-m: (math.div(18, $font-size-body))+em;
+$h4: (math.div(17, $font-size-body))+em;
+$h4-m: (math.div(17, $font-size-body))+em;
 $h5: 1em;
 $h5-m: 1em;
-$h6: (14 / $font-size-body)+em;
-$h6-m: (14 / $font-size-body)+em;
-$p: (16 / $font-size-body)+em;
-$p-m: (16 / $font-size-body)+em;
+$h6: (math.div(14, $font-size-body))+em;
+$h6-m: (math.div(14, $font-size-body))+em;
+$p: (math.div(16, $font-size-body))+em;
+$p-m: (math.div(16, $font-size-body))+em;
 
 // -webkit-font-smoothing: antialiased | auto | none
 $font-smoothing: antialiased;
@@ -146,7 +147,7 @@ $section-padding: 3em 0;
 
 // Forms
 // -----------------------------------------------------------------------------
-$input-font-size: (16 / $font-size-body) + em;
+$input-font-size: (math.div(16, $font-size-body)) + em;
 
 $input-width: 300px; // Desktop
 $input-min: 200px;
@@ -202,16 +203,16 @@ $browser-max-width: 1200px;
 // -----------------------------------------------------------------------------
 $screen-sm: 576;
 $screen-sm-px: $screen-sm + px;
-$screen-sm-em: ($screen-sm / $font-base) + em;
+$screen-sm-em: (math.div($screen-sm, $font-base)) + em;
 $screen-md: 768;
 $screen-md-px: $screen-md + px;
-$screen-md-em: ($screen-md / $font-base) + em;
+$screen-md-em: (math.div($screen-md, $font-base)) + em;
 $screen-lg: 992;
 $screen-lg-px: $screen-lg + px;
-$screen-lg-em: ($screen-lg / $font-base) + em;
+$screen-lg-em: (math.div($screen-lg, $font-base)) + em;
 $screen-xl: 1200;
 $screen-xl-px: $screen-xl + px;
-$screen-xl-em: ($screen-xl / $font-base) + em;
+$screen-xl-em: (math.div($screen-xl, $font-base)) + em;
 
 // Z-index
 // -----------------------------------------------------------------------------

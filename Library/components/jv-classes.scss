@@ -1,3 +1,4 @@
+@use "sass:math";
 @use "Library/settings/variables"as *;
 @use "Library/tools/mixins"as *;
 @use "Library/tools/flex"as *;
@@ -186,7 +187,7 @@ main {
     .jv-job-item {
 
         .jv-meta {
-            font-size: (14 / $font-size-body) + em;
+            font-size: (math.div(14, $font-size-body)) + em;
             font-weight: 400;
         }
     }
@@ -321,7 +322,7 @@ main {
         .jv-apply-meta {
             margin: 0.5em 0 1em;
             color: $color-text;
-            font-size: (16 / $font-size-body) + em;
+            font-size: (math.div(16, $font-size-body)) + em;
         }
 
         .jv-step-header {

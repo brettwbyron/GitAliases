@@ -1,8 +1,9 @@
+@use "sass:math"; 
+@use "Library/settings/variables"as *;
+$mobile: false !default;
 // --------------------------------------------------------------------------
 //  =Mixins
 // --------------------------------------------------------------------------
-@use "Library/settings/variables"as *;
-$mobile: false !default;
 
 // -----------------------------------------------------------------------------
 // Banners - fixed | scaling
@@ -116,7 +117,7 @@ $mobile: false !default;
         &:before {
             display: block;
             content: '';
-            padding-bottom: ($imgH/$imgW) * 100%;
+            padding-bottom: math.div($imgH,$imgW) * 100%;
         }
 
         .slides {
@@ -448,7 +449,7 @@ $mobile: false !default;
 
     @media screen and (min-width: $min-vw) {
         @each $property in $properties {
-            #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
+            #{$property}: math.div(calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw})), (#{strip-unit($max-vw - $min-vw)}));
         }
     }
 

@@ -1,3 +1,4 @@
+@use "sass:math";
 @use "Library/settings/variables"as *;
 @use "Library/tools/mixins"as *;
 @use "Library/tools/flex"as *;
@@ -59,7 +60,7 @@ $internal: false !default;
         border-radius: $border-radius;
 
         i, svg {
-            font-size: (40 / $font-size-body)+em;
+            font-size: math.div(40, $font-size-body)+em;
         }
 
         h2 {
@@ -71,7 +72,7 @@ $internal: false !default;
         }
 
         .title {
-            font-size: (20 / $font-size-body) + em;
+            font-size: math.div(20, $font-size-body) + em;
             margin: 0.5em 0;
             text-align: center;
         }

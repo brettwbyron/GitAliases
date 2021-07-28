@@ -1,4 +1,4 @@
-
+@use "sass:math";
 @use "Library/settings/variables"as *;
 @use "Library/tools/mixins"as *;
 @use "Library/tools/flex"as *;
@@ -29,7 +29,7 @@ $internal: false !default;
  * $fg-class-off string used for the offset class
  */
 $fg-columns: $max-columns !default;
-$fg-gutter: ($column-gutter/2) !default;
+$fg-gutter: math.div($column-gutter,2) !default;
 
 $fg-class-row: 'row' !default;
 $fg-class-col: 'col' !default;
@@ -81,7 +81,7 @@ $fg-breakpoints: (
  */
 @function get-col-percent($column-num) {
 
-    @return $column-num / $fg-columns * 100%;
+    @return math.div($column-num, $fg-columns) * 100%;
 
 }
 

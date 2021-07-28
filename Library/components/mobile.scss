@@ -1,4 +1,5 @@
-@use "Library/settings/variables" as *;
+@use "sass:math";
+@use "Library/settings/variables"as *;
 @use "Library/tools/mixins" as *;
 @use "Library/tools/flex" as *;
 $internal: false !default;
@@ -108,7 +109,7 @@ $internal: false !default;
         right: auto;
 
         .jv-nav-visible & {
-            transform: translate3d(255px, 0px, 0px) scale3d(1, 1, 1)!important;
+            transform: translate3d(255px, 0, 0) scale3d(1, 1, 1)!important;
         }
     }
     @if $area-nav-top {
@@ -118,10 +119,10 @@ $internal: false !default;
         height: auto;
         top: -100vh;
         right: auto;
-        transform: translate3d(0, -100vh, 0px) scale3d(1, 1, 1) !important;
+        transform: translate3d(0, -100vh, 0) scale3d(1, 1, 1) !important;
 
         .jv-nav-visible & {
-            transform: translate3d(0, 100vh, 0px) scale3d(1, 1, 1) !important;
+            transform: translate3d(0, 100vh, 0) scale3d(1, 1, 1) !important;
         }
     }
 
@@ -133,7 +134,7 @@ $internal: false !default;
     .jv-nav-link {
         padding: 15px 15px 18px;
         line-height: 18px;
-        font-size: (15 / $font-size-body) + em;
+        font-size: (math.div(15, $font-size-body)) + em;
         font-family: $font-headings;
         font-weight: 600;
         white-space: nowrap;

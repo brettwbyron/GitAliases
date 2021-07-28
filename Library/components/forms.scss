@@ -1,4 +1,5 @@
-@use "Library/settings/variables" as *;
+@use "sass:math";
+@use "Library/settings/variables"as *;
 @use "Library/tools/mixins" as *;
 @use "Library/tools/flex" as *;
 $mobile: false !default;
@@ -32,7 +33,7 @@ $internal: false !default;
         @if $area-form-labels {
 
             .jv-form-field-label {
-                font-size: (16 / $font-size-body) + em;
+                font-size: (math.div(16, $font-size-body)) + em;
                 width: $form-label-width;
             }
         }
