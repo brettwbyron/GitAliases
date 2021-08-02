@@ -1,4 +1,7 @@
 @use "sass:math"; 
+@use "sass:meta";
+@use "sass:list";
+@use "sass:map";
 @use "Library/settings/variables"as *;
 $mobile: false !default;
 // --------------------------------------------------------------------------
@@ -65,7 +68,37 @@ $mobile: false !default;
 //     </div>
 // </div>
 
-@mixin banner-scaling($imgH, $imgW, $h:null, $h-m:null, $min:null, $max:null, $class:null, $imgName:null, $pos:'50% 50%') {
+@mixin banner() {
+    .banner {
+        width: 100%;
+        position: relative;
+
+        // } @else {
+        //     .banner-image {
+        //         @if $mobile {
+        //             height: $h-m;
+
+        //             @media screen and (orientation:landscape) {
+        //                 height: $h-m * 1.5;
+        //             }
+        //         } @else {
+        //             @media all and (-ms-high-contrast: none),
+        //             (-ms-high-contrast: active) {                        
+        //                 height: $h;
+        //                 min-height: $min;
+        //                 max-height: $max;
+        //             }
+        //             height: clamp(#{$min}, #{$h}, #{$max});                    
+        //         } //End
+        //     }
+        // }
+
+        @content;
+    }
+}
+
+// $m-x (mobile image factor: 
+@mixin slideshow($imgH, $imgW, $h:null, $min:null, $max:null, $h-m:null, $m-x:1.5, $pos:'50% 50%', $suffix:false, $slides...) {
     @if $h !=null and type-of($h) !=number and not str-index($h, 'vh') and not str-index($h, "%") and $h !='auto' {
         @error "The value of $h:#{$h} must be in pixels, vh, or %.";
     }
@@ -90,76 +123,111 @@ $mobile: false !default;
         @error "The image width value of $imgW:#{$imgW} must be in pixels.";
     }
 
-    @if $class !=null {
-        $class: ("."+ $class);
-    }
+    @if $mobile {
+        height: $h-m;
 
-    @if $imgName !=null {
-        @if type-of($imgName) !=string {
-            @error "The image name must be a string with file format. ex: banner.jpg";
+        @media screen and (orientation:landscape) {
+            height: $h-m * $m-x;
         }
+    } @else {
+        height: $h;
+        min-height: $min;
+        max-height: $max;
     }
 
-    .banner#{$class} {
+    &:before {
+        display: block;
+        content: '';
+        padding-bottom: math.div($imgH,$imgW) * 100%;
+    }
+
+    .slides {
+        position: absolute;
         width: 100%;
-        position: relative;
+        height: 100%;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        padding-left: 0;
+        overflow: hidden;
 
-        @if $mobile {
-            height: $h-m;
+        .slide {
+            height: inherit;
+            opacity: 0;
+
+            &.tns-slide-active {
+                opacity: 1;
+            }
         }
 
-        @else {
-            height: $h;
-            min-height: $min;
-            max-height: $max;
-        }
-
-        &:before {
-            display: block;
-            content: '';
-            padding-bottom: math.div($imgH,$imgW) * 100%;
-        }
-
-        .slides {
+        .tns-item {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            padding-left: 0;
-            overflow: hidden;
+            z-index: 0;
+            background-position: unquote($pos);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
 
-            .slide {
-                height: inherit;
-                opacity: 0;
+    @each $img,
+    $count in $slides {
+        $list: list.append($list, "banner-#{nth($img,$count)}");
 
-                &.tns-slide-active {
-                    opacity: 1;
+        @for $i from 1 to $count {
+            &.#{$list} {
+                @if $suffix {
+                    $index: str-index(nth($list, $i+1), '.');
+                    $output: str-insert(nth($list, $i+1), "-#{$i+1}#{$img-suffix}", $index);
+
+                    .slide-#{$i+1} {
+                        background-image: url($root-url+$output);
+                    }
                 }
-            }
 
-            .tns-item {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-                z-index: 0;
-                background-position: unquote($pos);
-                background-repeat: no-repeat;
-                background-size: cover;
+                @else {
+                    $index: str-index(nth($list, $i+1), '.');
+                    $output: str-insert(nth($list, $i+1), "-#{$i+1}", $index);
 
-                @if $imgName !=null {
-                    background-image: url($root-url+$imgName);
+                    .slide-#{$i+1} {
+                        background-image: url($root-url+$output);
+                    }
                 }
             }
         }
-
-        @content;
     }
+
+    // Singles images
+    // $list:();
+    // @for $i from 0 to length($slides){
+    //     $list: list.append($list, "banner-#{nth($slides,$i+1)}");
+
+    //     &.banner-#{nth($list,$i+1)} {      
+    //         @if $suffix {
+    //             $index: str-index(nth($list,$i+1), '.');
+    //             $output: str-insert(nth($list, $i+1), "-#{$i+1}#{$img-suffix}", $index);
+
+    //             .slide-#{$i+1} {
+    //                 background-image: url($root-url+$output);
+    //             }
+    //         } @else {
+    //             $index: str-index(nth($list, $i+1), '.');
+    //             $output: str-insert(nth($list, $i+1), "-#{$i+1}", $index);
+
+    //             .slide-#{$i+1} {
+    //                 background-image: url($root-url+$output);
+    //             }
+    //         }
+    //     }
+    // }
+    // @debug "$list: #{$list}";
+
+    @content;
 }
 
 // -----------------------------------------------------------------------------
