@@ -79,15 +79,11 @@ $mobile: false !default;
 
 // $m-x: mobile image factor, applies a multiplier to mobile height for landscape view
 // $suffix (boolean): for mobile image suffix set in variables, default is '@0.5x'
-// $slideName: name of banner image including file extension ex: banner-home.jpg
+// $imgName: name of banner image including file extension ex: banner-home.jpg
 // $count: number of banner images
-@mixin slideshow($imgH, $imgW, $h:null, $min:null, $max:null, $h-m:null, $m-x:1.5, $pos:'50% 50%', $suffix:false, $slideName, $count) {
+@mixin bannerImage($imgH, $imgW, $h:null, $min:null, $max:null, $mobile:false, $m-x:1.5, $pos:50% 50%, $size:cover, $repeat:no-repeat, $suffix:false, $imgName, $count) {
     @if $h !=null and type-of($h) !=number and not str-index($h, 'vh') and not str-index($h, "%") and $h !='auto' {
         @error "The value of $h:#{$h} must be in pixels, vh, or %.";
-    }
-
-    @if $h-m !=null and type-of($h-m) !=number and not str-index($h-m, 'vh') and not str-index($h-m, "%") and $h-m !='auto' {
-        @error "The value of $h-m:#{$h-m} must be in pixels, vh, or %.";
     }
 
     @if $min !=null and type-of($min) !=number and not str-index($min, 'vh') and not str-index($min, "%") {
@@ -106,157 +102,121 @@ $mobile: false !default;
         @error "The image width value of $imgW:#{$imgW} must be in pixels.";
     }
 
-    @if $mobile {
-        height: $h-m;
+    @if $count == null or type-of($count) !=number or $count == 0 {
+        @error "The value of $count:#{$count} must be greater than 0";
+    }
 
-        @media screen and (orientation:landscape) {
-            height: $h-m * $m-x;
-        }
-    } @else {
+    // Slideshow images for banner    
+    @if $count > 1 {
         height: $h;
-        min-height: $min;
-        max-height: $max;
-    }
-
-    &:before {
-        display: block;
-        content: '';
-        padding-bottom: math.div($imgH,$imgW) * 100%;
-    }
-
-    .slides {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        padding-left: 0;
-        overflow: hidden;
-
-        .slide {
-            height: inherit;
-            opacity: 0;
-
-            &.tns-slide-active {
-                opacity: 1;
+        @if $mobile {    
+            @media screen and (orientation:landscape) {
+                height: $h * $m-x;
             }
         }
-
-        .tns-item {
+        min-height: $min;
+        max-height: $max;
+    
+        &:before {
+            display: block;
+            content: '';
+            padding-bottom: math.div($imgH,$imgW) * 100%;
+        }
+    
+        .slides {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
-            z-index: 0;
-            background-position: unquote($pos);
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-    }
-
-    // Slide images
-    @for $i from 1 through $count {
-        $index: str-index($slideName,'.');
-        $selector: str-slice($slideName,1,($index - 1));
-
-        &.#{$selector} {
-            @if $suffix {
-                $output: str-insert($slideName, "-#{$i}#{$img-suffix}", $index);
-
-                .slide-#{$i} {
-                    background-image: url($root-url+$output);
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            padding-left: 0;
+            overflow: hidden;
+    
+            .slide {
+                height: inherit;
+                opacity: 0;
+    
+                &.tns-slide-active {
+                    opacity: 1;
                 }
-            } @else {
-                $output: str-insert($slideName, "-#{$i}", $index);
-
-                .slide-#{$i} {
-                    background-image: url($root-url+$output);
+            }
+    
+            .tns-item {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                background-position: $pos;
+                background-size: $size;
+                background-repeat: $repeat;
+            }
+        }
+    
+        // Slide images
+        @for $i from 1 through $count {
+            $index: str-index($imgName,'.');
+            $selector: str-slice($imgName,1,($index - 1));
+    
+            &.#{$selector} {
+                @if $suffix {
+                    $output: str-insert($imgName, "-#{$i}#{$img-suffix}", $index);
+    
+                    .slide-#{$i} {
+                        background-image: url($root-url+$output);
+                    }
+                } @else {
+                    $output: str-insert($imgName, "-#{$i}", $index);
+    
+                    .slide-#{$i} {
+                        background-image: url($root-url+$output);
+                    }
                 }
             }
         }
-    }
-
-    @content;
-}
-
-// $m-x: mobile image factor, applies a multiplier to mobile height for landscape view
-// $suffix (boolean): for mobile image suffix set in variables, default is '@0.5x'
-// $name: name of banner image including file extension ex: banner-home.jpg
-@mixin single($imgH, $imgW, $h:null, $min:null, $max:null, $h-m:null, $m-x:1.5, $pos:'50% 50%', $suffix:false, $name) {
-    @if $h !=null and type-of($h) !=number and not str-index($h, 'vh') and not str-index($h, "%") and $h !='auto' {
-        @error "The value of $h:#{$h} must be in pixels, vh, or %.";
-    }
-
-    @if $h-m !=null and type-of($h-m) !=number and not str-index($h-m, 'vh') and not str-index($h-m, "%") and $h-m !='auto' {
-        @error "The value of $h-m:#{$h-m} must be in pixels, vh, or %.";
-    }
-
-    @if $min !=null and type-of($min) !=number and not str-index($min, 'vh') and not str-index($min, "%") {
-        @error "The value of $min:#{$min} must be in pixels, vh, or %.";
-    }
-
-    @if $max !=null and type-of($max) !=number and not str-index($max, 'vh') and not str-index($max, "%") {
-        @error "The value of $max:#{$max} must be in pixels, vh, or %.";
-    }
-
-    @if type-of($imgH) !=number {
-        @error "The image height value of $imgH:#{$imgH} must be in pixels.";
-    }
-
-    @if type-of($imgW) !=number {
-        @error "The image width value of $imgW:#{$imgW} must be in pixels.";
-    }
-
-    // @if $mobile {
-    //     height: $h-m;
-
-    //     @media screen and (orientation:landscape) {
-    //         height: $h-m * $m-x;
-    //     }
-    // } @else {
-    //     height: $h;
-    //     min-height: $min;
-    //     max-height: $max;
-    // }
-    
     // Single image for banner    
-    $index: str-index($name, '.');
-    $selector: str-slice($name, 1, ($index - 1));
-    
-    &.#{$selector} {
-        &:before {
-            display: block;
-            content: '';
-            padding-bottom: math.div($imgH, $imgW) * 100%;
-        }
+    } @else if $count == 1 {
+        $index: str-index($imgName, '.');
+        $selector: str-slice($imgName, 1, ($index - 1));
 
-        .banner-image {
-            @if $mobile {
-                height: $h-m; 
-                
-                @media screen and (orientation:landscape) {
-                    height: $h-m * 1.5;
+        &.#{$selector} {
+            &:before {
+                display: block;
+                content: '';
+                padding-bottom: math.div($imgH, $imgW) * 100%;
+            }
+
+            .banner-image {
+                height: clamp(#{$min}, #{$h}, #{$max});
+                @if $mobile {
+
+                    @media screen and (orientation:landscape) {
+                        height: $h * $m-x;
+                    }
+                } @else {
+
+                    @media all and (-ms-high-contrast: none),
+                    (-ms-high-contrast: active) {
+                        height: $h;
+                        min-height: $min;
+                        max-height: $max;
+                    }
+
+                } //End
+                @if $suffix {
+                    $output: str-insert($imgName, "#{$img-suffix}", $index);
+
+                    background-image: url($root-url+$output);
+                } @else {
+                    background-image: url($root-url+$imgName);
                 }
-            } @else {
-                @media all and (-ms-high-contrast: none),
-                (-ms-high-contrast: active) {                        
-                    height: $h;
-                    min-height: $min;
-                    max-height: $max;
-                }
-                height: clamp(#{$min}, #{$h}, #{$max});                    
-            } //End
-            @if $suffix {
-                $output: str-insert($name, "#{$img-suffix}", $index);
-             
-                background-image: url($root-url+$output);
-                
-            } @else {
-                background-image: url($root-url+$name);
+                background-position: $pos;
+                background-size: $size;
+                background-repeat: $repeat;
             }
         }
     }

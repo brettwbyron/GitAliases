@@ -35,24 +35,24 @@ $internal: false !default;
 
 // @include banner-fixed($w:1200px,$h:500px)
 
-// @include banner() {
-//     @include slideshow(500px, 1200px, 400px, 300px, 500px, 200px, 1.5, '50% 50%',false,'banner-home.jpg',3);
-//     @include single(500px, 1200px, 400px, 300px, 500px, 200px, 1.5, '50% 50%', false, 'banner-home.jpg');
-//
-//     .overlay {
-//         @include absolute(0, 0, 0, 0);
-//         background-color: rgba($color-black, 0.3);
-//     }
-//     .overlay-text {
-//         h1, p {
-//             color: $color-white;
-//             text-shadow: 0 2px 4px rgba($color-black, 0.8);
-//         }
-//         p {
-//             font-size: 20px;
-//         }
-//     }
-// }
+@include banner() {
+    // bannerImage($imgH, $imgW, $h:null, $min:null, $max:null, $mobile:false, $m-x:1.5, $pos:50% 50%, $size:cover, $repeat:no-repeat, $suffix:false, $imgName, $count)
+    @include bannerImage(500px, 1200px, 400px, 300px, 500px, false, 1.5, 50% 50%, cover, no-repeat, false, 'banner-home.jpg', 3);
+
+    .overlay {
+        @include absolute(0, 0, 0, 0);
+        background-color: rgba($color-black, 0.3);
+    }
+    .overlay-text {
+        h1, p {
+            color: $color-white;
+            text-shadow: 0 2px 4px rgba($color-black, 0.8);
+        }
+        p {
+            font-size: 20px;
+        }
+    }
+}
 
 // >>>>>>>>>>> Add your sections here <<<<<<<<<<
 
