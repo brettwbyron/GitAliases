@@ -65,9 +65,10 @@ $internal: false !default;
 // }
 
 @include banner() {
-    $slides: ('home.jpg':5,'people.jpg':3,'about.jpg':2);
-    // $slides: ('home.jpg', 'people.jpg', 'about.jpg');
-    @include slideshow(500px, 1200px, 400px, 300px, 500px, 200px, 1.5, '50% 50%',false,$slides...);
+    // @include slideshow(500px, 1200px, 400px, 300px, 500px, 200px, 1.5, '50% 50%',false,'banner-home.jpg',3);
+    @include single(500px, 1200px, 400px, 300px, 500px, 200px, 1.5, '50% 50%', false, 'banner-home.jpg');
+
+    @include single(500px, 1200px, 400px, 300px, 500px, 200px, 1.5, '50% 50%', false, 'banner-about.jpg');
 }
 
 // >>>>>>>>>>> Add your sections here <<<<<<<<<<
