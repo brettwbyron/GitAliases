@@ -68,8 +68,8 @@ $mobile: false !default;
 //     </div>
 // </div>
 
-@mixin banner() {
-    .banner {
+@mixin banner($selector:'.banner') {
+    #{$selector} {
         width: 100%;
         position: relative;
 
