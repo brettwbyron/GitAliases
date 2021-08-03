@@ -73,26 +73,6 @@ $mobile: false !default;
         width: 100%;
         position: relative;
 
-        // } @else {
-        //     .banner-image {
-        //         @if $mobile {
-        //             height: $h-m;
-
-        //             @media screen and (orientation:landscape) {
-        //                 height: $h-m * 1.5;
-        //             }
-        //         } @else {
-        //             @media all and (-ms-high-contrast: none),
-        //             (-ms-high-contrast: active) {                        
-        //                 height: $h;
-        //                 min-height: $min;
-        //                 max-height: $max;
-        //             }
-        //             height: clamp(#{$min}, #{$h}, #{$max});                    
-        //         } //End
-        //     }
-        // }
-
         @content;
     }
 }
