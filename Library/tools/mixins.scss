@@ -20,27 +20,17 @@ $mobile: false !default;
 // <div id="banner" class="banner">
 //     <img src="//careers.jobvite.com/path-to-customer-folder/banner.jpg" />
 // </div>
-@mixin banner-fixed($w:1200px, $h:500px) {
+@mixin bannerFixed($selector:'.banner-fixed',$w:1200px, $h:500px) {
     @if type-of($w) !=number {
         @error "The value of $w:#{$w} must be in pixels.";
     }
     @if $h !=null and type-of($h) !=number {
         @error "The value of $h:#{$h} must be in pixels.";
     }
-
-    .banner {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        position: relative;
-
+    &#{$selector} {
         img {
             max-width: $w;
-            @if $mobile {
-                height: $h-m;
-            } @else {
-                height: $h;
-            } //End
+            height: $h;
         }
 
         @content;
@@ -54,7 +44,7 @@ $mobile: false !default;
 // $imgName (image name): <string>
 // $pos (position): <any value accepted by background-position
 //
-// EX:
+// EX: Slider
 // <div id="banner" class="banner banner-home">
 //     <div class="slides">
 //         <div class="slide slide-1"></div>
@@ -67,6 +57,11 @@ $mobile: false !default;
 //         </div>
 //     </div>
 // </div>
+// 
+// EX: Single Image
+// <div class="banner banner-home">
+//     <div class="banner-image"></div>
+// </div>
 
 @mixin banner($selector:'.banner') {
     #{$selector} {
@@ -77,11 +72,20 @@ $mobile: false !default;
     }
 }
 
-// $m-x: mobile image factor, applies a multiplier to mobile height for landscape view
-// $suffix (boolean): for mobile image suffix set in variables, default is '@0.5x'
-// $imgName: name of banner image including file extension ex: banner-home.jpg
-// $count: number of banner images
-@mixin bannerImage($imgH, $imgW, $h:null, $min:null, $max:null, $mobile:false, $m-x:1.5, $pos:50% 50%, $size:cover, $repeat:no-repeat, $suffix:false, $imgName, $count) {
+// $class (required): Class selector for unique image or slider
+// $imgH (required): Height of image in pixels
+// $imgW (required): Width of image in pixels
+// $h (optional): a preferred height
+// $min (optional): a minimum height
+// $max (optional): a maximum height
+// $m-x: mobile image factor, applies a multiplier to mobile height for landscape view. Value should be greater than 0... smaller < 1 < larger
+// $imgName (required): name of banner image including file extension ex: 'banner-home.jpg'
+// $suffix (boolean): for mobile image suffix, set in variables, default is '@0.5x'
+// $count (required): number of banner images
+// $pos: positions background image
+// $size: cover (default) | contain | pixels/percentage (width height in pixels/percentage)
+// $webp (boolean): includes a webp image version
+@mixin bannerImage($class, $imgH, $imgW, $h:null, $min:null, $max:null, $m-x:1.5, $imgName, $suffix:false, $count, $pos:50% 50%, $size:cover, $repeat:no-repeat, $webp:false) {
     @if $h !=null and type-of($h) !=number and not str-index($h, 'vh') and not str-index($h, "%") and $h !='auto' {
         @error "The value of $h:#{$h} must be in pixels, vh, or %.";
     }
@@ -108,15 +112,9 @@ $mobile: false !default;
 
     // Slideshow images for banner    
     @if $count > 1 {
-        height: $h;
-        @if $mobile {    
-            @media screen and (orientation:landscape) {
-                height: $h * $m-x;
-            }
-        }
-        min-height: $min;
-        max-height: $max;
-    
+        $index: str-index($imgName, '.');
+        // $selector: str-slice($imgName, 1, ($index - 1));
+        
         &:before {
             display: block;
             content: '';
@@ -156,24 +154,64 @@ $mobile: false !default;
                 background-repeat: $repeat;
             }
         }
+        &.#{$class} {
+            @if $mobile {
+                height: clamp(#{$min}, #{$h}, #{$max});
+                @media screen and (orientation:landscape) {
+                    height: $h * $m-x;
+                }
+            } @else {
+                height: clamp(#{$min}, #{$h}, #{$max});
+                @media all and (-ms-high-contrast: none),
+                (-ms-high-contrast: active) {
+                    height: $h;
+                    min-height: $min;
+                    max-height: $max;
+                }
+            } //End
+        }
     
         // Slide images
         @for $i from 1 through $count {
-            $index: str-index($imgName,'.');
-            $selector: str-slice($imgName,1,($index - 1));
     
-            &.#{$selector} {
+            &.#{$class} {
+            
                 @if $suffix {
                     $output: str-insert($imgName, "-#{$i}#{$img-suffix}", $index);
     
                     .slide-#{$i} {
                         background-image: url($root-url+$output);
+
+                        @if $webp {
+                            .webp & {
+                                @if $suffix {
+                                    // $index: str-index($imgName, '.');
+                                    $slice: str-slice($imgName,1,$index - 1);
+                                    $output: $slice + $img-suffix + '.webp';
+                                    background-image: url($root-url+$output);
+                                } @else {
+                                    // $index: str-index($imgName, '.');
+                                    $slice: str-slice($imgName, 1, $index - 1);
+                                    $output: $slice + '.webp';
+                                    background-image: url($root-url+$output);
+                                }
+                            }
+                        }
                     }
                 } @else {
                     $output: str-insert($imgName, "-#{$i}", $index);
     
                     .slide-#{$i} {
                         background-image: url($root-url+$output);
+
+                        @if $webp {
+                            .webp & {                
+                                // $index: str-index($imgName, '.');
+                                $slice: str-slice($imgName, 1, $index - 1);
+                                $output: $slice + '.webp';
+                                background-image: url($root-url+$output);
+                            }
+                        }
                     }
                 }
             }
@@ -193,26 +231,48 @@ $mobile: false !default;
             .banner-image {
                 height: clamp(#{$min}, #{$h}, #{$max});
                 @if $mobile {
-
                     @media screen and (orientation:landscape) {
                         height: $h * $m-x;
                     }
                 } @else {
-
                     @media all and (-ms-high-contrast: none),
                     (-ms-high-contrast: active) {
                         height: $h;
                         min-height: $min;
                         max-height: $max;
                     }
-
                 } //End
                 @if $suffix {
                     $output: str-insert($imgName, "#{$img-suffix}", $index);
 
                     background-image: url($root-url+$output);
+
+                    @if $webp {
+                        .webp & {
+                            @if $suffix {
+                                // $index: str-index($imgName, '.');
+                                $slice: str-slice($imgName, 1, $index - 1);
+                                $output: $slice + $img-suffix + '.webp';
+                                background-image: url($root-url+$output);
+                            } @else {
+                                // $index: str-index($imgName, '.');
+                                $slice: str-slice($imgName, 1, $index - 1);
+                                $output: $slice + '.webp';
+                                background-image: url($root-url+$output);
+                            }
+                        }
+                    }
                 } @else {
                     background-image: url($root-url+$imgName);
+
+                    @if $webp {
+                        .webp & {
+                            // $index: str-index($imgName, '.');
+                            $slice: str-slice($imgName, 1, $index - 1);
+                            $output: $slice + '.webp';
+                            background-image: url($root-url+$output);
+                        }
+                    }
                 }
                 background-position: $pos;
                 background-size: $size;
@@ -269,6 +329,27 @@ $mobile: false !default;
 @mixin radial-gradient($list) {
     background: radial-gradient(circle closest-side, $list);
 }
+
+// -----------------------------------------------------------------------------
+// Custom scrollbar
+// -----------------------------------------------------------------------------
+@mixin scrollbar($size, $foreground-color, $background-color) {
+    &::-webkit-scrollbar-thumb {
+        background: $foreground-color;
+        border-radius: $size/2;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: $background-color;
+    }
+    
+    // For Internet Explorer
+    & {
+        scrollbar-face-color: $foreground-color;
+        scrollbar-track-color: $background-color;
+    }
+}
+
 
 // -----------------------------------------------------------------------------
 // Truncating single line of text only
@@ -462,20 +543,20 @@ $mobile: false !default;
 // -----------------------------------------------------------------------------
 // =Position
 // -----------------------------------------------------------------------------
-@mixin absolute($top:null, $right:null, $bottom:null, $left:null) {
-    position: absolute;
+@mixin position($pos, $top:null, $right:null, $bottom:null, $left:null) {
+    position: $pos;
     top: $top;
     right: $right;
     bottom: $bottom;
     left: $left;
 }
 
+@mixin absolute($top:null, $right:null, $bottom:null, $left:null) {
+    @include position(absolute, $top, $right, $bottom, $left);
+}
+
 @mixin relative($top:null, $right:null, $bottom:null, $left:null) {
-    position: relative;
-    top: $top;
-    right: $right;
-    bottom: $bottom;
-    left: $left;
+    @include position(relative, $top, $right, $bottom, $left);
 }
 
 // ----

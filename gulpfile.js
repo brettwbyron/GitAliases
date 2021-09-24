@@ -92,8 +92,8 @@ function compileScripts() {
 function webP() {
     return src(PATHS.SRC_IMG + '*.{jpg,jpeg,png}')
         .pipe(plugins.webp({
-            quality: 75,
-            lossless: true,
+            quality: 80,
+            lossless: false,
             method: 4,
             metadata: 'all'
         }))
