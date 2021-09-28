@@ -173,42 +173,34 @@ $mobile: false !default;
     
         // Slide images
         @for $i from 1 through $count {
-    
+
             &.#{$class} {
-            
+
                 @if $suffix {
                     $output: str-insert($imgName, "-#{$i}#{$img-suffix}", $index);
-    
+
                     .slide-#{$i} {
                         background-image: url($root-url+$output);
 
                         @if $webp {
                             .webp & {
-                                @if $suffix {
-                                    // $index: str-index($imgName, '.');
-                                    $slice: str-slice($imgName,1,$index - 1);
-                                    $output: $slice + $img-suffix + '.webp';
-                                    background-image: url($root-url+$output);
-                                } @else {
-                                    // $index: str-index($imgName, '.');
-                                    $slice: str-slice($imgName, 1, $index - 1);
-                                    $output: $slice + '.webp';
-                                    background-image: url($root-url+$output);
-                                }
+                                $slice: str-slice($imgName, 1, $index - 1);
+                                $output: $slice+"-#{$i}#{$img-suffix}"+'.webp';
+                                background-image: url($root-url+$output);
                             }
                         }
                     }
                 } @else {
                     $output: str-insert($imgName, "-#{$i}", $index);
-    
+
                     .slide-#{$i} {
                         background-image: url($root-url+$output);
 
                         @if $webp {
-                            .webp & {                
+                            .webp & {
                                 // $index: str-index($imgName, '.');
                                 $slice: str-slice($imgName, 1, $index - 1);
-                                $output: $slice + '.webp';
+                                $output: $slice+"-#{$i}"+'.webp';
                                 background-image: url($root-url+$output);
                             }
                         }
