@@ -326,7 +326,7 @@ $mobile: false !default;
 }
 
 // Radial gradient - $list: <gradient colors>
-@mixin radial-gradient($list) {
+@mixin gradient-radial($list) {
     background: radial-gradient(circle closest-side, $list);
 }
 
@@ -543,12 +543,30 @@ $mobile: false !default;
 // -----------------------------------------------------------------------------
 // =Position
 // -----------------------------------------------------------------------------
+
 @mixin position($pos, $top:null, $right:null, $bottom:null, $left:null) {
-    position: $pos;
-    top: $top;
-    right: $right;
-    bottom: $bottom;
-    left: $left;
+	position: $pos;
+	@if $left {
+		top: $top;
+		right: $right;
+		bottom: $bottom;
+		left: $left;
+	} @else if $bottom {
+		top: $top;
+		right: $right;
+		bottom: $bottom;
+		left: $right;
+	} @else if $right {
+		top: $top;
+		right: $right;
+		bottom: $top;
+		left: $right;
+	} @else if $top {
+		top: $top;
+		right: $top;
+		bottom: $top;
+		left: $top;
+	}
 }
 
 @mixin absolute($top:null, $right:null, $bottom:null, $left:null) {
