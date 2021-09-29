@@ -40,7 +40,7 @@ $internal: false !default;
     @if $mobile {
         @include bannerImage('banner-home', 250px, 600px, 3vw, 200px, 300px, 1.5, 'banner-home.jpg', true, 1, 50% 50%, cover, no-repeat, false);
     } @else {
-        @include bannerImage('banner-home', 500px, 1200px, 40vw, 300px, 500px, 1.5, 'banner-home.jpg', false, 1, 50% 50%, cover, no-repeat, true);
+        @include bannerImage('banner-home', 500px, 1200px, 40vw, 300px, 500px, 1.5, 'banner-home.jpg', false, 1, 50% 50%, cover, no-repeat, false);
     } //End
 
     // If you have multiple overlays that are different, wrap with your unique class like this example

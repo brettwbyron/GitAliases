@@ -318,7 +318,6 @@ button:focus {outline:thin dotted rgba(0,103,244,.247)}
 .banner.banner-home .banner-image {height:clamp(300px,40vw,500px);background-image:url(//careers.jobvite.com/customer-folder/banner-home.jpg);background-position:50% 50%;background-size:cover;background-repeat:no-repeat}
 @media all and (-ms-high-contrast:none),(-ms-high-contrast:active) {
 .banner.banner-home .banner-image {height:40vw;min-height:300px;max-height:500px}}
-.webp .banner.banner-home .banner-image {background-image:url(//careers.jobvite.com/customer-folder/banner-home.webp)}
 .banner.banner-home .overlay {position:absolute;top:0;right:0;bottom:0;left:0;background-color:rgba(0,0,0,.3)}
 .banner.banner-home .overlay-text h1,.banner.banner-home .overlay-text p {color:#fff}
 .banner.banner-home .overlay-text p {font-size:20px}
