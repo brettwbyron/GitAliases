@@ -2,8 +2,10 @@
 @use "Library/settings/variables"as *;
 @use "Library/tools/mixins"as *;
 @use "Library/tools/flex"as *;
+
 $mobile: false !default;
 $internal: false !default;
+
 
 // -----------------------------------------------------------------------------
 /*! =Custom Sections */
@@ -12,7 +14,7 @@ $internal: false !default;
 // Section padding
 // -----------------------------------------------------------------------------
 .section {
-    padding: $section-padding;
+    padding: set-var(2em, 3em) 0;
 
     &:focus {
         outline: none;
@@ -57,6 +59,7 @@ $internal: false !default;
                 font-size: 20px;
             }
         }
+        @include bg-img('moon.jpg', $suffix: true, $webp:true)
     }
 }
 

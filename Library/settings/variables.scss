@@ -1,4 +1,4 @@
-@use "sass:math"; 
+@use "sass:math";
 // -----------------------------------------------------------------------------
 // =Variables - Global
 // -----------------------------------------------------------------------------
@@ -27,6 +27,9 @@ $area-svg-icons: false; // SVG icons all the same size
 $area-svg-img: false; // SVG images of different sizes
 $area-hide-search-icon: false; // Reduces padding in the keyword search input when you hide the keyword Search icon
 $area-internal-site: false; // Use "if" statements to style internal sites
+$area-multiselect: false; // Forms
+$area-social-buttons: false;
+$area-glassdoor: false;
 // Desktop ---------------------------------------------------------------------
 $area-iframe-site: false; // Set to "true" if your site is iframe
 $area-screen-x-small: false; // Adds media queries for a given screen size
@@ -68,6 +71,7 @@ $color-facebook: #204385;
 $color-twitter: #2AA9E0;
 $color-youtube: #EB2429;
 $color-instagram: #44749C;
+$color-instagram-gradient: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
 $color-linkedin: #0077b5;
 $color-glassdoor: #0CAA41;
 $color-outline-focus: #3b99fc;
@@ -106,11 +110,11 @@ $font-size-body: 16;
 $font-sm: ($font-size-body - 2);
 $font-size-button: $font-size-base;
 $line-height-base: 1.375;
-$font-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-sans-serif: Helvetica, Arial, sans-serif;
 // $font-sans-serif: Arial, sans-serif;
 $font-serif: Times, 'Times New Roman', serif;
-$font-web: 'Avenir Next Regular'; // $font-web-bold: 'futura-pt-bold';
-$font-web-bold: 'Avenir Next Bold'; // $font-web-bold: 'futura-pt-bold';
+$font-web: '';
+$font-web-alt: '';
 $font-mono: 'Monaco','Input Mono';
 $font-fa: FontAwesome;
 $font-fa5: 'FontAwesome 5 Free';
@@ -143,7 +147,7 @@ $img-suffix: '@0.5x';
 
 // Sections
 // -----------------------------------------------------------------------------
-$section-padding: 3em 0;
+$section-pad: set-var(2em, 3em);
 
 // Forms
 // -----------------------------------------------------------------------------

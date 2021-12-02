@@ -21,7 +21,7 @@ $internal: false !default;
 
     @if $area-fixed-header {
         .fixed-header {
-            position: fixed;
+            position: sticky;
             top: 0;
             left: 0;
             width: 100%;
@@ -79,8 +79,9 @@ $internal: false !default;
     padding: 5px;
     font-size: 24px;
     line-height: 1;
-    margin-top: 5px;
-    margin-right: 5px;
+    margin-right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
 
     &:before {
         color: $color-text;
@@ -88,7 +89,6 @@ $internal: false !default;
     }
 
     @if $area-nav-left {
-        right: auto;
         left: 0;
     }
 }
@@ -101,7 +101,7 @@ $internal: false !default;
 }
 
 .jv-nav {
-    background: $color-background-light;
+    background: $color-white;
     z-index: $z-nav;
 
     @if $area-nav-left {
@@ -151,6 +151,10 @@ $internal: false !default;
         }
     }
 
+}
+
+.jv-nav-visible {
+    overflow: hidden
 }
 
 @if $area-animated-menu-button {

@@ -29,7 +29,7 @@ $internal: false !default;
  * $fg-class-off string used for the offset class
  */
 $fg-columns: $max-columns !default;
-$fg-gutter: math.div($column-gutter,2) !default;
+$fg-gutter: math.div($column-gutter, 2) !default;
 
 $fg-class-row: 'row' !default;
 $fg-class-col: 'col' !default;
@@ -61,13 +61,11 @@ $fg-class-off: 'off' !default;
  * the grid and applied to global styles.
  *
  */
-$fg-breakpoints: (
-    (xs),
+$fg-breakpoints: ((xs),
     (sm, $screen-sm-px),
     (md, $screen-md-px),
     (lg, $screen-lg-px),
-    (xl, $screen-xl-px)
-) !default;
+    (xl, $screen-xl-px)) !default;
 
 /**
  * Class Name Defaults
@@ -88,11 +86,13 @@ $fg-breakpoints: (
 /**
  * Spacing mixin to create uniform margin/padding
  */
-@mixin spacing( $value, $type: margin, $orientation: vertical ) {
-    @if $orientation == vertical {
+@mixin spacing($value, $type: margin, $orientation: vertical) {
+    @if $orientation==vertical {
         #{ $type }-top: $value;
         #{ $type }-bottom: $value;
-    } @else {
+    }
+
+    @else {
         #{ $type }-left: $value;
         #{ $type }-right: $value;
     }
@@ -106,7 +106,7 @@ $fg-breakpoints: (
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    @include spacing( ( -$fg-gutter ), margin, horizontal );
+    @include spacing((-$fg-gutter), margin, horizontal);
 }
 
 
@@ -117,7 +117,7 @@ $fg-breakpoints: (
     flex-grow: 0;
     flex-shrink: 0;
     min-height: 1px;
-    @include spacing( ( $fg-gutter ), padding, horizontal );
+    @include spacing(($fg-gutter), padding, horizontal);
 }
 
 %#{ $fg-class-col }-flex {
@@ -137,7 +137,7 @@ $fg-breakpoints: (
  * .#{ $fg-class-off }-[namespace]-reset for resetting a col's offset for that and larger namespaces
  */
 
-@mixin grid-base( $namespace ) {
+@mixin grid-base($namespace) {
     .#{ $fg-class-col }-#{$namespace} {
         @extend %#{ $fg-class-col }-flex;
     }
@@ -149,20 +149,20 @@ $fg-breakpoints: (
     }
 }
 
-@mixin grid-sizes( $namespace ) {
+@mixin grid-sizes($namespace) {
 
     // Run the loop for as many columns as speficied
     @for $i from 1 through $fg-columns {
         .#{ $fg-class-col }-#{$i}-#{$namespace} {
             flex-basis: get-col-percent($i);
-            max-width:  get-col-percent($i);
+            max-width: get-col-percent($i);
         }
     }
 
     @for $i from 1 through $fg-columns {
 
         // Don't include the .off class for the last column
-        @if ( $i != $fg-columns ) {
+        @if ($i !=$fg-columns) {
             .#{ $fg-class-off }-#{$i}-#{$namespace} {
                 margin-left: get-col-percent($i);
             }
@@ -184,17 +184,28 @@ $fg-breakpoints: (
 @each $val in $fg-breakpoints {
 
     $namespace: nth($val, 1);
-    @include grid-base( $namespace );
+    @include grid-base($namespace);
 
 }
 
 @each $val in $fg-breakpoints {
-    @if length($val) == 1 {
-        
+    @if length($val)==1 {
+
         $namespace: nth($val, 1);
-        @include grid-sizes( $namespace );
-        
-    } @else {
+        @include grid-sizes($namespace);
+
+        // Landscape classes for mobile
+        @if $mobile {
+            $namespace: 'land';
+
+            @media screen and (orientation:landscape) {
+                @include grid-sizes($namespace);
+            }
+        }
+
+    }
+
+    @else {
 
         @if not $mobile {
 
@@ -202,7 +213,7 @@ $fg-breakpoints: (
             $size: nth($val, 2);
 
             @media only screen and (min-width: #{$size}) {
-                @include grid-sizes( $namespace );
+                @include grid-sizes($namespace);
             }
         }
     }

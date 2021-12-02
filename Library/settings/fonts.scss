@@ -1,3 +1,33 @@
+@use "Library/settings/variables"as *;
+@use "Library/tools/mixins"as *;
+$mobile: false !default;
+$internal: false !default;
+
 // --------------------------------------------------------------------------
 // =Webfonts
 // --------------------------------------------------------------------------
+
+
+@if $area-glassdoor {
+    // Example markup:
+    // <a href="https://www.glassdoor.com/Reviews/Sitecore-Reviews-E246577.htm"target="_blank"rel="noopener"title="Visit us at Glassdoor"class="social-button"><i class="glassdoor"aria-hidden="true"></i><span class="sr-only">Visit us on Glassdoor</span></a>
+
+    @font-face {
+        font-family: 'glass';
+        src: url('https://careers.jobvite.com/common/css/fonts/glassdoor.eot');
+        src: url('https://careers.jobvite.com/common/css/fonts/glassdoor.eot?#iefix') format("embedded-opentype"),
+            url('https://careers.jobvite.com/common/css/fonts/glassdoor.woff') format("woff"),
+            url('https://careers.jobvite.com/common/css/fonts/glassdoor.ttf') format("truetype"),
+            url('https://careers.jobvite.com/common/css/fonts/glassdoor.svg#untitled-font-2') format("svg");
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .glassdoor:before {
+        @include flex-col;
+        @include flex-center;
+        font-family: 'glass';
+        font-style: normal;
+        content: '\61';
+    }
+} //End mobile

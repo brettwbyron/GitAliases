@@ -1,0 +1,12 @@
+@use "sass:math";
+$mobile: false !default;
+
+// Set variable for desktop and mobile
+// Ex: $variable: set-var(380px,380px);
+@function set-var($m, $d) {
+    @if $mobile {
+        @return $m;
+    } @else {
+        @return $d;
+    }
+}

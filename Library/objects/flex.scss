@@ -97,6 +97,8 @@ $self: (
     .flex-row#{$suffix}  { flex-direction: row }
     .flex-col-reverse#{$suffix}  { flex-direction: column-reverse }
     .flex-row-reverse#{$suffix}  { flex-direction: row-reverse }
+    .flex-wrap#{$suffix} {flex-wrap: wrap;}
+    .flex-nowrap#{$suffix} {flex-wrap: nowrap;}
 }
 @mixin flex-base($namespace, $property, $name, $value, $suffix:null) {
     .flex-#{$namespace}-#{$name}#{$suffix} {

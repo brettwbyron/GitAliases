@@ -174,21 +174,23 @@ main {
     .jv-search-list,
     .jv-job-item {
 
-        .jv-list-icon {
+        .jv-list-label {
             color: $color-primary;
         }
 
-        .jv-list-label,
         .jv-meta {
             color: $color-text;
+            font-size: (math.div(14, $font-size-body))+em;
+            font-weight: 400;
         }
     }
-    
-    .jv-job-item {
 
-        .jv-meta {
-            font-size: (math.div(14, $font-size-body)) + em;
-            font-weight: 400;
+    //Add this to kickoff
+    .jv-job-item,
+    .jv-job-category-link {
+
+        .jv-list-icon {
+            color: $color-text;
         }
     }
 } // End Mobile
@@ -235,7 +237,7 @@ main {
         } @else {
             position: absolute;
             right: 30px;
-            top: 0;
+            top: 10px;
         } //End
     }
 
@@ -402,8 +404,14 @@ main {
         .jv-featured-job {
             flex: 1 1 auto;
             width: 100%;
-            padding: 0.5em;
+            padding: 0.25em;
             margin: 0;
+
+            a {
+                padding: 0.25em;
+                display: block;
+                background-color: $color-primary;
+            }
         }
 
         .jv-featured-job-title {

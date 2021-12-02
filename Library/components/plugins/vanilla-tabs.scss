@@ -1,4 +1,28 @@
 @use "sass:math";
+@use "Library/settings/variables"as *;
+@use "Library/tools/mixins"as *;
+@use "Library/tools/flex"as *;
+$mobile: false !default;
+$internal: false !default;
+
+// Example markup
+//----------------------------------------------------------
+// <div id="tabs" class="js-tabs flex-row flex-col-md">
+//     <ul class="js-tabs__header list-unstyled flex-col flex-row-md flex-nowrap">
+//         <li>
+//             <a href="#" class="js-tabs__title flex-col flex-m-end flex-c-start">
+//                 Tab
+//             </a>
+//         </li>
+//         ... repeat for each item
+//     </ul>
+
+//     <div class="js-tabs__content flex-col">
+//         <p>It starts with transparency. Effective, respectful, and transparent communication are the foundation of our team's success.</p>
+//     </div>
+//     ... repeat for each item
+// </div>
+//----------------------------------------------------------
 
 #tabs {
     padding: 1em;

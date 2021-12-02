@@ -116,11 +116,11 @@ $mobile: false !default;
         // $selector: str-slice($imgName, 1, ($index - 1));
         
         &.#{$class} {
-            &:before {
-                display: block;
-                content: '';
-                padding-bottom: math.div($imgH,$imgW) * 100%;
-            }
+            // &:before {
+            //     display: block;
+            //     content: '';
+            //     padding-bottom: math.div($imgH,$imgW) * 100%;
+            // }
         
             .slides {
                 position: absolute;
@@ -182,7 +182,7 @@ $mobile: false !default;
                         @if $webp {
                             .webp & {
                                 $slice: str-slice($imgName, 1, $index - 1);
-                                $output: $slice+"-#{$i}#{$img-suffix}"+'.webp';
+                                $output: $slice+"-#{$i}#{$img-suffix}.webp";
                                 background-image: url($root-url+$output);
                             }
                         }
@@ -197,7 +197,7 @@ $mobile: false !default;
                             .webp & {
                                 // $index: str-index($imgName, '.');
                                 $slice: str-slice($imgName, 1, $index - 1);
-                                $output: $slice+"-#{$i}"+'.webp';
+                                $output: $slice+"-#{$i}.webp";
                                 background-image: url($root-url+$output);
                             }
                         }
@@ -211,11 +211,6 @@ $mobile: false !default;
         // $selector: str-slice($imgName, 1, ($index - 1));
 
         &.#{$class} {
-            &:before {
-                display: block;
-                content: '';
-                padding-bottom: math.div($imgH, $imgW) * 100%;
-            }
 
             .banner-image {
                 height: clamp(#{$min}, #{$h}, #{$max});
@@ -237,18 +232,11 @@ $mobile: false !default;
                     background-image: url($root-url+$output);
 
                     @if $webp {
-                        .webp & {
-                            @if $suffix {
-                                // $index: str-index($imgName, '.');
-                                $slice: str-slice($imgName, 1, $index - 1);
-                                $output: $slice + $img-suffix + '.webp';
-                                background-image: url($root-url+$output);
-                            } @else {
-                                // $index: str-index($imgName, '.');
-                                $slice: str-slice($imgName, 1, $index - 1);
-                                $output: $slice + '.webp';
-                                background-image: url($root-url+$output);
-                            }
+                        .webp & {                            
+                            // $index: str-index($imgName, '.');
+                            $slice: str-slice($imgName, 1, $index - 1);
+                            $output: $slice + $img-suffix + '.webp';
+                            background-image: url($root-url+$output);                            
                         }
                     }
                 } @else {
@@ -276,13 +264,34 @@ $mobile: false !default;
 // -----------------------------------------------------------------------------
 // Background Image
 // -----------------------------------------------------------------------------
-@mixin bg-img($img:null, $suffix:false, $pos:50% 50%, $size:cover, $repeat:no-repeat) {
+@mixin bg-img($img:null, $size:cover, $pos:50% 50%, $repeat:no-repeat, $suffix:false, $webp:false) {
+    $index: str-index($img, '.');
     @if $suffix {
-        $index: str-index($img, '.');
-        $output: str-insert($img, $img-suffix, $index);
+        $output: str-insert($img, "#{$img-suffix}", $index);
+
         background-image: url($root-url+$output);
-    } @else {
+
+        @if $webp {
+            .webp & {
+                // $index: str-index($imgName, '.');
+                $slice: str-slice($img, 1, $index - 1);
+                $output: $slice + $img-suffix + '.webp';
+                background-image: url($root-url+$output);
+            }
+        }
+    }
+
+    @else {
         background-image: url($root-url+$img);
+
+        @if $webp {
+            .webp & {
+                // $index: str-index($imgName, '.');
+                $slice: str-slice($img, 1, $index - 1);
+                $output: $slice + '.webp';
+                background-image: url($root-url+$output);
+            }
+        }
     }
 
     background-position: $pos;
@@ -317,6 +326,14 @@ $mobile: false !default;
 // Radial gradient - $list: <gradient colors>
 @mixin gradient-radial($list) {
     background: radial-gradient(circle closest-side, $list);
+}
+
+@mixin gradient-text($direction, $list) {
+    background: linear-gradient($direction, $list);
+    background-clip: text;
+    -moz-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
 }
 
 // -----------------------------------------------------------------------------
@@ -533,37 +550,47 @@ $mobile: false !default;
 // =Position
 // -----------------------------------------------------------------------------
 
-@mixin position($pos, $top:null, $right:null, $bottom:null, $left:null) {
-	position: $pos;
-	@if $left {
-		top: $top;
-		right: $right;
-		bottom: $bottom;
-		left: $left;
-	} @else if $bottom {
-		top: $top;
-		right: $right;
-		bottom: $bottom;
-		left: $right;
-	} @else if $right {
-		top: $top;
-		right: $right;
-		bottom: $top;
-		left: $right;
-	} @else if $top {
-		top: $top;
-		right: $top;
-		bottom: $top;
-		left: $top;
-	}
+@mixin position($pos, $top:null, $right:null, $bottom:null, $left:null, $strict:false) {
+    position: $pos;
+ 
+    @if $strict {
+        top: $top;
+        right: $right;
+        bottom: $bottom;
+        left: $left;
+    }
+    @else if $left {
+        top: $top;
+        right: $right;
+        bottom: $bottom;
+        left: $left;        
+    }
+    @else if $bottom {
+        top: $top;
+        right: $right;
+        bottom: $bottom;
+        left: $right;
+    }
+    @else if $right {
+        top: $top;
+        right: $right;
+        bottom: $top;
+        left: $right;
+    }
+    @else if $top {
+        top: $top;
+        right: $top;
+        bottom: $top;
+        left: $top;
+    }
 }
-
-@mixin absolute($top:null, $right:null, $bottom:null, $left:null) {
-    @include position(absolute, $top, $right, $bottom, $left);
+ 
+@mixin absolute($top:null, $right:null, $bottom:null, $left:null,$strict:false) {
+    @include position(absolute, $top, $right, $bottom, $left, $strict);
 }
-
-@mixin relative($top:null, $right:null, $bottom:null, $left:null) {
-    @include position(relative, $top, $right, $bottom, $left);
+ 
+@mixin relative($top:null, $right:null, $bottom:null, $left:null, $strict:false) {
+    @include position(relative, $top, $right, $bottom, $left, $strict);
 }
 
 // ----
@@ -625,13 +652,14 @@ $mobile: false !default;
 
 ////////////////////////////////////////////////////////////////////////////
 
-
 // Set variable for desktop and mobile
 // Ex: $variable: set-var(380px,380px);
 @function set-var($m, $d) {
     @if $mobile {
         @return $m;
-    } @else {
+    }
+
+    @else {
         @return $d;
     }
 }

@@ -22,7 +22,7 @@ button:focus {
     -webkit-appearance: none;
     font-family: $font-btn;
     font-weight: 500;
-    font-size: math.div(16,$font-size-body) + em;
+    font-size: $input-font-size;
     text-decoration: none;
     text-transform: uppercase;
     border: 1px solid transparent;
@@ -91,6 +91,36 @@ button:focus {
             &:hover {
                 background: $color-text;
                 color: $color-white;
+            }
+        }
+    }
+}
+
+@if $area-social-buttons {
+    .social {
+
+        li {
+            padding: 0;
+
+            @if $mobile {
+                margin: 0;
+            } @else {
+                margin: 0 2px;
+            } // End Mobile
+        }
+
+        .social-button {
+            @include square(30px);
+            @include flex-col;
+            @include flex-center;
+            margin: 0;
+            padding: 0;
+            transition: all $transition-normal $transition-easing;
+            font-size: (math.div(18, $font-size-body)) + em;
+            color: $color-black;
+
+            &:hover {
+                color: $color-primary;
             }
         }
     }

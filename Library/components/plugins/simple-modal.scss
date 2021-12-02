@@ -5,6 +5,9 @@
 $mobile: false !default;
 $internal: false !default;
 
+$jua: false;
+$theme-dark: true;
+
 // -----------------------------------------------------------------------------
 // =Simple Modal
 // -----------------------------------------------------------------------------
@@ -26,19 +29,43 @@ $internal: false !default;
         @include flex-col;
         @include flex-c-center;
         @include flex-m-start;
-        width: 90vw;
-        max-width: 400px;
-        height: 90vh;
-        max-height: 600px;
-        padding: 30px;
-        background-color: $color-white;
-        border-radius: 8px;
+
+        @if $theme-dark {
+            background-color: $color-black;
+        } @else {
+            background-color: $color-white;
+        } //End
+        border-radius: 6px;
         position: relative;
         z-index: $z-modal;
+        @if $mobile {
+            width: 100%;
+            max-width: 90vw;
+            padding: 1em;
+            margin: 5% 0;
 
-        h1 {
+            @media screen and (orientation:landscape) {
+                max-width: 65vw;
+                min-height: 300px;
+            }
+        } @else {
+            width: auto;
+            max-width: 800px;
+            // height: 50vh;
+            min-height: 300px;
+            max-height: 800px;
+            padding: 30px;
+        } //End
+
+        h2 {
             font-size: $h2;
-            text-align: center;
+            text-align: left;
+            color: $color-text;
+            width: 100%;
+        }
+
+        p {
+            line-height: 1.75;
         }
 
         .close {
@@ -52,7 +79,11 @@ $internal: false !default;
 
             &:before {
                 font-family: $font-jv;
-                color: $color-black;
+                @if $theme-dark {
+                    color: $color-white;
+                } @else {
+                    color: $color-black;
+                }
                 content: '\e677';
             }
 
@@ -68,29 +99,32 @@ $internal: false !default;
     }
 }
 
-// If you're using this for the JUA widget
-// -----------------------------------------------------------------------------
-.jua-modal {
+@if $jua {
+    // If you're using this for the JUA widget
+    // -----------------------------------------------------------------------------
+    .jua-modal {
 
-    .modal-content {
-        width: 360px;
-    }
-    
-    .jua-wrapper {
-        overflow-y: scroll;
-    }
+        .modal-content {
+            width: 360px;
+        }
 
-    #jv-widgetContainer {
+        .jua-wrapper {
+            overflow-y: scroll;
+        }
 
-        &, > iframe {
-            min-height: 100%;
-            height: 665px;
+        #jv-widgetContainer {
+
+            &,
+            >iframe {
+                min-height: 100%;
+                height: 665px;
+            }
         }
     }
-}
 
-.clear::after {
-    content: ' ';
-    clear: both;
-    display: table;
+    .clear::after {
+        content: ' ';
+        clear: both;
+        display: table;
+    }
 }

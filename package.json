@@ -1,6 +1,6 @@
 {
     "name": "gulp-default",
-    "version": "2.5.2",
+    "version": "2.5.4",
     "private": true,
     "description": "starter file",
     "main": "gulpfile.js",
@@ -12,7 +12,7 @@
     "license": "ISC",
     "devDependencies": {
         "babel-core": "^6.26.3",
-        "caniuse-lite": "^1.0.30001261",
+        "caniuse-lite": "^1.0.30001282",
         "del": "^6.0.0",
         "gulp": "^4.0.2",
         "gulp-autoprefixer": "^8.0.0",
@@ -26,11 +26,11 @@
         "gulp-webp": "^4.0.1"
     },
     "dependencies": {
-        "@babel/core": "^7.15.5",
+        "@babel/core": "^7.16.0",
         "fancy-log": "^1.3.3",
-        "npm-check-updates": "^11.8.5",
+        "npm-check-updates": "^12.0.2",
         "nvm": "0.0.4",
-        "yarn": "^1.22.11"
+        "yarn": "^1.22.17"
     },
     "browserslist": [
         "last 2 versions",

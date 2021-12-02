@@ -104,6 +104,12 @@ $internal: false !default;
         height: $input-height; // Fixed height fields
     }
 
+    @if $area-multiselect {
+        select {
+            height: $input-height * 2;
+        }
+    }
+
     textarea {
         min-width: 100%;
         max-width: 100%;
@@ -311,6 +317,7 @@ $internal: false !default;
 
                     .jv-form-buttons {
                         @include flex-row;
+                        max-width: 150px;
                         margin-left: 0;
                     }
                 }

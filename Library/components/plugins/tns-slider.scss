@@ -6,37 +6,39 @@ $mobile: false !default;
 $internal: false !default;
 
 // Slider preferences
+//----------------------------------------------------------
 $nav: true;
 $controls: false;
+//----------------------------------------------------------
 
 .tns-slider {
     position: relative;
 
     @if $nav {
-        // .tns-outer {
-        //     margin: 0 50px;
-        // }
-        //
-        // .tns-nav {
-        //     text-align: center;
-        //
-        //     button {
-        //         @include square(12px);
-        //         border-radius: 10px;
-        //         border: 1px solid $color-text;
-        //         margin: 0 5px;
-        //         padding: 0;
-        //         background-color: $color-white;
-        //
-        //         &.tns-nav-active {
-        //             background-color: lighten($color-black,10%);
-        //         }
-        //
-        //         &:hover {
-        //             background-color: $color-text;
-        //         }
-        //     }
-        // }
+        .tns-outer {
+            margin: 0 50px;
+        }
+        
+        .tns-nav {
+            text-align: center;
+        
+            button {
+                @include square(12px);
+                border-radius: 10px;
+                border: 1px solid $color-text;
+                margin: 0 5px;
+                padding: 0;
+                background-color: $color-white;
+        
+                &.tns-nav-active {
+                    background-color: lighten($color-black,10%);
+                }
+        
+                &:hover {
+                    background-color: $color-text;
+                }
+            }
+        }
     }
 
     @if $controls {
