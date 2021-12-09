@@ -2,6 +2,7 @@
 @use "Library/settings/variables"as *;
 @use "Library/tools/mixins"as *;
 @use "Library/tools/flex"as *;
+// @use "Library/tools/functions"as *;
 
 $mobile: false !default;
 $internal: false !default;
@@ -14,7 +15,8 @@ $internal: false !default;
 // Section padding
 // -----------------------------------------------------------------------------
 .section {
-    padding: set-var(2em, 3em) 0;
+    $section-pad:set-val(2em, 3em);
+    padding: $section-pad 0;
 
     &:focus {
         outline: none;
@@ -36,14 +38,16 @@ $internal: false !default;
 // @include bannerImage($imgH, $imgW, $h:null, $min:null, $max:null, $m-x:1.5, $imgName, $suffix:false, $count, $pos:50% 50%, $size:cover, $repeat:no-repeat, $webp:false);
 // -----------------------------------------------------------------------------
 
-@include banner() {    
+@include banner() {
+    // Banner image (mobile/desktop) settings
+    $h:set-val(10vw, 40vw);
+    $min:set-val(200px, 300px);
+    $max:set-val(300px, 500px);
 
-    // parameters($class, $imgH, $imgW, $h:null, $min:null, $max:null, $m-x:1.5, $imgName, $suffix:false, $count, $pos:50% 50%, $size:cover, $repeat:no-repeat, $webp:false)
-    @if $mobile {
-        @include bannerImage('banner-home', 250px, 600px, 3vw, 200px, 300px, 1.5, 'banner-home.jpg', true, 1, 50% 50%, cover, no-repeat, false);
-    } @else {
-        @include bannerImage('banner-home', 500px, 1200px, 40vw, 300px, 500px, 1.5, 'banner-home.jpg', false, 1, 50% 50%, cover, no-repeat, false);
-    } //End
+    // Required parameters($img, $h, $min, $max)
+    // Complete parameters($img, $h, $min, $max, $m-x(mobile):1.5, $suffix(mobile):false, $count:1, $pos:50% 50%, $size:cover, $repeat:no-repeat, $webp:false)
+   
+    @include bannerImage('banner-home.jpg', $h, $min, $max);
 
     // If you have multiple overlays that are different, wrap with your unique class like this example
     &.banner-home {
@@ -59,7 +63,6 @@ $internal: false !default;
                 font-size: 20px;
             }
         }
-        @include bg-img('moon.jpg', $suffix: true, $webp:true)
     }
 }
 
@@ -67,11 +70,16 @@ $internal: false !default;
 // -----------------------------------------------------------------------------
 // =Media Queries
 // -----------------------------------------------------------------------------
-//@if not $mobile {
+// @if not $mobile {
 //    @if $area-screen-medium {    
 //        /*! min-width: #{$screen-md-px} */
 //        @media all and (min-width:$screen-md-em) {
-//            @include bannerImage('banner-home', 500px, 1200px, 40vw, 300px, 500px, 1.5, 'banner-home.jpg', false, 1, 50% 50%, cover, no-repeat, true);
+//            @include banner() {
+//                 $h:50vw;
+//                 $min:400px;
+//                 $max:600px;
+//                 @include bannerImage('banner-about.jpg', $h, $min, $max);
+//            }
 //        }
 //    }
-//} // End Desktop
+// } // End Desktop

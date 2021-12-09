@@ -1,4 +1,4 @@
-/*! Styles for  -Mobile Internal */
+/*! Styles for  -Mobile Internal - kickoff v2.6.0 */
 html {-webkit-box-sizing:border-box;box-sizing:border-box;scroll-behavior:smooth}
 *,:after,:before {-webkit-box-sizing:inherit;box-sizing:inherit}
 body,html {height:100vh;font-family:"",Helvetica,Arial,sans-serif;font-size:100%;font-weight:400;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased}
@@ -13,6 +13,7 @@ body {background-color:#fff;color:#777;padding:0;margin:0;font-size:1em;line-hei
 .h6,h6 {font-size:.875em}
 p {font-size:1em;margin-bottom:1.25em;line-height:1.375}
 dl,ol,ul {color:#777}
+img {width:100%;height:auto;aspect-ratio:attr(width)/attr(height)}
 ::-moz-selection {background:#000;color:#fff;text-shadow:none}
 ::selection {background:#000;color:#fff;text-shadow:none}
 a,a:visited {color:#3d87cf;text-decoration:none}
@@ -197,7 +198,7 @@ button:focus {outline:thin dotted rgba(0,103,244,.247)}
 .jv-additional-files .jv-button,.jv-additional-files .jv-button:visited,.jv-apply-section-content .jv-button,.jv-apply-section-content .jv-button:visited {border-width:1px;background-color:transparent;border-color:#777;color:#777}
 .jv-additional-files .jv-button:hover,.jv-additional-files .jv-button:visited:hover,.jv-apply-section-content .jv-button:hover,.jv-apply-section-content .jv-button:visited:hover {background:#777;color:#fff}
 .jv-page-header {background:#fff;padding:0}
-.jv-page-header .jv-wrapper {padding:11px 0}
+.jv-page-header .jv-wrapper {padding:5px 0}
 .jv-footer {background-color:#000;color:#fff;padding:2em 0}
 .jv-footer .jv-wrapper {padding:0 20px}
 .jv-footer .copyright {font-size:.875em}
@@ -222,14 +223,22 @@ button:focus {outline:thin dotted rgba(0,103,244,.247)}
 .section {padding:2em 0}
 .section:focus {outline:0}
 .banner {width:100%;position:relative}
-.banner.banner-home .banner-image {height:clamp(200px,3vw,300px);background-image:url(//careers.jobvite.com/customer-folder/banner-home@0.5x.jpg);background-position:50% 50%;background-size:cover;background-repeat:no-repeat}
+.banner.banner-home {height:clamp(200px,10vw,300px)}
+.banner.banner-home .slides {position:absolute;height:100%;top:0;left:0;margin:0;padding:0;list-style:none;overflow:hidden}
+.banner.banner-home .slides .slides {width:100%;-webkit-animation:carouselSlide 18s infinite;animation:carouselSlide 18s infinite;background-image:url(//careers.jobvite.com/customer-folder/banner-home-1@0.5x.jpg),url(//careers.jobvite.com/customer-folder/banner-home-2@0.5x.jpg),url(//careers.jobvite.com/customer-folder/banner-home-3@0.5x.jpg);background-position:0,100vw,200vw,300vw;background-color:#000;background-size:100vw;background-repeat:no-repeat}
+@-webkit-keyframes carouselSlide {
+0%,27.7777777778% {background-image:url(//careers.jobvite.com/customer-folder/banner-home-1@0.5x.jpg)}
+33.3333333333%,61.1111111111% {background-image:url(//careers.jobvite.com/customer-folder/banner-home-2@0.5x.jpg)}
+66.6666666667%,94.4444444444% {background-image:url(//careers.jobvite.com/customer-folder/banner-home-3@0.5x.jpg)}}
+@keyframes carouselSlide {
+0%,27.7777777778% {background-image:url(//careers.jobvite.com/customer-folder/banner-home-1@0.5x.jpg)}
+33.3333333333%,61.1111111111% {background-image:url(//careers.jobvite.com/customer-folder/banner-home-2@0.5x.jpg)}
+66.6666666667%,94.4444444444% {background-image:url(//careers.jobvite.com/customer-folder/banner-home-3@0.5x.jpg)}}
 @media screen and (orientation:landscape) {
-.banner.banner-home .banner-image {height:4.5vw}}
-.banner.banner-home {background-image:url(//careers.jobvite.com/customer-folder/moon@0.5x.jpg);background-position:50% 50%;background-size:cover;background-repeat:no-repeat}
+.banner.banner-home {height:15vw}}
 .banner.banner-home .overlay {position:absolute;top:0;right:0;bottom:0;left:0;background-color:rgba(0,0,0,.3)}
 .banner.banner-home .overlay-text h1,.banner.banner-home .overlay-text p {color:#fff}
 .banner.banner-home .overlay-text p {font-size:20px}
-.webp .banner.banner-home {background-image:url(//careers.jobvite.com/customer-folder/moon@0.5x.webp)}
 .m0 {margin:0}
 .mt0 {margin-top:0}
 .mr0 {margin-right:0}
@@ -324,5 +333,7 @@ button:focus {outline:thin dotted rgba(0,103,244,.247)}
 .u-text-center {text-align:center}
 .u-text-left {text-align:left}
 .u-text-right {text-align:right}
+.video-container {max-height:100%;width:clamp(400px,100%,800px)}
+.video-container embed,.video-container iframe,.video-container object {aspect-ratio:16/9;width:100%;height:100%}
 .r-img {border:0;max-width:100%;height:auto}
 .d-hide,[x-cloak] {display:none}

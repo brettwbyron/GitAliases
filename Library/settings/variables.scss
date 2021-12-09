@@ -1,4 +1,7 @@
 @use "sass:math";
+// @use "Library/tools/functions"as *;
+
+
 // -----------------------------------------------------------------------------
 // =Variables - Global
 // -----------------------------------------------------------------------------
@@ -20,7 +23,7 @@ $root-url: '//careers.jobvite.com/customer-folder/';
 $area-featured: true; // Adds styles for Featured Jobs
 $area-fixed-header: false; // Adds styles for Fixed headers
 $area-back-to-top: false; // Adds styles for back-to-top button
-$area-video-container: false; // Adds class for YouTube container
+$area-video-container: true; // Adds class for YouTube container
 $area-form-labels: false; // Hides form labels
 $area-social-colors: false; // Social media brand colors
 $area-svg-icons: false; // SVG icons all the same size
@@ -145,9 +148,22 @@ $font-smoothing: antialiased;
 // -----------------------------------------------------------------------------
 $img-suffix: '@0.5x';
 
-// Sections
+// Banner Images Global Settings
 // -----------------------------------------------------------------------------
-$section-pad: set-var(2em, 3em);
+$banner-m-x: 1.5;
+$banner-suffix: true;
+$banner-count: 3;
+$banner-pos: 50% 50%;
+$banner-size: cover;
+$banner-repeat: no-repeat;
+$banner-webp: true;
+$banner-tiny: false;
+
+// Banner Carousel
+// -----------------------------------------------------------------------------
+$carousel-fade: true; // true: Fade or false: slide
+$animation-speed: 1s; // speed between slides
+$animation-duration: 5s; // duration of slide on screen
 
 // Forms
 // -----------------------------------------------------------------------------

@@ -5,9 +5,9 @@ $mobile: false !default;
 $internal: false !default;
 
 .scroll-reveal {
-    $photo-height: set-var(200px,400px);
-    $photo-width: set-var(335px,45%);
-    $text-width: set-var(100%,50%);
+    $photo-height: set-val(200px,400px);
+    $photo-width: set-val(335px,45%);
+    $text-width: set-val(100%,50%);
     $angle-width: 100px;
     $cover-color: $color-white;
 

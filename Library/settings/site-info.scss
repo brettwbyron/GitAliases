@@ -3,16 +3,18 @@
 $mobile: false !default;
 $internal: false !default;
 
+$kickoff: '2.6.0';
+
 @if $mobile {
     @if $internal {
-        /*! Styles for #{$customer-name} -Mobile Internal */
+        /*! Styles for #{$customer-name} -Mobile Internal - kickoff v#{$kickoff} */
     } @else {
-        /*! Styles for #{$customer-name} -Mobile */
+        /*! Styles for #{$customer-name} -Mobile - kickoff v#{$kickoff} */
     } //End
 } @else {
     @if $internal {
-        /*! Styles for #{$customer-name} -Desktop Internal */
+        /*! Styles for #{$customer-name} -Desktop Internal - kickoff v#{$kickoff} */
     } @else {
-        /*! Styles for #{$customer-name} -Desktop */        
+        /*! Styles for #{$customer-name} -Desktop - kickoff v#{$kickoff} */
     } //End
 } //End
