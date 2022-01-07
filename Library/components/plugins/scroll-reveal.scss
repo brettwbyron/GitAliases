@@ -2,7 +2,7 @@
 @use "Library/settings/variables"as *;
 @use "Library/tools/mixins"as *;
 $mobile: false !default;
-$internal: false !default;
+// $internal: false !default;
 
 .scroll-reveal {
     $photo-height: set-val(200px,400px);

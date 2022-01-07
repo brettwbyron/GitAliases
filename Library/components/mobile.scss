@@ -93,7 +93,7 @@ $internal: false !default;
     }
 }
 
-// Moves open link to the right
+// Moves open link to the right in landscape
 @media only screen and (min-width: 40.063em) {
     .jv-nav-open-link {
         right: 0.5em;
@@ -145,10 +145,10 @@ $internal: false !default;
             background: transparent;
         }
 
-        i,
-        svg {
-            margin-left: 6px;
-        }
+        // i,
+        // svg {
+        //     margin-left: 6px;
+        // }
     }
 
 }

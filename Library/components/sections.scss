@@ -49,19 +49,29 @@ $internal: false !default;
    
     @include bannerImage('banner-home.jpg', $h, $min, $max);
 
-    // If you have multiple overlays that are different, wrap with your unique class like this example
-    &.banner-home {
-        .overlay {
+    // If you have multiple overlays that are different, wrap with a unique class like '.banner-home'
+    .overlay {
+        @if $mobile {
+            position: relative;
+            background-color: $color-background-dark;
+        } @else {
             @include absolute(0, 0, 0, 0);
             background-color: rgba($color-black, 0.3);
+        } //End
+    }
+    .overlay-text {
+        h1 {
+            font-size: clamp(#{$h2}, 5vw, #{$h1});
+            max-width: 17ch;
+            @if $mobile {
+                color: $color-white;                        
+            } @else {
+                text-align: right;
+            } //End
         }
-        .overlay-text {
-            h1, p {
-                color: $color-white;
-            }
-            p {
-                font-size: 20px;
-            }
+        p {
+            color: $color-white;
+            font-size: 20px;
         }
     }
 }

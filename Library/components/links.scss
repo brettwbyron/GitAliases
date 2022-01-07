@@ -5,51 +5,53 @@
 $mobile: false !default;
 $internal: false !default;
 
-a {
-    @if $area-back-to-top {
-        &.back-to-top {
-            background-color: rgba($color-black,0.3);
-            color: $color-white;
-            width: 2em;
-            height: 2em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: fixed;
-            right: 1.5em;
-            bottom: 1em;
-            transition: all $transition-fast $transition-easing;
-
-            &:hover {
-                background-color: $color-primary;
-            }
-            i, svg {
+@if $area-back-to-top or $area-social-colors {
+    a {
+        @if $area-back-to-top {
+            &.back-to-top {
+                background-color: rgba($color-black,0.3);
+                color: $color-white;
+                width: 2em;
+                height: 2em;
                 display: flex;
-                width: 1em;
-                height: 1em;
+                align-items: center;
+                justify-content: center;
+                position: fixed;
+                right: 1.5em;
+                bottom: 1em;
+                transition: all $transition-fast $transition-easing;
+
+                &:hover {
+                    background-color: $color-primary;
+                }
+                i, svg {
+                    display: flex;
+                    width: 1em;
+                    height: 1em;
+                }
             }
         }
-    }
 
-    @if $area-social-colors {
-        // Social colors
-        &[href^="https://www.facebook.com/"] {
-            background-color: $color-facebook;
-        }
-        &[href^="https://www.twitter.com/"] {
-            background-color: $color-twitter;
-        }
-        &[href^="https://www.linkedin.com/"] {
-            background-color: $color-linkedin;
-        }
-        &[href^="https://www.youtube.com/"] {
-            background-color: $color-youtube;
-        }
-        &[href^="https://www.instagram.com/"] {
-            background-color: $color-instagram;
-        }
-        &[href^="https://www.glassdoor.com/"] {
-            background-color: $color-glassdoor;
+        @if $area-social-colors {
+            // Social colors
+            &[href^="https://www.facebook.com/"] {
+                background-color: $color-facebook;
+            }
+            &[href^="https://www.twitter.com/"] {
+                background-color: $color-twitter;
+            }
+            &[href^="https://www.linkedin.com/"] {
+                background-color: $color-linkedin;
+            }
+            &[href^="https://www.youtube.com/"] {
+                background-color: $color-youtube;
+            }
+            &[href^="https://www.instagram.com/"] {
+                background-color: $color-instagram;
+            }
+            &[href^="https://www.glassdoor.com/"] {
+                background-color: $color-glassdoor;
+            }
         }
     }
 }

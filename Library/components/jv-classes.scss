@@ -41,12 +41,16 @@ main {
     min-height: 100vh;
 }
 
+@if $area-fixed-header and $mobile {
+    .jv-page-container {
+        overflow: unset;
+    }
+}
+
 .jv-page {
     width: 100%;
 }
 
-// jv-wrapper
-// -----------------------------------------------------------------------------
 .jv-wrapper {
     position: relative;
     width: 100%;
@@ -92,6 +96,35 @@ main {
     } //End
 }
 
+@if $mobile {
+
+    .jv-text-link {
+        color: $color-text;
+    }
+
+    .jv-search-list,
+    .jv-job-item {
+
+        .jv-list-label {
+            color: $color-primary;
+        }
+
+        .jv-meta {
+            color: $color-text;
+            font-size: (math.div(14, $font-size-body))+em;
+            font-weight: 400;
+        }
+    }
+
+    .jv-job-item,
+    .jv-job-category-link {
+
+        .jv-list-icon {
+            color: $color-text;
+        }
+    }
+}
+
 // Job list page
 // -----------------------------------------------------------------------------
 .jv-page-jobs,
@@ -113,10 +146,10 @@ main {
         }
 
         .jv-job-category-label {
-        // font-family: $font-headings;
-        // font-size: $h2-m;
-        // font-weight: 700;
-        // margin: 0 2em;
+            // font-family: $font-headings;
+            // font-size: $h2-m;
+            // font-weight: 700;
+            // margin: 0 2em;
             color: $color-text;
         }
 
@@ -143,7 +176,7 @@ main {
     
             a {
                 position: relative;
-                width: 100%; // Add width
+                width: 100%;
                 padding: 0.75em 2em;
                 border-radius: $border-radius;
                 transition: all $transition-normal $transition-easing;
@@ -162,73 +195,31 @@ main {
                 text-align: left;
             }
         }
-    } // END    
+    }
 }
 
-@if $mobile {
+.jv-page-job .jv-job-detail-meta,
+.jv-page-apply .jv-apply-meta {
 
-    .jv-text-link {
-        color: $color-text;
-    }
-
-    .jv-search-list,
-    .jv-job-item {
-
-        .jv-list-label {
-            color: $color-primary;
-        }
-
-        .jv-meta {
-            color: $color-text;
-            font-size: (math.div(14, $font-size-body))+em;
-            font-weight: 400;
-        }
-    }
-
-    //Add this to kickoff
-    .jv-job-item,
-    .jv-job-category-link {
-
-        .jv-list-icon {
-            color: $color-text;
-        }
-    }
-} // End Mobile
+    margin: 0 0 1em;
+    color: $color-secondary;
+    font-size: (math.div(16, $font-size-body)) + em;
+}
 
 // Job detailpage
 // -----------------------------------------------------------------------------
 .jv-page-job {
 
-    // .jv-share-widget {
-
-    // }
+    // .jv-share-widget {}
 
     // .jv-brand-linkedin, .jv-brand-facebook, .jv-brand-twitter {
     //     background-color: transparent;
     //     padding: 0;
     // }
 
-    // .jv-page-body {
-    // @if not $mobile {
-    //     padding-top: 124px;
-    // }
-    // @if $mobile {
-    //     padding-top: 54px;
-    // }
-    // }
+    // .jv-page-body {}
 
-    // .jv-header {
-    // margin:0 0 0.4em;
-    // padding: 0;
-    // font-family: $font-headings;
-    // line-height: 1.25;
-    // text-align: center;
-    // color: $color-white;
-    //
-    // @if not $mobile {
-    //     font-size: 3vw;
-    // }
-    // }
+    // .jv-header {}
 
     .jv-job-detail-top-actions {
         @if $mobile {
@@ -241,58 +232,26 @@ main {
         } //End
     }
 
-    // .jv-job-detail-bottom-actions {
+    // .jv-job-detail-bottom-actions {}
 
-    // .jv-button-apply {
-
-    // }
-
-    // .jv-job-detail-meta {
-    // margin-bottom: 2em;
-    // }
-    // }
-
-    // .jv-job-detail-meta {
-    // font-family: $font-headings;
-    // font-size: 20px;
-    // text-align: center;
-    // color: $color-white;
-    // padding: 0;
-    // margin: 0;
-    // }
+    // .jv-button-apply {}
 
     // .jv-apply-form,
     // .jv-job-detail-description {
-    // h3 {
-    //     text-align: left;
-    //     font-weight: 400;
-    // }
+    //     h3 {}
     // }
 
-    // .jv-button-list {
-    // border: 1px solid #ccc;
-    // background: none;
-    // border-radius: 0;
-    // }
+    // .jv-button-list {}
 
     // .jv-button-list-item {
-    // border: none;
-    // background: none;
-    //
-    // &:last-child {
-    //     margin-right: 0;
-    // }
-    // .jv-button-icon {
-    //     color: $color-white;
-    // }
+        
+    //     &:last-child {}
+
+    //     .jv-button-icon {}
     // }
 
     // @if $mobile {
-    //     .jv-sub-header {
-    // color: $color-white;
-    // font-size: (18 / $font-size-body) + em;
-    // font-weight: 700;
-    // }
+    //     .jv-sub-header {}
     // }
 
 }
@@ -301,14 +260,9 @@ main {
 // -----------------------------------------------------------------------------
 .jv-page-apply {
 
-    // .jv-page-body {
-    // padding: 1em 0 2em;
-    // }
+    // .jv-page-body {}
 
-    // .jv-header {
-    // color: $color-accent;
-    // text-align: left;
-    // }
+    // .jv-header {}
 
     @if $mobile {
 
@@ -319,12 +273,6 @@ main {
         .jv-sub-header {
             font-size: $h2-m;
             color: $color-text;
-        }
-
-        .jv-apply-meta {
-            margin: 0.5em 0 1em;
-            color: $color-text;
-            font-size: (math.div(16, $font-size-body)) + em;
         }
 
         .jv-step-header {
@@ -373,12 +321,13 @@ main {
     z-index: $z-dropdown;
 }
 
-// .jv-share-widget-title {
+.jv-add-attachment .jv-close {
+    z-index: 5;
+    padding: 0 1px;
+}
+// .jv-share-widget-title {}
 
-// }
-// .jv-job-detail-meta, .jv-apply-meta {
-
-// }
+// .jv-job-detail-meta, .jv-apply-meta {}
 
 @if $area-featured {
 
@@ -396,7 +345,6 @@ main {
         }
 
         .jv-featured-jobs-header {
-            // color: $color-white;
             margin: 0 0 0.25em;
             width: 100%;
         }
@@ -457,4 +405,4 @@ main {
             }
         }
     }
-} //End desktop
+} //End

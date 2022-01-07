@@ -49,7 +49,7 @@ $area-animated-menu-button: false; // animated hamburger menu
 // -----------------------------------------------------------------------------
 // Padding and margin spacing max-value, refers to utilities/spacing.scss
 // -----------------------------------------------------------------------------
-$max-spacing: 3;
+$max-spacing: 2;
 
 // -----------------------------------------------------------------------------
 // Flex order - if you need to re-order flex containers using flex-order
@@ -134,8 +134,8 @@ $h3: (math.div(20, $font-size-body))+em;
 $h3-m: (math.div(18, $font-size-body))+em;
 $h4: (math.div(17, $font-size-body))+em;
 $h4-m: (math.div(17, $font-size-body))+em;
-$h5: 1em;
-$h5-m: 1em;
+$h5: (math.div(16, $font-size-body))+em;
+$h5-m: (math.div(16, $font-size-body))+em;
 $h6: (math.div(14, $font-size-body))+em;
 $h6-m: (math.div(14, $font-size-body))+em;
 $p: (math.div(16, $font-size-body))+em;
@@ -157,7 +157,7 @@ $banner-pos: 50% 50%;
 $banner-size: cover;
 $banner-repeat: no-repeat;
 $banner-webp: true;
-$banner-tiny: false;
+$banner-tiny: false; // Set to false if using the Banner carousel
 
 // Banner Carousel
 // -----------------------------------------------------------------------------

@@ -13,7 +13,6 @@ body {background-color:#fff;color:#777;padding:0;margin:0;font-size:1em;line-hei
 .h6,h6 {font-size:.875em}
 p {font-size:1em;margin-bottom:1.25em;line-height:1.375}
 dl,ol,ul {color:#777}
-img {width:100%;height:auto;aspect-ratio:attr(width)/attr(height)}
 ::-moz-selection {background:#000;color:#fff;text-shadow:none}
 ::selection {background:#000;color:#fff;text-shadow:none}
 a,a:visited {color:#3d87cf;text-decoration:none}
@@ -126,6 +125,10 @@ a.disabled {cursor:default;pointer-events:none}
 .jv-logo {margin:0}
 .jv-logo:after {background:0 0}
 .jv-logo img {height:50px;width:150px}
+.jv-text-link {color:#777}
+.jv-job-item .jv-list-label,.jv-search-list .jv-list-label {color:#3d87cf}
+.jv-job-item .jv-meta,.jv-search-list .jv-meta {color:#777;font-size:.875em;font-weight:400}
+.jv-job-category-link .jv-list-icon,.jv-job-item .jv-list-icon {color:#777}
 .jv-page-jobs .jv-page-error,.jv-page-search .jv-page-error {display:-webkit-box;display:-ms-flexbox;display:flex;min-width:0;min-height:0;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}
 .jv-page-jobs .jv-page-error .jv-icon-warning,.jv-page-search .jv-page-error .jv-icon-warning {height:1.5em;width:1.5em;line-height:1.3}
 .jv-page-jobs .jv-active-category .jv-job-category-link:before,.jv-page-search .jv-active-category .jv-job-category-link:before {content:none}
@@ -133,14 +136,10 @@ a.disabled {cursor:default;pointer-events:none}
 .jv-page-jobs .jv-job-category-meta,.jv-page-search .jv-job-category-meta {color:#262626}
 .jv-page-jobs .jv-job-list-inner,.jv-page-search .jv-job-list-inner {background:#fff;padding:0 35px;border-bottom:1px solid #f0eae7}
 .jv-page-jobs .jv-tag-new,.jv-page-search .jv-tag-new {background-color:#3d87cf}
-.jv-text-link {color:#777}
-.jv-job-item .jv-list-label,.jv-search-list .jv-list-label {color:#3d87cf}
-.jv-job-item .jv-meta,.jv-search-list .jv-meta {color:#777;font-size:.875em;font-weight:400}
-.jv-job-category-link .jv-list-icon,.jv-job-item .jv-list-icon {color:#777}
+.jv-page-apply .jv-apply-meta,.jv-page-job .jv-job-detail-meta {margin:0 0 1em;color:#14317e;font-size:1em}
 .jv-page-job .jv-job-detail-top-actions {position:relative;margin:1em 0}
 .jv-page-apply .jv-header {color:#3d87cf}
 .jv-page-apply .jv-sub-header {font-size:1.375em;color:#777}
-.jv-page-apply .jv-apply-meta {margin:.5em 0 1em;color:#777;font-size:1em}
 .jv-page-apply .jv-step-header {font-weight:400}
 .jv-page-apply .jv-current-openings {margin-bottom:1em}
 .jv-page-applyconfirm .jv-page-message {background-color:transparent;padding:5.5em 1em 5em}
@@ -149,6 +148,7 @@ a.disabled {cursor:default;pointer-events:none}
 .tools a {margin:0 .25em;width:270px;padding:10px 15px}
 .jv-share-widget {padding:1em 0}
 .grecaptcha-badge {z-index:1000}
+.jv-add-attachment .jv-close {z-index:5;padding:0 1px}
 #featured .jv-featured-jobs {background-color:transparent;border:none;padding:1em 0}
 #featured .jv-featured-job,#featured .jv-featured-jobs-header {text-align:center}
 #featured .jv-featured-jobs-header {margin:0 0 .25em;width:100%}
@@ -214,7 +214,6 @@ button:focus {outline:thin dotted rgba(0,103,244,.247)}
 .jv-nav {background:#fff;z-index:500}
 .jv-nav .jv-nav-link {padding:15px 15px 18px;line-height:18px;font-size:.9375em;font-family:"",Helvetica,Arial,sans-serif;font-weight:600;white-space:nowrap;text-transform:uppercase;color:#7d7977}
 .jv-nav .jv-nav-link:hover {background:0 0}
-.jv-nav .jv-nav-link i,.jv-nav .jv-nav-link svg {margin-left:6px}
 .jv-nav-visible {overflow:hidden}
 .jv-page {background-color:transparent}
 @media all and (orientation:landscape) {
@@ -236,9 +235,9 @@ button:focus {outline:thin dotted rgba(0,103,244,.247)}
 66.6666666667%,94.4444444444% {background-image:url(//careers.jobvite.com/customer-folder/banner-home-3@0.5x.jpg)}}
 @media screen and (orientation:landscape) {
 .banner.banner-home {height:15vw}}
-.banner.banner-home .overlay {position:absolute;top:0;right:0;bottom:0;left:0;background-color:rgba(0,0,0,.3)}
-.banner.banner-home .overlay-text h1,.banner.banner-home .overlay-text p {color:#fff}
-.banner.banner-home .overlay-text p {font-size:20px}
+.banner .overlay {position:relative;background-color:#4d4d4d}
+.banner .overlay-text h1 {font-size:clamp(1.875em,5vw,3.125em);max-width:17ch;color:#fff}
+.banner .overlay-text p {color:#fff;font-size:20px}
 .m0 {margin:0}
 .mt0 {margin-top:0}
 .mr0 {margin-right:0}
@@ -260,20 +259,6 @@ button:focus {outline:thin dotted rgba(0,103,244,.247)}
 .ml2 {margin-left:2em}
 .my2 {margin-top:2em;margin-bottom:2em}
 .mx2 {margin-left:2em;margin-right:2em}
-.m3 {margin:3em}
-.mt3 {margin-top:3em}
-.mr3 {margin-right:3em}
-.mb3 {margin-bottom:3em}
-.ml3 {margin-left:3em}
-.my3 {margin-top:3em;margin-bottom:3em}
-.mx3 {margin-left:3em;margin-right:3em}
-.m-5 {margin:.5em}
-.mt-5 {margin-top:.5em}
-.mr-5 {margin-right:.5em}
-.mb-5 {margin-bottom:.5em}
-.ml-5 {margin-left:.5em}
-.my-5 {margin-top:.5em;margin-bottom:.5em}
-.mx-5 {margin-left:.5em;margin-right:.5em}
 .mx-auto {margin-left:auto;margin-right:auto}
 .my-auto {margin-top:auto;margin-bottom:auto}
 .ml-auto {margin-left:auto}
@@ -301,20 +286,6 @@ button:focus {outline:thin dotted rgba(0,103,244,.247)}
 .pl2 {padding-left:2em}
 .py2 {padding-top:2em;padding-bottom:2em}
 .px2 {padding-left:2em;padding-right:2em}
-.p3 {padding:3em}
-.pt3 {padding-top:3em}
-.pr3 {padding-right:3em}
-.pb3 {padding-bottom:3em}
-.pl3 {padding-left:3em}
-.py3 {padding-top:3em;padding-bottom:3em}
-.px3 {padding-left:3em;padding-right:3em}
-.p-5 {padding:.5em}
-.pt-5 {padding-top:.5em}
-.pr-5 {padding-right:.5em}
-.pb-5 {padding-bottom:.5em}
-.pl-5 {padding-left:.5em}
-.py-5 {padding-top:.5em;padding-bottom:.5em}
-.px-5 {padding-left:.5em;padding-right:.5em}
 /*! =Size classes */
 .w-0 {width:0%}
 .w-25 {width:25%}
