@@ -150,14 +150,14 @@ $img-suffix: '@0.5x';
 
 // Banner Images Global Settings
 // -----------------------------------------------------------------------------
+$banner-tiny: false; // Set to false if using the CSS Banner carousel
+$banner-count: 3;
+$banner-webp: true;
 $banner-m-x: 1.5;
 $banner-suffix: true;
-$banner-count: 3;
 $banner-pos: 50% 50%;
 $banner-size: cover;
 $banner-repeat: no-repeat;
-$banner-webp: true;
-$banner-tiny: false; // Set to false if using the Banner carousel
 
 // Banner Carousel
 // -----------------------------------------------------------------------------
@@ -168,7 +168,6 @@ $animation-duration: 5s; // duration of slide on screen
 // Forms
 // -----------------------------------------------------------------------------
 $input-font-size: (math.div(16, $font-size-body)) + em;
-
 $input-width: 300px; // Desktop
 $input-min: 200px;
 $input-max: 100%;

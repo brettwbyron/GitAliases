@@ -52,6 +52,7 @@ $internal: false !default;
     // If you have multiple overlays that are different, wrap with a unique class like '.banner-home'
     .overlay {
         @if $mobile {
+            // Moves text overlay below banner image
             position: relative;
             background-color: $color-background-dark;
         } @else {

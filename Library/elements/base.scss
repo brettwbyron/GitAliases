@@ -67,7 +67,7 @@ h6,.h6 {
     font-weight: bold;
 }
 
-h1,.h1 {
+h1, .h1 {
     @if $mobile {
         font-size: $h1-m;        
     } @else {
@@ -76,8 +76,8 @@ h1,.h1 {
     // text-transform: uppercase;
 }
 
-.h2,
-h2 {
+h2, .h2
+ {
     line-height: 1.5;
     // text-transform: uppercase;
     @if $mobile {
