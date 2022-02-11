@@ -27,8 +27,8 @@ const PATHS = {
         //
         // }
     },
-    SRC_IMG: './convert/images/',
-    DIST_IMG: './convert/webp-dist',
+    SRC_IMG: './convert-images/',
+    DIST_IMG: '../images',
     CSS: './**/*.css',
     JS: {
         SRC: '../*(desktop|mobile)/*.js',
@@ -49,6 +49,12 @@ function cleanCSS() {
 function cleanJS() {
     log.info('-------> Cleaning JavaScript');
     return del(PATHS.JS.DIST + '*.js');
+}
+
+// delete images ------------------------------------
+function cleanIMG() {
+    log.info('-------> Cleaning Source Images');
+    return del(PATHS.SRC_IMG + '*.{jpg,jpeg,png}');
 }
 
 // compile styles ------------------------------------
@@ -91,6 +97,7 @@ function compileScripts() {
 // Convert images to WebP ------------------------------------
 function webP() {
     return src(PATHS.SRC_IMG + '*.{jpg,jpeg,png}')
+        .pipe(dest(PATHS.DIST_IMG))
         .pipe(plugins.webp({
             quality: 80,
             lossless: false,
@@ -112,7 +119,7 @@ function endJSMsg(cb) {
 }
 
 function imgMsg(cb) {
-    log.info('-------> Images Converted');
+    log.info('-------> Images Converted and Moved');
     cb();
 }
 
@@ -127,7 +134,7 @@ exports.default = function () {
     }, series(cleanJS, compileScripts, endJSMsg))
     watch(PATHS.SRC_IMG, {
         ignoreInitial: false
-    }, series(webP, imgMsg));
+    }, series(webP, cleanIMG, imgMsg));
 };
 
 // End

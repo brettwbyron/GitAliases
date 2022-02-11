@@ -32,21 +32,26 @@ $mobile: false !default;*/
     }
 }
 
-.list-unstyled {
-    list-style: none;
-    padding-left: 0;
+.list {
+    &-unstyled {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    // See styles at https: //developer.mozilla.org/en-US/docs/Web/CSS/list-style-type
+    // &-custom {
+    //     list-style-type:lower-alpha;
+    // }
+
 }
 
-.list-roman {
-    list-style-type: lower-roman;
+.u-text {
+    &-center {text-align:center}
+    &-left {text-align:left}
+    &-right {text-align:right}
+    // &-narrow {max-width:40ch;}
+    // &-normal {font-weight: 400;}
+    // &-medium {font-weight: 500;}
+    // &-semibold {font-weight: 600;}
+    // &-bold {font-weight: 700;}
 }
-
-.u-text-center {text-align:center}
-.u-text-left {text-align:left}
-.u-text-right {text-align:right}
-
-// .u-text-narrow {max-width:40ch;}
-// .u-text-normal {font-weight: 400;}
-// .u-text-medium {font-weight: 500;}
-// .u-text-semibold {font-weight: 600;}
-// .u-text-bold {font-weight: 700;}

@@ -308,9 +308,7 @@ $mobile: false !default;
 				@media screen and (orientation:landscape) {
 					height: $h * $m-x;
 				}
-			}
-
-			@else {
+			} @else {
 				height: clamp(#{$min}, #{$h}, #{$max});
 
 				@media all and (-ms-high-contrast: none),
@@ -540,6 +538,21 @@ $mobile: false !default;
 // https://developer.mozilla.org/en-US/docs/Web/CSS/user-select
 @mixin user-select($user-select) {
     user-select: $user-select;
+}
+
+// -----------------------------------------------------------------------------
+// Ideal font size
+// Takes min/max font size and viewport breakpoints and calculates ideal font view width
+// -----------------------------------------------------------------------------
+@mixin ideal-font($f-min, $f-max, $v-min, $v-max) {
+	// @debug "-----------> running ideal";
+	$f-avg: math.div(($f-max + $f-min), 2);
+	// @debug "-----------> font avg: "+#{$f-avg};
+	$v-avg: math.div(($v-min + $v-max), 2);
+	// @debug "-----------> view avg: "+#{$v-avg};
+	$ideal: (math.div($f-avg, $v-avg)) * 100vw;
+	// @debug "-----------> ideal: "+#{$ideal};
+	font-size: clamp(#{$f-min}, #{$ideal}, #{$f-max});
 }
 
 // -----------------------------------------------------------------------------

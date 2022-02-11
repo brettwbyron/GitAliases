@@ -6,3 +6,33 @@
 @include generate-width($start:0, $end:100, $inc:25);
 
 @include generate-height($start:0, $end:100, $inc:25);
+
+// -----------------------------------------------------------------------------
+// =Media Queries
+// -----------------------------------------------------------------------------
+@if not $mobile {
+
+    @if $area-screen-small {
+        /*! min-width: #{$screen-sm-px} */
+        @media all and (min-width:$screen-sm-em) {
+            $suffix: "-sm";
+            @include generate-width($start:0, $end:100, $inc:25, $suffix:$suffix);
+        }
+    }
+
+    @if $area-screen-medium {
+        /*! min-width: #{$screen-md-px} */
+        @media all and (min-width:$screen-md-em) {
+            $suffix: "-md";
+            @include generate-width($start:0, $end:100, $inc:25, $suffix:$suffix);
+        }
+    }
+
+    @if $area-screen-large {
+        /*! min-width: #{$screen-lg-px} */
+        @media all and (min-width: $screen-lg-em) {
+            $suffix: "-lg";
+            @include generate-width($start:0, $end:100, $inc:25, $suffix:$suffix);
+        }
+    }
+}

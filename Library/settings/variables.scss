@@ -232,6 +232,7 @@ $screen-lg-em: (math.div($screen-lg, $font-base)) + em;
 $screen-xl: 1200;
 $screen-xl-px: $screen-xl + px;
 $screen-xl-em: (math.div($screen-xl, $font-base)) + em;
+$screen-max: 1200;
 
 // Z-index
 // -----------------------------------------------------------------------------

@@ -95,7 +95,7 @@ $internal: false !default;
 
     input[type=date],
     input[type=email],
-    input[type=number],
+    input[type=number],j
     input[type=password],
     input[type=search],
     input[type=tel],
@@ -200,6 +200,7 @@ $internal: false !default;
 
 }
 
+// Mobile only form styles
 @if $mobile {
     .jv-apply-section-content,
     .jv-additional-files {
@@ -227,14 +228,13 @@ $internal: false !default;
 
     &.jv-search-form, &.jv-list-search-form {
         @include flex-col;
-        padding: 0;
+        flex: 0 0 auto;
         @if $mobile {
             margin: 0;
         } @else {
             @include flex-c-center;
         }
         padding: 0;
-        flex: 0 0 auto;
         background: none;
         border: none;
         width: 100%;
