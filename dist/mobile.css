@@ -226,9 +226,9 @@ button:focus {outline:thin dotted #5e9ed6}
 @media screen and (orientation:landscape) {
 .banner.banner-home .banner-image {height:15vw}}
 .webp .banner.banner-home .banner-image {background-image:url(//careers.jobvite.com/customer-folder/banner-home@0.5x.webp)}
-.banner .overlay {position:relative;background-color:#4d4d4d}
-.banner .overlay-text h1 {font-size:clamp(30,4.0650406504vw,50);max-width:17ch;color:#fff}
-.banner .overlay-text p {color:#fff;font-size:20px}
+.banner+.overlay {position:relative;background-color:#4d4d4d}
+.banner+.overlay .overlay-text h1 {font-size:clamp(30,4.0650406504vw,50);max-width:17ch;color:#fff}
+.banner+.overlay .overlay-text p {color:#fff;font-size:20px}
 .m0 {margin:0}
 .mt0 {margin-top:0}
 .mr0 {margin-right:0}

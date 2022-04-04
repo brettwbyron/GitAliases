@@ -52,31 +52,49 @@ $internal: false !default;
     @include bannerImage('banner-home.jpg', $h, $min, $max);
 
     // If you have multiple overlays that are different, wrap with a unique class like '.banner-home'
-    .overlay {
-        @if $mobile {
+    @if $mobile {
+        + .overlay {
             // Moves text overlay below banner image
             position: relative;
             background-color: $color-background-dark;
-        } @else {
+            
+            .overlay-text {
+                h1 {
+                    @include ideal-font(30, 50, $screen-md, $screen-max);
+                    max-width: 17ch;
+                    @if $mobile {
+                        color: $color-white;                        
+                    } @else {
+                        text-align: right;
+                    } //End
+                }
+                p {
+                    color: $color-white;
+                    font-size: 20px;
+                }
+            }
+        }
+    } @else {
+        .overlay {
             @include absolute(0, 0, 0, 0);
             background-color: rgba($color-black, 0.3);
-        } //End
-    }
-    .overlay-text {
-        h1 {
-            @include ideal-font(30, 50, $screen-md, $screen-max);
-            max-width: 17ch;
-            @if $mobile {
-                color: $color-white;                        
-            } @else {
-                text-align: right;
-            } //End
         }
-        p {
-            color: $color-white;
-            font-size: 20px;
+        .overlay-text {
+            h1 {
+                @include ideal-font(30, 50, $screen-md, $screen-max);
+                max-width: 17ch;
+                @if $mobile {
+                    color: $color-white;                        
+                } @else {
+                    text-align: right;
+                } //End
+            }
+            p {
+                color: $color-white;
+                font-size: 20px;
+            }
         }
-    }
+    } //End
 }
 
 
