@@ -488,6 +488,17 @@ $mobile: false !default;
     }
 }
 
+// -----------------------------------------------------------------------------
+// Hover and focus state
+// -----------------------------------------------------------------------------
+@mixin hover($color) {
+
+	&:hover,
+	&:focus {
+		color: $color;
+		@content;
+	}
+}
 
 // -----------------------------------------------------------------------------
 // Truncating single line of text only
@@ -550,7 +561,7 @@ $mobile: false !default;
 	// @debug "-----------> font avg: "+#{$f-avg};
 	$v-avg: math.div(($v-min + $v-max), 2);
 	// @debug "-----------> view avg: "+#{$v-avg};
-	$ideal: (math.div($f-avg, $v-avg)) * 100vw;
+	$ideal: (math.div(strip-unit($f-avg), $v-avg)) * 100vw;
 	// @debug "-----------> ideal: "+#{$ideal};
 	font-size: clamp(#{$f-min}, #{$ideal}, #{$f-max});
 }
@@ -755,4 +766,33 @@ $mobile: false !default;
     } @else {
         @return $d;
     }
+}
+
+// Slightly lighten a color
+// @access public
+// @param {Color} $color - color to tint
+// @param {Number} $percentage - percentage of `$color` in returned color
+// @return {Color}
+@function tint($color, $percentage) {
+	@return mix(#fff, $color, $percentage);
+}
+
+// Slightly darken a color
+// @access public
+// @param {Color} $color - color to shade
+// @param {Number} $percentage - percentage of `$color` in returned color
+// @return {Color}
+@function shade($color, $percentage) {
+	@return mix(#000, $color, $percentage);
+}
+
+// Remove the unit of a length
+// @param {Number} $number - Number to remove unit from
+// @return {Number} - Unitless number
+@function strip-unit($number) {
+	@if type-of($number)=='number'and not unitless($number) {
+		@return math.div($number, ($number * 0 + 1));
+	}
+
+	@return $number;
 }

@@ -186,7 +186,7 @@ a.disabled {cursor:default;pointer-events:none}
 .jv-form.jv-list-search-form .jv-search-field .jv-search-input[type=search]:-moz-placeholder,.jv-form.jv-list-search-form .jv-search-field .jv-search-input[type=search]:-ms-input-placeholder,.jv-form.jv-list-search-form .jv-search-field .jv-search-input[type=search]::-moz-placeholder,.jv-form.jv-list-search-form .jv-search-field .jv-search-input[type=search]::-webkit-input-placeholder,.jv-form.jv-list-search-form .jv-search-field .jv-search-input[type=search]::placeholder,.jv-form.jv-search-form .jv-search-field .jv-search-input[type=search]:-moz-placeholder,.jv-form.jv-search-form .jv-search-field .jv-search-input[type=search]:-ms-input-placeholder,.jv-form.jv-search-form .jv-search-field .jv-search-input[type=search]::-moz-placeholder,.jv-form.jv-search-form .jv-search-field .jv-search-input[type=search]::-webkit-input-placeholder,.jv-form.jv-search-form .jv-search-field .jv-search-input[type=search]::placeholder {color:#777}
 .jv-form.jv-list-search-form .jv-search-field,.jv-form.jv-search-form .jv-search-field {padding:0;border:none;font-size:1em}
 /*! =Buttons */
-button:focus {outline:thin dotted rgba(0,103,244,.247)}
+button:focus {outline:thin dotted #5e9ed6}
 .jv-button {display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:0 20px;margin:0;line-height:35px;-webkit-appearance:none;font-family:"",Helvetica,Arial,sans-serif;font-weight:500;font-size:1em;text-decoration:none;text-transform:uppercase;border:1px solid transparent;background-color:transparent;border-radius:0;-webkit-transition:all .3s ease-in-out;transition:all .3s ease-in-out;min-width:100px;width:100%}
 .jv-button,.jv-button:visited {background:#f2f2f2;color:#262626}
 .jv-button:active,.jv-button:hover,.jv-button:visited:active,.jv-button:visited:hover {background:#ccc;color:#262626}
@@ -219,22 +219,13 @@ button:focus {outline:thin dotted rgba(0,103,244,.247)}
 @media all and (orientation:landscape) {
 .jv-nav-open-link {right:0}}
 /*! =Custom Sections */
-.section {padding:2em 0;scroll-snap-align:start}
+.section {padding:2em 0}
 .section:focus {outline:0}
 .banner {width:100%;position:relative}
-.banner.banner-home {height:clamp(200px,10vw,300px)}
-.banner.banner-home .slides {position:absolute;height:100%;top:0;left:0;margin:0;padding:0;list-style:none;overflow:hidden}
-.banner.banner-home .slides .slides {width:100%;-webkit-animation:carouselSlide 18s infinite;animation:carouselSlide 18s infinite;background-image:url(//careers.jobvite.com/customer-folder/banner-home-1@0.5x.jpg),url(//careers.jobvite.com/customer-folder/banner-home-2@0.5x.jpg),url(//careers.jobvite.com/customer-folder/banner-home-3@0.5x.jpg);background-position:0,100vw,200vw,300vw;background-color:#000;background-size:100vw;background-repeat:no-repeat}
-@-webkit-keyframes carouselSlide {
-0%,27.7777777778% {background-image:url(//careers.jobvite.com/customer-folder/banner-home-1@0.5x.jpg)}
-33.3333333333%,61.1111111111% {background-image:url(//careers.jobvite.com/customer-folder/banner-home-2@0.5x.jpg)}
-66.6666666667%,94.4444444444% {background-image:url(//careers.jobvite.com/customer-folder/banner-home-3@0.5x.jpg)}}
-@keyframes carouselSlide {
-0%,27.7777777778% {background-image:url(//careers.jobvite.com/customer-folder/banner-home-1@0.5x.jpg)}
-33.3333333333%,61.1111111111% {background-image:url(//careers.jobvite.com/customer-folder/banner-home-2@0.5x.jpg)}
-66.6666666667%,94.4444444444% {background-image:url(//careers.jobvite.com/customer-folder/banner-home-3@0.5x.jpg)}}
+.banner.banner-home .banner-image {height:clamp(200px,10vw,300px);background-image:url(//careers.jobvite.com/customer-folder/banner-home@0.5x.jpg);background-position:50% 50%;background-size:cover;background-repeat:no-repeat}
 @media screen and (orientation:landscape) {
-.banner.banner-home {height:15vw}}
+.banner.banner-home .banner-image {height:15vw}}
+.webp .banner.banner-home .banner-image {background-image:url(//careers.jobvite.com/customer-folder/banner-home@0.5x.webp)}
 .banner .overlay {position:relative;background-color:#4d4d4d}
 .banner .overlay-text h1 {font-size:clamp(30,4.0650406504vw,50);max-width:17ch;color:#fff}
 .banner .overlay-text p {color:#fff;font-size:20px}

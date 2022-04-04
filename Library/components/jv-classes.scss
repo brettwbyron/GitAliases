@@ -315,6 +315,34 @@ main {
 
 .jv-share-widget {
     padding: 1em 0;
+
+    // .jv-button-list {
+    //     @include flex-row;
+    //     @include flex-m-space-between;
+    //     width: 50px * 4;
+    //     border: none;
+    //     border-radius: 0;
+    //     background: none;
+    // }
+
+    // .jv-button-list-item {
+    //     @include square(45px);
+    //     background-color: $color-primary;
+    //     transition: all $transition-normal $transition-easing;
+    //     border-radius: 25px;
+
+    //     &:hover {
+    //         background: darken($color-primary, 15%);
+    //         color: $color-white;
+    //     }
+    // }
+
+    // .jv-button-icon {
+    //     @include flex-col;
+    //     @include flex-center;
+    //     color: $color-white;
+    //     background: none;
+    // }
 }
 
 .grecaptcha-badge {

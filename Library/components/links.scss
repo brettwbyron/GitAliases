@@ -55,3 +55,34 @@ $internal: false !default;
         }
     }
 }
+
+@if $area-ada {
+    
+    .skip-links {
+        @include flex-row;
+        @include flex-center;
+        @include absolute(0, null, null, 50%);
+        transform: translateY(-100%) translateX(-50%);
+        padding: 5px 0;
+        z-index: 500;
+
+        .skip-link {
+            background-color: $color-white;
+            color: $color-focus;
+            font-weight: 700;
+            line-height: 1;
+            width: 220px;
+
+            height: 35px;
+            padding: 8px;
+            margin: 0 0.5em;
+            transition: transform 0.3s;
+            text-align: center;
+
+            &:focus {
+                transform: translateY(calc(100% + 1em));
+
+            }
+        }
+    }
+}

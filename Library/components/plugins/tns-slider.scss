@@ -49,6 +49,7 @@ $controls: false;
             left: 0;
             top: 50%;
             transform: translateY(-50%);
+            z-index: $z-nav - 10;
 
             .prev, .next {
                 @include flex-col;

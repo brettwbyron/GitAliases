@@ -33,6 +33,7 @@ $area-internal-site: false; // Use "if" statements to style internal sites
 $area-multiselect: false; // Forms
 $area-social-buttons: false;
 $area-glassdoor: false;
+$area-ada: false;
 // Desktop ---------------------------------------------------------------------
 $area-iframe-site: false; // Set to "true" if your site is iframe
 $area-screen-x-small: false; // Adds media queries for a given screen size
@@ -89,7 +90,7 @@ $color-gray-light: lighten($color-gray,15%);
 $color-gray-dark: darken($color-gray,65%);
 $color-text: #777;
 $color-error: #cb0013;
-$color-focus: rgba(0,103,244,0.247);
+$color-focus: rgb(94, 158, 214);
 $color-link: $color-primary;
 $color-link--hover: darken($color-primary,15%);
 $color-link--active: darken($color-primary,25%);
@@ -106,12 +107,12 @@ $color-selection-background: $color-black;
 
 // Typography
 // -----------------------------------------------------------------------------
-$font-base: 16;
+$font-base: 16 !default; // Don't change this, browser standard font size
 $font-base-px: ($font-base + px);
-$font-size-base: math.div($font-base,16);
-$font-size-body: 16;
+$font-size-body: 16; // Change this to customize the site's font size
+$font-size-base: math.div($font-size-body,$font-base);
 $font-sm: ($font-size-body - 2);
-$font-size-button: $font-size-base;
+// $font-size-button: $font-size-base + em; // Buttons use input-font-size, keeping variable incase you want to use a different value
 $line-height-base: 1.375;
 $font-sans-serif: Helvetica, Arial, sans-serif;
 // $font-sans-serif: Arial, sans-serif;
@@ -150,8 +151,8 @@ $img-suffix: '@0.5x';
 
 // Banner Images Global Settings
 // -----------------------------------------------------------------------------
-$banner-tiny: false; // Set to false if using the CSS Banner carousel
-$banner-count: 3;
+$banner-tiny: true; // Set to false if using the CSS Banner carousel or single image
+$banner-count: 1;
 $banner-webp: true;
 $banner-m-x: 1.5;
 $banner-suffix: true;
@@ -169,8 +170,9 @@ $animation-duration: 5s; // duration of slide on screen
 // -----------------------------------------------------------------------------
 $input-font-size: (math.div(16, $font-size-body)) + em;
 $input-width: 300px; // Desktop
+$input-100: 100%;
 $input-min: 200px;
-$input-max: 100%;
+$input-max: 400px;
 $input-height: 40px;
 $input-focus-width: 3px; // Browser default: 5px
 $input-focus-color: $color-outline-focus; // See colors-base.scss

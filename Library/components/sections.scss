@@ -32,23 +32,22 @@ $internal: false !default;
     // }
 
     // Scroll Snap Settings
-    scroll-snap-align: start
+    // scroll-snap-align: start
 }
 
 // Banners
 // *Directions* @include the desired mixin to use and customize the properties.
 // @include bannerFixed($w:1200px,$h:500px);
-// @include bannerImage($imgH, $imgW, $h:null, $min:null, $max:null, $m-x:1.5, $imgName, $suffix:false, $count, $pos:50% 50%, $size:cover, $repeat:no-repeat, $webp:false);
+// @include bannerImage('banner-home.jpg', $h, $min, $max);
+//      Required parameters($img, $h, $min, $max)
+//      Complete parameters($img, $h, $min, $max, $m-x(mobile):1.5, $suffix(mobile):false, $count:1, $pos:50% 50%, $size:cover, $repeat:no-repeat, $webp:false)
 // -----------------------------------------------------------------------------
 
 @include banner() {
-    // Banner image (mobile/desktop) settings
+    // Banner image (mobile/desktop) height settings
     $h:set-val(10vw, 40vw);
     $min:set-val(200px, 300px);
     $max:set-val(300px, 500px);
-
-    // Required parameters($img, $h, $min, $max)
-    // Complete parameters($img, $h, $min, $max, $m-x(mobile):1.5, $suffix(mobile):false, $count:1, $pos:50% 50%, $size:cover, $repeat:no-repeat, $webp:false)
    
     @include bannerImage('banner-home.jpg', $h, $min, $max);
 

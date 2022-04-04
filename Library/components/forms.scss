@@ -312,7 +312,8 @@ $internal: false !default;
 
                     .jv-form-field-control {
                         min-width: $input-min;
-                        width: $input-max;
+                        width: $input-100;
+                        max-width: $input-max;
                     }
 
                     .jv-form-buttons {

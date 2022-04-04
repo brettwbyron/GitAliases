@@ -187,3 +187,16 @@ $mobile: false !default;
         }
     }
 }
+
+.scroll-reveal-static {
+    &.slide-left {
+        .photo-cover {
+            left: 100%;
+        }
+    }
+    &.slide-right {
+        .photo-cover {
+            right: 100%;
+        }
+    }
+}

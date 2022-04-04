@@ -292,10 +292,10 @@ a.disabled {cursor:default;pointer-events:none}
 .jv-form.jv-list-search-form.jv-form-inline-md,.jv-form.jv-search-form.jv-form-inline-md {display:-webkit-box;display:-ms-flexbox;display:flex;min-width:0;min-height:0;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}
 .jv-form.jv-list-search-form.jv-form-inline-md input[type=date],.jv-form.jv-list-search-form.jv-form-inline-md input[type=email],.jv-form.jv-list-search-form.jv-form-inline-md input[type=number],.jv-form.jv-list-search-form.jv-form-inline-md input[type=password],.jv-form.jv-list-search-form.jv-form-inline-md input[type=search],.jv-form.jv-list-search-form.jv-form-inline-md input[type=tel],.jv-form.jv-list-search-form.jv-form-inline-md input[type=text],.jv-form.jv-list-search-form.jv-form-inline-md select,.jv-form.jv-list-search-form.jv-form-inline-md textarea,.jv-form.jv-search-form.jv-form-inline-md input[type=date],.jv-form.jv-search-form.jv-form-inline-md input[type=email],.jv-form.jv-search-form.jv-form-inline-md input[type=number],.jv-form.jv-search-form.jv-form-inline-md input[type=password],.jv-form.jv-search-form.jv-form-inline-md input[type=search],.jv-form.jv-search-form.jv-form-inline-md input[type=tel],.jv-form.jv-search-form.jv-form-inline-md input[type=text],.jv-form.jv-search-form.jv-form-inline-md select,.jv-form.jv-search-form.jv-form-inline-md textarea {width:100%}
 .jv-form.jv-list-search-form.jv-form-inline-md .jv-form-field,.jv-form.jv-search-form.jv-form-inline-md .jv-form-field {margin-bottom:0;margin-right:.25em}
-.jv-form.jv-list-search-form.jv-form-inline-md .jv-form-field-control,.jv-form.jv-search-form.jv-form-inline-md .jv-form-field-control {min-width:200px;width:100%}
+.jv-form.jv-list-search-form.jv-form-inline-md .jv-form-field-control,.jv-form.jv-search-form.jv-form-inline-md .jv-form-field-control {min-width:200px;width:100%;max-width:400px}
 .jv-form.jv-list-search-form.jv-form-inline-md .jv-form-buttons,.jv-form.jv-search-form.jv-form-inline-md .jv-form-buttons {display:-webkit-box;display:-ms-flexbox;display:flex;min-width:0;min-height:0;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;max-width:150px;margin-left:0}}
 /*! =Buttons */
-button:focus {outline:thin dotted rgba(0,103,244,.247)}
+button:focus {outline:thin dotted #5e9ed6}
 .jv-button {display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:0 20px;margin:0;line-height:35px;-webkit-appearance:none;font-family:"",Helvetica,Arial,sans-serif;font-weight:500;font-size:1em;text-decoration:none;text-transform:uppercase;border:1px solid transparent;background-color:transparent;border-radius:0;-webkit-transition:all .3s ease-in-out;transition:all .3s ease-in-out;min-width:100px}
 .jv-button,.jv-button:visited {background:#f2f2f2;color:#262626}
 .jv-button:active,.jv-button:hover,.jv-button:visited:active,.jv-button:visited:hover {background:#ccc;color:#262626}
@@ -316,22 +316,13 @@ button:focus {outline:thin dotted rgba(0,103,244,.247)}
 .jv-footer .jv-powered-by:hover {color:#3d87cf}
 .jv-footer .jv-powered-by .icon span {width:1px;height:1px}
 /*! =Custom Sections */
-.section {padding:3em 0;scroll-snap-align:start}
+.section {padding:3em 0}
 .section:focus {outline:0}
 .banner {width:100%;position:relative}
-.banner.banner-home {height:clamp(300px,40vw,500px)}
-.banner.banner-home .slides {position:absolute;height:100%;top:0;left:0;margin:0;padding:0;list-style:none;overflow:hidden}
-.banner.banner-home .slides .slides {width:100%;-webkit-animation:carouselSlide 18s infinite;animation:carouselSlide 18s infinite;background-image:url(//careers.jobvite.com/customer-folder/banner-home-1.jpg),url(//careers.jobvite.com/customer-folder/banner-home-2.jpg),url(//careers.jobvite.com/customer-folder/banner-home-3.jpg);background-position:0,100vw,200vw,300vw;background-color:#000;background-size:100vw;background-repeat:no-repeat}
-@-webkit-keyframes carouselSlide {
-0%,27.7777777778% {background-image:url(//careers.jobvite.com/customer-folder/banner-home-1.jpg)}
-33.3333333333%,61.1111111111% {background-image:url(//careers.jobvite.com/customer-folder/banner-home-2.jpg)}
-66.6666666667%,94.4444444444% {background-image:url(//careers.jobvite.com/customer-folder/banner-home-3.jpg)}}
-@keyframes carouselSlide {
-0%,27.7777777778% {background-image:url(//careers.jobvite.com/customer-folder/banner-home-1.jpg)}
-33.3333333333%,61.1111111111% {background-image:url(//careers.jobvite.com/customer-folder/banner-home-2.jpg)}
-66.6666666667%,94.4444444444% {background-image:url(//careers.jobvite.com/customer-folder/banner-home-3.jpg)}}
+.banner.banner-home .banner-image {height:clamp(300px,40vw,500px);background-image:url(//careers.jobvite.com/customer-folder/banner-home.jpg);background-position:50% 50%;background-size:cover;background-repeat:no-repeat}
 @media all and (-ms-high-contrast:none),(-ms-high-contrast:active) {
-.banner.banner-home {height:40vw;min-height:300px;max-height:500px}}
+.banner.banner-home .banner-image {height:40vw;min-height:300px;max-height:500px}}
+.webp .banner.banner-home .banner-image {background-image:url(//careers.jobvite.com/customer-folder/banner-home.webp)}
 .banner .overlay {position:absolute;top:0;right:0;bottom:0;left:0;background-color:rgba(0,0,0,.3)}
 .banner .overlay-text h1 {font-size:clamp(30,4.0650406504vw,50);max-width:17ch;text-align:right}
 .banner .overlay-text p {color:#fff;font-size:20px}
@@ -444,6 +435,13 @@ button:focus {outline:thin dotted rgba(0,103,244,.247)}
 .h-50 {height:50%}
 .h-75 {height:75%}
 .h-100 {height:100%}
+/*! min-width: 768px */
+@media all and (min-width:48em) {
+.w-0-md {width:0%}
+.w-25-md {width:25%}
+.w-50-md {width:50%}
+.w-75-md {width:75%}
+.w-100-md {width:100%}}
 .sr-only {position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;-webkit-clip-path:inset(50%);clip-path:inset(50%);border:0}
 .sr-only-focusable:active,.sr-only-focusable:focus {position:static;width:auto;height:auto;overflow:visible;clip:auto;white-space:normal;-webkit-clip-path:none;clip-path:none}
 .list-unstyled {list-style:none;padding-left:0}
