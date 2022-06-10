@@ -3,7 +3,7 @@
 $mobile: false !default;
 $internal: false !default;
 
-$kickoff: '2.6.0';
+$kickoff: '2.6.2';
 
 @if $mobile {
     @if $internal {

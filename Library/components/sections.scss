@@ -1,8 +1,14 @@
+@use "sass:map";
+@use "sass:meta";
 @use "sass:math";
 @use "Library/settings/variables"as *;
 @use "Library/tools/mixins"as *;
 @use "Library/tools/flex"as *;
 // @use "Library/tools/functions"as *;
+
+// @use "Library/settings/functions";
+// @debug meta.module-functions("functions");
+// @debug meta.call(map.get(meta.module-variables("functions"), "pow"), 3, 4);
 
 $mobile: false !default;
 $internal: false !default;
@@ -77,7 +83,7 @@ $internal: false !default;
     } @else {
         .overlay {
             @include absolute(0, 0, 0, 0);
-            background-color: rgba($color-black, 0.3);
+            background-color: $color-overlay;
         }
         .overlay-text {
             h1 {

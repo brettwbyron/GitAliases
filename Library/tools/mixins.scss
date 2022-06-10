@@ -400,7 +400,7 @@ $mobile: false !default;
 // -----------------------------------------------------------------------------
 @mixin bg-img($img:null, $size:cover, $pos:50% 50%, $repeat:no-repeat, $suffix:false, $webp:false) {
     $index: str-index($img, '.');
-    @if $suffix {
+    @if $suffix and $mobile {
         $output: str-insert($img, "#{$img-suffix}", $index);
 
         background-image: url($root-url+$output);
