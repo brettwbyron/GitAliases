@@ -1,4 +1,4 @@
-/*! Styles for  -Desktop Internal - kickoff v2.6.0 */
+/*! Styles for  -Desktop Internal - kickoff v2.6.2 */
 html {-webkit-box-sizing:border-box;box-sizing:border-box;scroll-behavior:smooth}
 *,:after,:before {-webkit-box-sizing:inherit;box-sizing:inherit}
 body,html {height:100%;font-family:"",Helvetica,Arial,sans-serif;font-size:100%;font-weight:400;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased}
@@ -271,11 +271,11 @@ a.disabled {cursor:default;pointer-events:none}
 .jv-form .jv-form-field .jv-form-field-checkbox .jv-form-field-control,.jv-form .jv-form-field .jv-form-field-heading .jv-form-field-control,.jv-form .jv-form-field .jv-form-field-hr .jv-form-field-control,.jv-form .jv-form-field .jv-form-field-p .jv-form-field-control,.jv-form .jv-form-field .jv-form-field-radio .jv-form-field-control {border:none;border-radius:0;background:0 0;min-width:none;max-width:none}
 .jv-form input[type=date],.jv-form input[type=email],.jv-form input[type=number],.jv-form input[type=password],.jv-form input[type=search],.jv-form input[type=tel],.jv-form input[type=text],.jv-form select,.jv-form textarea {width:298px;min-width:200px;display:block;background:0 0;border:none;font-size:1em;border-radius:0;padding:.4em}
 .jv-form input[type=date]:focus,.jv-form input[type=email]:focus,.jv-form input[type=number]:focus,.jv-form input[type=password]:focus,.jv-form input[type=search]:focus,.jv-form input[type=tel]:focus,.jv-form input[type=text]:focus,.jv-form select:focus,.jv-form textarea:focus {outline-width:3px;outline-color:#3b99fc}
-.jv-form input[type=date],.jv-form input[type=email],.jv-form input[type=number],.jv-form input[type=search],.jv-form input[type=tel],.jv-form input[type=text],.jv-form j input[type=password],.jv-form select {height:40px}
+.jv-form input[type=date],.jv-form input[type=email],.jv-form input[type=number],.jv-form input[type=password],.jv-form input[type=search],.jv-form input[type=tel],.jv-form input[type=text],.jv-form select {height:40px}
 .jv-form textarea {min-width:100%;max-width:100%;border:1px solid #bfbfbf;border-radius:0;height:180px;max-height:180px;min-height:180px}
 .jv-form .jv-form-buttons {text-align:left;width:300px;height:42px}
 .jv-form .jv-form-buttons .jv-button {-webkit-box-flex:1;-ms-flex:1 1 100%;flex:1 1 100%;width:100%}
-.jv-form .jv-form-buttons .jv-button:first-child {margin-right:.25em}
+.jv-form .jv-form-buttons .jv-button:not(:last-child) {margin-right:.25em}
 .jv-form .jv-form-buttons .jv-button .fa-search {margin-right:10px}
 .jv-form .jv-invalid-field .jv-input-group-row,.jv-form .jv-invalid-field button,.jv-form .jv-invalid-field input,.jv-form .jv-invalid-field select,.jv-form .jv-invalid-field textarea {border:1px solid #cb0013!important}
 .jv-page-consentform select {width:300px;background:#fff;border:1px solid #000;border-radius:0}

@@ -2,6 +2,7 @@
 @use "Library/settings/variables"as *;
 $mobile: false !default;
 $internal: false !default;
+$lang: false !default;
 
 $include-negative-size: false;
 $include-half-size: false;
@@ -108,6 +109,180 @@ $sides-list: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
 // -----------------------------------------------------------------------------
 // =Media Queries
 // -----------------------------------------------------------------------------
+@if $mobile {
+    @if $area-screen-xs-mobile {
+        /* min-width: #{screen-xs-px} */
+        @media all and (min-width: $screen-xs-em) {
+            $suffix: "-xs";
+            // Margin
+            @for $i from 0 through $max-spacing {
+                $props: ("margin": "m");
+
+                @each $prop,$abbr in $props {
+                    $sides: $sides-list;
+
+                    @each $clip,$side in $sides {
+                        .#{$abbr}#{$clip}#{$i}#{$suffix} {
+                            #{$prop}#{$side}: calcSpacing($i);
+                        }
+                    }
+
+                    .#{$abbr}y#{$i}#{$suffix} {
+                        #{$prop}-top: calcSpacing($i);
+                        #{$prop}-bottom: calcSpacing($i);
+                    }
+
+                    .#{$abbr}x#{$i}#{$suffix} {
+                        #{$prop}-left: calcSpacing($i);
+                        #{$prop}-right: calcSpacing($i);
+                    }
+                }
+            }
+            .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
+            .my-auto#{$suffix} { margin-top: auto; margin-bottom: auto; }
+            .ml-auto#{$suffix} { margin-left: auto }
+            .mr-auto#{$suffix} { margin-right: auto }
+            .mt-auto#{$suffix} { margin-top: auto }
+            .mb-auto#{$suffix} { margin-bottom: auto }
+
+            // These values are 1/2 of 1em == 0.5em
+            @if $include-half-size {
+                $sides: $sides-list;
+                @each $abbr, $side in $sides {
+                    .m#{$abbr}-5#{$suffix} {
+                        margin#{$side}: math.div($spacing-1, 2)
+                    }
+                }
+                .my-5#{$suffix} { margin-top:    math.div($spacing-1, 2); margin-bottom: math.div($spacing-1, 2) }
+                .mx-5#{$suffix} { margin-left:   math.div($spacing-1, 2); margin-right: math.div($spacing-1, 2) }
+            }
+
+            // Padding
+            @for $i from 0 through $max-spacing {
+                $props: ("padding": "p");
+
+                @each $prop,$abbr in $props {
+                    $sides: $sides-list;
+
+                    @each $clip,$side in $sides {
+                        .#{$abbr}#{$clip}#{$i}#{$suffix} {
+                            #{$prop}#{$side}: calcSpacing($i);
+                        }
+                    }
+
+                    .#{$abbr}y#{$i}#{$suffix} {
+                        #{$prop}-top: calcSpacing($i);
+                        #{$prop}-bottom: calcSpacing($i);
+                    }
+
+                    .#{$abbr}x#{$i}#{$suffix} {
+                        #{$prop}-left: calcSpacing($i);
+                        #{$prop}-right: calcSpacing($i);
+                    }
+                }
+            }
+
+            // These values are 1/2 of 1em == 0.5em
+            @if $include-half-size {
+                $sides: $sides-list;
+                @each $abbr,$side in $sides {
+                    .p#{$abbr}-5#{$suffix} {
+                        padding#{$side}: math.div($spacing-1, 2)
+                    }
+                }
+                .py-5#{$suffix} { padding-top:    math.div($spacing-1, 2); padding-bottom: math.div($spacing-1, 2) }
+                .px-5#{$suffix} { padding-left:   math.div($spacing-1, 2); padding-right:  math.div($spacing-1, 2) }
+            }
+        }
+    }
+
+    @if $area-screen-small-mobile {
+        /*! min-width: #{$screen-sm-px} */
+        @media all and (min-width:$screen-sm-em) {
+            $suffix: "-sm";
+            // Margin
+            @for $i from 0 through $max-spacing {
+                $props: ("margin": "m");
+
+                @each $prop,$abbr in $props {
+                    $sides: $sides-list;
+
+                    @each $clip,$side in $sides {
+                        .#{$abbr}#{$clip}#{$i}#{$suffix} {
+                            #{$prop}#{$side}: calcSpacing($i);
+                        }
+                    }
+
+                    .#{$abbr}y#{$i}#{$suffix} {
+                        #{$prop}-top: calcSpacing($i);
+                        #{$prop}-bottom: calcSpacing($i);
+                    }
+
+                    .#{$abbr}x#{$i}#{$suffix} {
+                        #{$prop}-left: calcSpacing($i);
+                        #{$prop}-right: calcSpacing($i);
+                    }
+                }
+            }
+            .mx-auto#{$suffix} { margin-left: auto; margin-right: auto; }
+            .my-auto#{$suffix} { margin-top: auto; margin-bottom: auto; }
+            .ml-auto#{$suffix} { margin-left: auto }
+            .mr-auto#{$suffix} { margin-right: auto }
+            .mt-auto#{$suffix} { margin-top: auto }
+            .mb-auto#{$suffix} { margin-bottom: auto }
+
+            // These values are 1/2 of 1em == 0.5em
+            @if $include-half-size {
+                $sides: $sides-list;
+                @each $abbr, $side in $sides {
+                    .m#{$abbr}-5#{$suffix} {
+                        margin#{$side}: math.div($spacing-1, 2)
+                    }
+                }
+                .my-5#{$suffix} { margin-top:    math.div($spacing-1, 2); margin-bottom: math.div($spacing-1, 2) }
+                .mx-5#{$suffix} { margin-left:   math.div($spacing-1, 2); margin-right: math.div($spacing-1, 2) }
+            }
+
+            // Padding
+            @for $i from 0 through $max-spacing {
+                $props: ("padding": "p");
+
+                @each $prop,$abbr in $props {
+                    $sides: $sides-list;
+
+                    @each $clip,$side in $sides {
+                        .#{$abbr}#{$clip}#{$i}#{$suffix} {
+                            #{$prop}#{$side}: calcSpacing($i);
+                        }
+                    }
+
+                    .#{$abbr}y#{$i}#{$suffix} {
+                        #{$prop}-top: calcSpacing($i);
+                        #{$prop}-bottom: calcSpacing($i);
+                    }
+
+                    .#{$abbr}x#{$i}#{$suffix} {
+                        #{$prop}-left: calcSpacing($i);
+                        #{$prop}-right: calcSpacing($i);
+                    }
+                }
+            }
+
+            // These values are 1/2 of 1em == 0.5em
+            @if $include-half-size {
+                $sides: $sides-list;
+                @each $abbr,$side in $sides {
+                    .p#{$abbr}-5#{$suffix} {
+                        padding#{$side}: math.div($spacing-1, 2)
+                    }
+                }
+                .py-5#{$suffix} { padding-top:    math.div($spacing-1, 2); padding-bottom: math.div($spacing-1, 2) }
+                .px-5#{$suffix} { padding-left:   math.div($spacing-1, 2); padding-right:  math.div($spacing-1, 2) }
+            }
+        }
+    }
+}
+
 @if not $mobile {
 
     @if $area-screen-small {
@@ -153,8 +328,8 @@ $sides-list: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
                         margin#{$side}: math.div($spacing-1, 2)
                     }
                 }
-                .my-5 { margin-top:    math.div($spacing-1, 2); margin-bottom: math.div($spacing-1, 2) }
-                .mx-5 { margin-left:   math.div($spacing-1, 2); margin-right: math.div($spacing-1, 2) }
+                .my-5#{$suffix} { margin-top:    math.div($spacing-1, 2); margin-bottom: math.div($spacing-1, 2) }
+                .mx-5#{$suffix} { margin-left:   math.div($spacing-1, 2); margin-right: math.div($spacing-1, 2) }
             }
 
             // Padding
@@ -186,12 +361,12 @@ $sides-list: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
             @if $include-half-size {
                 $sides: $sides-list;
                 @each $abbr,$side in $sides {
-                    .p#{$abbr}-5 {
+                    .p#{$abbr}-5#{$suffix} {
                         padding#{$side}: math.div($spacing-1, 2)
                     }
                 }
-                .py-5 { padding-top:    math.div($spacing-1, 2); padding-bottom: math.div($spacing-1, 2) }
-                .px-5 { padding-left:   math.div($spacing-1, 2); padding-right:  math.div($spacing-1, 2) }
+                .py-5#{$suffix} { padding-top:    math.div($spacing-1, 2); padding-bottom: math.div($spacing-1, 2) }
+                .px-5#{$suffix} { padding-left:   math.div($spacing-1, 2); padding-right:  math.div($spacing-1, 2) }
             }
         }
     }
@@ -238,8 +413,8 @@ $sides-list: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
                         margin#{$side}: math.div($spacing-1, 2)
                     }
                 }
-                .my-5 { margin-top:    math.div($spacing-1, 2); margin-bottom: math.div($spacing-1, 2) }
-                .mx-5 { margin-left:   math.div($spacing-1, 2); margin-right: math.div($spacing-1, 2) }
+                .my-5#{$suffix} { margin-top:    math.div($spacing-1, 2); margin-bottom: math.div($spacing-1, 2) }
+                .mx-5#{$suffix} { margin-left:   math.div($spacing-1, 2); margin-right: math.div($spacing-1, 2) }
             }
 
             // Padding
@@ -271,12 +446,12 @@ $sides-list: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
             @if $include-half-size {
                 $sides: $sides-list;
                 @each $abbr,$side in $sides {
-                    .p#{$abbr}-5 {
+                    .p#{$abbr}-5#{$suffix} {
                         padding#{$side}: math.div($spacing-1, 2)
                     }
                 }
-                .py-5 { padding-top:    math.div($spacing-1, 2); padding-bottom: math.div($spacing-1, 2) }
-                .px-5 { padding-left:   math.div($spacing-1, 2); padding-right:  math.div($spacing-1, 2) }
+                .py-5#{$suffix} { padding-top:    math.div($spacing-1, 2); padding-bottom: math.div($spacing-1, 2) }
+                .px-5#{$suffix} { padding-left:   math.div($spacing-1, 2); padding-right:  math.div($spacing-1, 2) }
             }
         }
     }
@@ -323,8 +498,8 @@ $sides-list: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
                         margin#{$side}: math.div($spacing-1, 2)
                     }
                 }
-                .my-5 { margin-top:    math.div($spacing-1, 2); margin-bottom: math.div($spacing-1, 2) }
-                .mx-5 { margin-left:   math.div($spacing-1, 2); margin-right: math.div($spacing-1, 2) }
+                .my-5#{$suffix} { margin-top:    math.div($spacing-1, 2); margin-bottom: math.div($spacing-1, 2) }
+                .mx-5#{$suffix} { margin-left:   math.div($spacing-1, 2); margin-right: math.div($spacing-1, 2) }
             }
 
             // Padding
@@ -356,12 +531,12 @@ $sides-list: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
             @if $include-half-size {
                 $sides: $sides-list;
                 @each $abbr,$side in $sides {
-                    .p#{$abbr}-5 {
+                    .p#{$abbr}-5#{$suffix} {
                         padding#{$side}: math.div($spacing-1, 2)
                     }
                 }
-                .py-5 { padding-top:    math.div($spacing-1, 2); padding-bottom: math.div($spacing-1, 2) }
-                .px-5 { padding-left:   math.div($spacing-1, 2); padding-right:  math.div($spacing-1, 2) }
+                .py-5#{$suffix} { padding-top:    math.div($spacing-1, 2); padding-bottom: math.div($spacing-1, 2) }
+                .px-5#{$suffix} { padding-left:   math.div($spacing-1, 2); padding-right:  math.div($spacing-1, 2) }
             }
         }
     }
@@ -412,8 +587,8 @@ $sides-list: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
                         margin#{$side}: math.div($spacing-1, 2)
                     }
                 }
-                .my-5 { margin-top:    math.div($spacing-1, 2); margin-bottom: math.div($spacing-1, 2) }
-                .mx-5 { margin-left:   math.div($spacing-1, 2); margin-right: math.div($spacing-1, 2) }
+                .my-5#{$suffix} { margin-top:    math.div($spacing-1, 2); margin-bottom: math.div($spacing-1, 2) }
+                .mx-5#{$suffix} { margin-left:   math.div($spacing-1, 2); margin-right: math.div($spacing-1, 2) }
             }
 
             // Padding
@@ -447,12 +622,12 @@ $sides-list: (null:null, t:"-top", r:"-right", b:"-bottom", l:"-left");
             @if $include-half-size {
                 $sides: $sides-list;
                 @each $abbr,$side in $sides {
-                    .p#{$abbr}-5 {
+                    .p#{$abbr}-5#{$suffix} {
                         padding#{$side}: math.div($spacing-1, 2)
                     }
                 }
-                .py-5 { padding-top:    math.div($spacing-1, 2); padding-bottom: math.div($spacing-1, 2) }
-                .px-5 { padding-left:   math.div($spacing-1, 2); padding-right:  math.div($spacing-1, 2) }
+                .py-5#{$suffix} { padding-top:    math.div($spacing-1, 2); padding-bottom: math.div($spacing-1, 2) }
+                .px-5#{$suffix} { padding-left:   math.div($spacing-1, 2); padding-right:  math.div($spacing-1, 2) }
             }
         }
     }

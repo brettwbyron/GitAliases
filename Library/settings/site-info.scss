@@ -2,6 +2,7 @@
 @use "Library/tools/mixins"as *;
 $mobile: false !default;
 $internal: false !default;
+$lang: false !default;
 
 $kickoff: '2.6.2';
 

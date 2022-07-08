@@ -2,6 +2,7 @@
 @use "Library/settings/variables"as *;
 $mobile: false !default;
 $internal: false !default;
+$lang: false !default;
 
 /* Video Containers */
 @if $area-video-container {

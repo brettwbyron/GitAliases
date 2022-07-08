@@ -5,6 +5,7 @@
 @use "Library/settings/variables"as *;
 
 $mobile: false !default;
+$lang: false !default;
 // --------------------------------------------------------------------------
 //  =Mixins
 // --------------------------------------------------------------------------
@@ -389,10 +390,34 @@ $mobile: false !default;
 // -----------------------------------------------------------------------------
 // Image - don't use size units
 // -----------------------------------------------------------------------------
+// Keeping old version for now
+// @mixin aspect-ratio($w, $h) {
+// 	width: 100%;
+// 	height: auto;
+// 	aspect-ratio: #{$w} / #{$h};
+// }
+
 @mixin aspect-ratio($w, $h) {
+	$ratio: math.div($w, $h);
+	$padding: math.div(1, $ratio) * 100%;
+
 	width: 100%;
 	height: auto;
-	aspect-ratio: #{$w} / #{$h};
+	aspect-ratio: $ratio;
+
+	@supports not (aspect-ratio: math.div($w, $h)) {
+		&:before {
+			content: '';
+			float: left;
+			padding-bottom: $padding;
+		}
+
+		&:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+	}
 }
 
 // -----------------------------------------------------------------------------
@@ -400,7 +425,7 @@ $mobile: false !default;
 // -----------------------------------------------------------------------------
 @mixin bg-img($img:null, $size:cover, $pos:50% 50%, $repeat:no-repeat, $suffix:false, $webp:false) {
     $index: str-index($img, '.');
-    @if $suffix and $mobile {
+    @if $suffix {
         $output: str-insert($img, "#{$img-suffix}", $index);
 
         background-image: url($root-url+$output);
@@ -436,7 +461,7 @@ $mobile: false !default;
 // -----------------------------------------------------------------------------
 @mixin webp-bg($img, $suffix:false) {
     .webp & {
-        @if $suffix {
+        @if $suffix and $mobile {
             $index: str-index($img, '.');
             $output: str-insert($img, $img-suffix, $index);
             background-image: url($root-url+$output);

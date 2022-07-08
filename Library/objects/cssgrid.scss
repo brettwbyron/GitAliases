@@ -4,6 +4,7 @@
 @use "Library/tools/flex"as *;
 $mobile: false !default;
 $internal: false !default;
+$lang: false !default;
 
 // -----------------------------------------------------------------------------
 /*! =CSS Grid layout */

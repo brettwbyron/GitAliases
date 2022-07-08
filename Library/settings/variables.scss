@@ -36,12 +36,14 @@ $area-glassdoor: false;
 $area-ada: false;
 // Desktop ---------------------------------------------------------------------
 $area-iframe-site: false; // Set to "true" if your site is iframe
-$area-screen-x-small: false; // Adds media queries for a given screen size
 $area-screen-small: false; // Adds media queries for a given screen size
 $area-screen-medium: true; // Adds media queries for a given screen size
 $area-screen-large: false; // Adds media queries for a given screen size
 $area-screen-xl: false; // Adds media queries for a given screen size
+$area-screen-2x: false; // Adds media queries for a given screen size
 // Mobile ----------------------------------------------------------------------
+$area-screen-xs-mobile: true; // Adds media queries for a given screen size
+$area-screen-small-mobile: true; // Adds media queries for a given screen size
 $area-nav-left: false; // Moves the navigation to slide in from the left
 $area-nav-top: false;
 $area-nav-shadow: true; // true = shadow on, false = shadow off
@@ -122,6 +124,8 @@ $font-web-alt: '';
 $font-mono: 'Monaco','Input Mono';
 $font-fa: FontAwesome;
 $font-fa5: 'FontAwesome 5 Free';
+$font-fa6: var(--fa-font-solid);
+$font-fa6-brand: var(--fa-font-brands);
 $font-jv: 'jobvite-icons';
 $font-headings: $font-web, $font-sans-serif;
 $font-body: $font-web, $font-sans-serif;
@@ -215,13 +219,19 @@ $spacing-1: 1em;
 
 // Browser width
 // -----------------------------------------------------------------------------
+$browser-max-xs: 480px;
 $browser-max-sm: 576px;
 $browser-max-md: 768px;
 $browser-max-lg: 992px;
+$browser-max-xl: 1200px;
+$browser-max-2x: 1400px;
 $browser-max-width: 1200px;
 
 // Screen breakpoints
 // -----------------------------------------------------------------------------
+$screen-xs: 480;
+$screen-xs-px: $screen-xs + px;
+$screen-xs-em: (math.div($screen-xs, $font-base)) + em;
 $screen-sm: 576;
 $screen-sm-px: $screen-sm + px;
 $screen-sm-em: (math.div($screen-sm, $font-base)) + em;
@@ -234,6 +244,9 @@ $screen-lg-em: (math.div($screen-lg, $font-base)) + em;
 $screen-xl: 1200;
 $screen-xl-px: $screen-xl + px;
 $screen-xl-em: (math.div($screen-xl, $font-base)) + em;
+$screen-2x: 1400;
+$screen-2x-px: $screen-2x + px;
+$screen-2x-em: (math.div($screen-2x, $font-base)) + em;
 $screen-max: 1200;
 
 // Z-index

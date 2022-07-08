@@ -5,7 +5,7 @@
 @use "Library/tools/flex"as *;
 $mobile: false !default;
 $internal: false !default;
-
+$lang: false !default;
 // -----------------------------------------------------------------------------
 /*!  =Flex Classes */
 // -----------------------------------------------------------------------------
@@ -163,10 +163,60 @@ $self: (
         }
     }
 }
-// Responsive layout
-// -----------------------------------------------------------------------------
-@if not $mobile {
-    @if $area-screen-x-small {
+
+@if $mobile {
+    /*! orientation: landscape */
+    @media screen and (orientation:landscape) {
+        $suffix: "-land";
+        @include flex-foundation($suffix);
+        @include flex-classes(main, $suffix);
+        // Conditions
+        @supports (-ms-accelerator: true) {
+
+            /* Edge only - source: https://dev.to/mornir/flexbox-space-evenly-value-58gf */
+            .flex-m-space-evenly#{$suffix} {
+                justify-content: space-around;
+                /* you can also add some other adjustments to size, margins etc to get the same positioning */
+            }
+        }
+        @include flex-classes(wrap, $suffix);
+        @include flex-classes(cross, $suffix);
+        @include flex-classes(self, $suffix);
+
+        @if $area-flex-order {
+            @for $i from 1 through $max-pos {
+                .pos-#{$i}#{$suffix} {
+                    @include flex-order($i);
+                }
+            }
+        }
+    }
+    @media screen and (orientation:portrait) {
+        $suffix: "-portrait";
+        @include flex-foundation($suffix);
+        @include flex-classes(main, $suffix);
+        // Conditions
+        @supports (-ms-accelerator: true) {
+
+            /* Edge only - source: https://dev.to/mornir/flexbox-space-evenly-value-58gf */
+            .flex-m-space-evenly#{$suffix} {
+                justify-content: space-around;
+                /* you can also add some other adjustments to size, margins etc to get the same positioning */
+            }
+        }
+        @include flex-classes(wrap, $suffix);
+        @include flex-classes(cross, $suffix);
+        @include flex-classes(self, $suffix);
+
+        @if $area-flex-order {
+            @for $i from 1 through $max-pos {
+                .pos-#{$i}#{$suffix} {
+                    @include flex-order($i);
+                }
+            }
+        }
+    }
+    @if $area-screen-xs-mobile {
         /*! max-width: #{$screen-sm-px} */
         @media all and (max-width: $screen-sm-em) {
             $suffix: "-xs";
@@ -174,7 +224,7 @@ $self: (
             @include flex-classes(main, $suffix);
             // Conditions
             @supports (-ms-accelerator: true) {
-
+    
                 /* Edge only - source: https://dev.to/mornir/flexbox-space-evenly-value-58gf */
                 .flex-m-space-evenly#{$suffix} {
                     justify-content: space-around;
@@ -184,8 +234,48 @@ $self: (
             @include flex-classes(wrap, $suffix);
             @include flex-classes(cross, $suffix);
             @include flex-classes(self, $suffix);
+
+            @if $area-flex-order {
+                @for $i from 1 through $max-pos {
+                    .pos-#{$i}#{$suffix} {
+                        @include flex-order($i);
+                    }
+                }
+            }
         }
     }
+    @if $area-screen-small-mobile {
+        /*! min-width: #{$screen-sm-px} */
+        @media all and (min-width: $screen-sm-em) {
+            $suffix: "-sm";
+            @include flex-foundation($suffix);
+            @include flex-classes(main, $suffix);
+
+            // Conditions
+            @supports (-ms-accelerator: true) {
+                /* Edge only - source: https://dev.to/mornir/flexbox-space-evenly-value-58gf */
+                .flex-m-space-evenly#{$suffix} {
+                    justify-content: space-around;
+                    /* you can also add some other adjustments to size, margins etc to get the same positioning */
+                }
+            }
+            @include flex-classes(wrap, $suffix);
+            @include flex-classes(cross, $suffix);
+            @include flex-classes(self, $suffix);
+
+            @if $area-flex-order {
+                @for $i from 1 through $max-pos {
+                    .pos-#{$i}#{$suffix} {
+                        @include flex-order($i);
+                    }
+                }
+            }
+        }
+    }
+}
+// Responsive layout
+// -----------------------------------------------------------------------------
+@if not $mobile {
     @if $area-screen-small {
         /*! min-width: #{$screen-sm-px} */
         @media all and (min-width: $screen-sm-em) {
@@ -273,6 +363,33 @@ $self: (
         /*! min-width: #{$screen-xl-px} */
         @media all and (min-width: $screen-xl-em) {
             $suffix: "-xl";
+            @include flex-foundation($suffix);
+            @include flex-classes(main, $suffix);
+            // Conditions
+            @supports (-ms-accelerator: true) {
+                /* Edge only - source: https://dev.to/mornir/flexbox-space-evenly-value-58gf */
+                .flex-m-space-evenly#{$suffix} {
+                    justify-content: space-around;
+                    /* you can also add some other adjustments to size, margins etc to get the same positioning */
+                }
+            }
+            @include flex-classes(wrap, $suffix);
+            @include flex-classes(cross, $suffix);
+            @include flex-classes(self, $suffix);
+
+            @if $area-flex-order {
+                @for $i from 1 through $max-pos {
+                    .pos-#{$i}#{$suffix} {
+                        @include flex-order($i);
+                    }
+                }
+            }
+        }
+    }
+    @if $area-screen-2x {
+        /*! min-width: #{$screen-xl-px} */
+        @media all and (min-width: $screen-xl-em) {
+            $suffix: "-2x";
             @include flex-foundation($suffix);
             @include flex-classes(main, $suffix);
             // Conditions

@@ -27,12 +27,14 @@ const PATHS = {
         //
         // }
     },
-    SRC_IMG: './convert-images/',
-    DIST_IMG: '../images',
+    IMG: {
+        SRC: './convert-images/',
+        DIST: '../images'
+    },
     CSS: './**/*.css',
     JS: {
-        SRC: '../*(desktop|mobile)/*.js',
-        DIST: './dist/'
+        SRC: './convert-script/',
+        DIST: '../script/'
     }
 };
 
@@ -48,13 +50,13 @@ function cleanCSS() {
 // delete js ------------------------------------
 function cleanJS() {
     log.info('-------> Cleaning JavaScript');
-    return del(PATHS.JS.DIST + '*.js');
+    return del(PATHS.JS.SRC + '*.js');
 }
 
 // delete images ------------------------------------
 function cleanIMG() {
     log.info('-------> Cleaning Source Images');
-    return del(PATHS.SRC_IMG + '*.{jpg,jpeg,png}');
+    return del(PATHS.IMG.SRC + '*.{jpg,jpeg,png}');
 }
 
 // compile styles ------------------------------------
@@ -85,9 +87,10 @@ function compileStyles() {
 
 // compile scripts ----------------------------------
 function compileScripts() {
-    return src(PATHS.JS.SRC)
+    return src(PATHS.JS.SRC + '*.js')
         .pipe(plugins.minify({
             ext: {
+                src: '-debug.js',
                 min: '.min.js'
             }
         }))
@@ -96,15 +99,15 @@ function compileScripts() {
 
 // Convert images to WebP ------------------------------------
 function webP() {
-    return src(PATHS.SRC_IMG + '*.{jpg,jpeg,png}')
-        .pipe(dest(PATHS.DIST_IMG))
+    return src(PATHS.IMG.SRC + '*.{jpg,jpeg,png}')
+        .pipe(dest(PATHS.IMG.DIST))
         .pipe(plugins.webp({
             quality: 80,
             lossless: false,
             method: 4,
             metadata: 'all'
         }))
-        .pipe(dest(PATHS.DIST_IMG));
+        .pipe(dest(PATHS.IMG.DIST));
 }
 
 // gulp testing message ------------------------------------
@@ -131,8 +134,8 @@ exports.default = function () {
     }, series(cleanCSS, compileStyles, compileScripts, endMsg));
     watch(PATHS.JS.SRC, {
         ignoreInitial: false
-    }, series(cleanJS, compileScripts, endJSMsg))
-    watch(PATHS.SRC_IMG, {
+    }, series(compileScripts, cleanJS, endJSMsg))
+    watch(PATHS.IMG.SRC, {
         ignoreInitial: false
     }, series(webP, cleanIMG, imgMsg));
 };

@@ -4,6 +4,7 @@
 @use "Library/tools/flex" as *;
 $mobile: false !default;
 $internal: false !default;
+$lang: false !default;
 
 // --------------------------------------------------------------------------
 /*! Forms */
@@ -139,7 +140,7 @@ $internal: false !default;
             flex: 1 1 100%;
             width: 100%;
 
-            &:first-child {
+            &:not(:last-child) {
                 margin-right: $form-input-spacing;
             }
 
