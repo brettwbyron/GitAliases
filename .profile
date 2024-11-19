@@ -1168,7 +1168,7 @@ function gwtn() {
             return
         fi
 
-        trap 'echo && echo $(Alert $cWarning "Stopped creating worktree \"$branch\"\nCheck on what has been created so far") && shutdown && trap - 1 2 3 6 && return' 1 2 3 6
+        trap 'echo && echo $(Alert $cWarning "Stopped creating worktree \"$branch\". Check on what has been created so far") && shutdown && trap - 1 2 3 6 && return' 1 2 3 6
 
         if ([[ $branch != 'starter_branch' ]] && git switch starter_branch &>/dev/null); then
             gitPull
@@ -1270,7 +1270,7 @@ function gwtn() {
 }
 function gwtr() {
     local ref=${1:-$(getCurrentWorktreeName)}
-    trap 'echo && echo $(Alert $cWarning "Stopped removing worktree \"$ref\"\nCheck on what has been deleted") && shutdown && trap - 1 2 3 6 && return' 1 2 3 6
+    trap 'echo && echo $(Alert $cWarning "Stopped removing worktree \"$ref\". Check on what has been deleted") && shutdown && trap - 1 2 3 6 && return' 1 2 3 6
 
     if ! worktreeExists; then
         GitFailure "Invalid worktree: $ref"
