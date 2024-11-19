@@ -30,8 +30,7 @@ GA_VERSION='v2.2.2'
 alias config='$EDITOR_CMD ~/.profile && GitInProgress "Editing ~/.profile. Run the \`reload\` function, or open a new session, when you finish to use your changes"'
 alias reload='source ~/.profile &>/dev/null && GitSuccess ".profile Reloaded" && checkForGitAliasesUpdate'
 function checkForGitAliasesUpdate() {
-    local GA_REMOTE_PROFILE='https://raw.githubusercontent.com/brettwbyron/GitAliases/main/.profile'
-    local GA_VERSION_REMOTE=$(curl -s "$GA_REMOTE_PROFILE" | grep -Eo "GA_VERSION='[^']*'" | sed "s/GA_VERSION='//;s/'//g")
+    local GA_VERSION_REMOTE=$(curl -s "https://raw.githubusercontent.com/brettwbyron/GitAliases/main/.profile" | grep -Eo "GA_VERSION='v[0-9]+\.?[0-9]+\.[0-9]+'" | sed -E "s/GA_VERSION='(v[0-9]+\.[0-9]+\.[0-9]+)'/\1/")
     
     if [ -n "$GA_VERSION_REMOTE" ] && [ -n "$GA_VERSION" ]; then
         if [ "$GA_VERSION_REMOTE" != "$GA_VERSION" ]; then
