@@ -49,7 +49,7 @@ function checkForGitAliasesUpdate() {
 
                 # Combine the parts and overwrite the local profile
                 {
-                    echo $remote_content
+                    printf "%s" "$remote_content" > "$HOME/.profile"
                 } > "$HOME/.profile"
 
                 GitSuccess "GitAliases update complete." && reload
