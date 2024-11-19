@@ -1527,7 +1527,7 @@ function start() {
         if ! $INSTALL_ONLY; then
             # Start gulp
             Success "Starting Kickoff in $dir"
-            Message 'To stop, press Control-C\n'
+            Message 'To stop, press Control-C'
 
             gulp
         fi
