@@ -30,26 +30,22 @@ GA_VERSION='v2.2.2'
 alias config='$EDITOR_CMD ~/.profile && GitInProgress "Editing ~/.profile. Run the \`reload\` function, or open a new session, when you finish to use your changes"'
 alias reload='source ~/.profile &>/dev/null && GitSuccess ".profile Reloaded" && checkForGitAliasesUpdate'
 function checkForGitAliasesUpdate() {
-    local GA_VERSION_REMOTE=$(curl -s "https://raw.githubusercontent.com/brettwbyron/GitAliases/main/.profile" | grep -Eo "GA_VERSION='v[0-9]+\.?[0-9]+\.[0-9]+'" | sed -E "s/GA_VERSION='(v[0-9]+\.[0-9]+\.[0-9]+)'/\1/")
-    
-    if [ -n "$GA_VERSION_REMOTE" ] && [ -n "$GA_VERSION" ]; then
-        if [ "$GA_VERSION_REMOTE" != "$GA_VERSION" ]; then
-            if promptYesNo "$(Warning "Your GitAliases .profile file differs from the GitAliases repo. Do you want to update from $GA_VERSION to $GA_VERSION_REMOTE?")"; then
-                # Check for valid config variables locally
-                remote_version_line_number=$(curl -s "$GA_REMOTE_PROFILE" | grep -n "GA_VERSION='" | cut -d: -f1)
-                local_version_line_number=$(grep -n "GA_VERSION='" "$HOME/.profile" | cut -d: -f1)
+    local GA_VERSION_LOCAL=$GA_VERSION
+    local GA_REMOTE_PROFILE='https://raw.githubusercontent.com/brettwbyron/GitAliases/main/.profile'
+    local GA_VERSION_REMOTE=$(curl -s "$GA_REMOTE_PROFILE" | grep -Eo "GA_VERSION='v[0-9]+\.?[0-9]+\.[0-9]+'" | sed -E "s/GA_VERSION='(v[0-9]+\.[0-9]+\.[0-9]+)'/\1/")
 
-                if [ "$local_version_line_number" != "$remote_version_line_number" ]; then
-                    if promptYesNo "$(Warning "It looks like your .profile config variables have changed. Do you want to overwrite them with the latest?")"; then
-                        remote_content=$(curl -s "$GA_REMOTE_PROFILE")
-                    else
-                        remote_content=$(
-                            echo "$(awk '/^###!!!.*(###|!!!)$/{exit}1' "$HOME/.profile")"
-                            echo
-                            echo "$(curl -s "$GA_REMOTE_PROFILE" | awk '/^###!!!.*(###|!!!)$/{found=1} found')"
-                        )
-                    fi
-                fi
+    if [ -n "$GA_VERSION_REMOTE" ] && [ -n "$GA_VERSION_LOCAL" ]; then
+        if [ "$GA_VERSION_REMOTE" != "$GA_VERSION_LOCAL" ]; then
+            if promptYesNo "$(Warning "Your GitAliases .profile file differs from the GitAliases repo. Do you want to update from $GA_VERSION_LOCAL to $GA_VERSION_REMOTE?")"; then
+                # Check for valid config variables locally
+                remote_version_line_number=$(curl -s "$GA_REMOTE_PROFILE" | grep -n "GA_VERSION_LOCAL='" | head -n 1 | cut -d: -f1)
+                local_version_line_number=$(grep -n "GA_VERSION_LOCAL='" "$HOME/.profile" | head -n 1 | cut -d: -f1)
+
+                remote_content=$(
+                    echo "$(awk '/^###!!!.*(###|!!!)$/{exit}1' "$HOME/.profile")"
+                    echo
+                    echo "$(curl -s "$GA_REMOTE_PROFILE" | awk '/^###!!!.*(###|!!!)$/{found=1} found')"
+                )
 
                 # Combine the parts and overwrite the local profile
                 {
