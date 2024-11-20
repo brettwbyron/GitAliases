@@ -24,11 +24,12 @@ SFTP_PSWD=''    # FileZilla Password
 
 # Git Aliases Version
 GA_VERSION='v2.2.2'
+GA_AUTOUPDATE=1
 
 # Load / Edit / Update .profile
 #-------------------------------------------------------------
 alias config='$EDITOR_CMD ~/.profile && GitInProgress "Editing ~/.profile. Run the \`reload\` function, or open a new session, when you finish to use your changes"'
-alias reload='source ~/.profile &>/dev/null && GitSuccess ".profile Reloaded" && checkForGitAliasesUpdate'
+alias reload='source ~/.profile &>/dev/null && GitSuccess ".profile Reloaded" && if [[ "$GA_AUTOUPDATE" -eq 1 ]]; then; checkForGitAliasesUpdate; fi'
 function checkForGitAliasesUpdate() {
     local GA_VERSION_LOCAL=$GA_VERSION
     local GA_REMOTE_PROFILE='https://raw.githubusercontent.com/brettwbyron/GitAliases/main/.profile'
