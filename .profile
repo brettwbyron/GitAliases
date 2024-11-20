@@ -23,7 +23,7 @@ SFTP_PSWD=''    # FileZilla Password
 ###!!!###!!!###!!!###!!!###!!!###!!!###!!!###!!!###!!!###!!!###!!!###!!!###!!!
 
 # Git Aliases Version
-GA_VERSION='v2.2.2'
+GA_VERSION='v2.2.3'
 GA_AUTOUPDATE=1
 
 # Load / Edit / Update .profile
@@ -1401,41 +1401,45 @@ function gwtd() {
         Message "You can't use gwtr without a parameter in root or starter_branch. Either specify a branch, or cd into that branch and run gwtr"
         return
     fi
+    
+    if promptYesNo "$(Warning "Are you sure you want to delete branch: \"$branch\"")"; then
+        goToGitDir &>/dev/null
+        git restore . &>/dev/null
+        goToGitRepo &>/dev/null
 
-    goToGitDir &>/dev/null
-    git restore . &>/dev/null
-    goToGitRepo &>/dev/null
-
-    (
         (
-            if git worktree remove $branch &>/dev/null; then
-                GitSuccess "Worktree \"$branch\" removed"
-                exit
-            else
-                GitFailure "Unable to remove worktree: $branch"
-                echo $(git worktree remove $branch)
-                exit 1
-            fi
-        ) &
-        loadingAnimation $! "Removing worktree \"$branch\""
-    )
+            (
+                if git worktree remove $branch &>/dev/null; then
+                    GitSuccess "Worktree \"$branch\" removed"
+                    exit
+                else
+                    GitFailure "Unable to remove worktree: $branch"
+                    echo $(git worktree remove $branch)
+                    exit 1
+                fi
+            ) &
+            loadingAnimation $! "Removing worktree \"$branch\""
+        )
 
-    (
         (
-            if git branch -D $branch &>/dev/null && git push --no-verify origin --delete $branch &>/dev/null; then
-                GitSuccess "Branch \"$branch\" has been deleted."
-                exit
-            else
-                GitFailure "Unable to delete branch: $branch"
-                echo "git branch -D $branch: $(git branch -D $branch)"
-                echo "git push --no-verify origin --delete $branch: $(git push --no-verify origin --delete $branch)"
-                exit 1
-            fi
-        ) &
-        loadingAnimation $! "Deleting branch \"$branch\""
-    )
+            (
+                if git branch -D $branch &>/dev/null && git push --no-verify origin --delete $branch &>/dev/null; then
+                    GitSuccess "Branch \"$branch\" has been deleted."
+                    exit
+                else
+                    GitFailure "Unable to delete branch: $branch"
+                    echo "git branch -D $branch: $(git branch -D $branch)"
+                    echo "git push --no-verify origin --delete $branch: $(git push --no-verify origin --delete $branch)"
+                    exit 1
+                fi
+            ) &
+            loadingAnimation $! "Deleting branch \"$branch\""
+        )
 
-    goToGitRepo &>/dev/null
+        goToGitRepo &>/dev/null
+    else
+        Message "Canceling delete"
+    fi
 }
 function tagging() {
     if [[ $1 == "" ]]; then
