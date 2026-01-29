@@ -23,7 +23,7 @@ SFTP_PSWD=''    # FileZilla Password
 ###!!!###!!!###!!!###!!!###!!!###!!!###!!!###!!!###!!!###!!!###!!!###!!!###!!!
 
 # Git Aliases Version
-GA_VERSION='v2.2.3'
+GA_VERSION='v2.2.4'
 GA_AUTOUPDATE=1
 
 # Load / Edit / Update .profile
@@ -325,7 +325,7 @@ function Success() {
 }
 function GitSuccess() {    
     local msg=" ${1:-"$(git show -s --format='%h - %s')"} "
-    local icon=" $(echo -e ${2:-'\U0002714'}) "
+    local icon=" $(echo -e ${2:-'✔'}) "
     local output="$msg"
     local output_length=$((${#icon} + ${#output}))
     local terminal_width=$(tput cols)
@@ -337,7 +337,7 @@ function GitSuccess() {
 }
 function GitInProgress() {
     local msg=" ${1:-'In progress'} "
-    local icon=" $(echo -e ${2:-'\U00021BB'}) "
+    local icon=" $(echo -e ${2:-'↻'}) "
     local output="$msg"
     local output_length=$((${#icon} + ${#output}))
     local terminal_width=$(tput cols)
@@ -348,7 +348,7 @@ function GitInProgress() {
 }
 function GitFailure() {
     local msg=" ${1:-'Error: Something went wrong'} "
-    local icon=" $(echo -e ${2:-'\U0002716'}) "
+    local icon=" $(echo -e ${2:-'✖'}) "
     local output="$msg"
     local output_length=$((${#icon} + ${#output}))
     local terminal_width=$(tput cols)
@@ -500,7 +500,7 @@ function loadingAnimation() {
             output="${output:0:$terminal_width-3}..."
         fi
 
-        echo -en "$output $(tput sgr0)\033[$1D"
+        echo -en "$output $(tput sgr0)[$1D"
         sleep .1
     done
 
@@ -1171,8 +1171,14 @@ function gwtn() {
 
         trap 'echo && echo $(Alert $cWarning "Stopped creating worktree \"$branch\". Check on what has been created so far") && shutdown && trap - 1 2 3 6 && return' 1 2 3 6
 
-        if ([[ $branch != 'starter_branch' ]] && git switch starter_branch &>/dev/null); then
-            gitPull
+        if ([[ $branch != 'starter_branch' ]]); then
+            if git switch starter_branch &>/dev/null; then
+                gitPull
+            else
+                GitFailure "The was an issue when checking out into starter_branch"
+                git switch starter_branch
+                return
+            fi
         fi
 
         (
