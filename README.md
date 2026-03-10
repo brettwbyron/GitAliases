@@ -37,8 +37,6 @@ open ~/.profile
 ```
 
 Replace all, if any, content with [this .profile file](./.profile) in this repo.
-After you put the latest code in your `.profile`, make sure you update the configuration variables.
->__Example__: If your CWS folder is in your User Directory ( `~/` ), you would make `JVPATH` equal `~/CWS/`.
 
 ### 3) Save your file, then run:
 
@@ -57,10 +55,6 @@ config
 
 to open up your `.profile`, and replace what you have with the code in the `.profile` in this repo.
 
-After you put the latest code in your `.profile`, make sure you update the `JVPATH` variable to reflect the path to your CWS folder.
-
-If your CWS folder is in your User Directory ( `~/` ), for example, you would make `JVPATH` equal `~/CWS/`.
-
 ### 2) Save your file, then open a new Shell, or run:
 
 ```sh
@@ -71,29 +65,6 @@ reload
 
 ## Functions
 
-<details id="addStyles">
-    <summary><code>addStyles()</code></summary>
-
-<br>
-
-**Add Styles**
-
-Using this function will allow you to get the latest Kickoff code into any project.
-You can specify where you would like to put it by adding in the path after `addStyles`, or you can go to that location in your terminal and run `addStyles`.
-
-Arguments:
-| Name | Function | Optional |
-| ---- | -------- | :------: |
-| branch_name | Name of directory to store kickoff. If empty, uses current directory. | ✓ |
-
-Examples:
-
-```sh
-git:(<branch_name>) $ addStyles
-
-git:(<branch_name>) $ addStyles ./myfolder
-```
-</details>
 <details id="camp">
     <summary><code>camp()</code></summary>
 
@@ -228,28 +199,13 @@ git:(root) $ gwtr -d <branch_name>
 ```
 
 </details>
-<details id="new">
-    <summary><code>new()</code></summary>
 
-<br>
-
-**New Project Structure**
-
-Running this function creates an unobtrusive new `starter_branch` folder structure. It will add the `desktop/`, `mobile/`, `images/`, and `styles/` folders, as well as call [addkick](#addkick), so it will add the latest Kickoff code. If any folders of the same name already exist, they will be untouched and no new folder will be created, leaving all previous work safe, but giving us the opportunity to easily work with the latest code and structure.
-
-Example:
-
-```sh
-git:(<branch_name>) $ new
-```
-
-</details>
 <details id="start">
     <summary><code>start()</code></summary>
 
 <br>
 
-**Start Kickoff**
+**Start gulp in subdirectory containing a `package.json`**
 
 Running this function will find the nearest folder with npm in your current branch, install `npm`, and run `gulp`.
 
@@ -396,34 +352,6 @@ Equivalent to [`git checkout`](https://git-scm.com/docs/git-checkout)
 
 ```sh
 ch branch-name
-```
-
-</details>
-<details id="chr">
-    <summary><code>chr</code></summary>
-
-<br>
-
-**Git Checkout Root**
-
-Equivalent to `git checkout root`
-
-```sh
-chr
-```
-
-</details>
-<details id="chsb">
-    <summary><code>chsb</code></summary>
-
-<br>
-
-**Git Checkout starter_branch**
-
-Equivalent to `git checkout starter_branch`
-
-```sh
-chsb
 ```
 
 </details>
